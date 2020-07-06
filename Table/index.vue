@@ -15,7 +15,7 @@
                 <template v-for="(x,i) in cfg.searchList">
                     <el-form-item :label="x.name" :key="i">
                         <template v-if="x.type==='input'">
-                            <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" v-bind="inputcfg(x, i)" @keyup.enter.native="getList" />
+                            <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" :maxlength="x.key==='mobile'?11:20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList" />
                         </template>
                         <template v-else-if="x.type==='select'">
                             <el-select v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" v-bind="inputcfg(x, i)">
@@ -44,7 +44,7 @@
                 <template v-for="(x,i) in cfg.tableList">
                     <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
                         <template slot-scope="scope">
-                            <el-button size="mini" :type="y.type|| 'text'" v-for="(y,j) in x.buttonList" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" :icon="y.icon">
+                            <el-button size="mini" :type="y.type|| 'text'" v-for="(y,j) in x.buttonList" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" :icon="y.icon" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
                                 {{ typeof y.text === 'function' ? y.text(scope.row,scope.$index) : y.text }}
                             </el-button>
                         </template>
@@ -87,13 +87,15 @@ export default {
       tableData: this.cfg.tableData || [],
       tableTotal: 0,
       dialogVisible: false,
-      searchCfg: {},
+      searchCfg: {
+        queryBtn:2
+      },
       currentPage: 1
     };
   },
   computed: {},
   mounted() {
-    this.searchCfg = this.cfg.searchCfg;
+    this.searchCfg = this.cfg.searchCfg || this.searchCfg ;
     // 搜索下拉框的列表
     const searchList =
       (this.cfg.searchList &&
