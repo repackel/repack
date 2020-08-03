@@ -49,7 +49,7 @@ export default {
     inputcfg: x => ({
       clearable: true,
       size: "small",
-      filterable: Boolean(x.dict),
+      filterable:x.filterable || Boolean(x.dict),
       style: x.width ? "width:" + x.width : "",
       class: x.class,
       placeholder: tipsFn(x),

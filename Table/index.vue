@@ -12,10 +12,11 @@
       </div>
       <cpTitle v-if="1 || _get(cfg, 'actionList.length')">{{cfg.rightName}}</cpTitle>
       <el-form :inline="true" class="cp-form" label-width="6em">
+        <slot name="searchBefore"></slot>
         <template v-for="(x,i) in cfg.searchList">
           <el-form-item :label="x.name" :key="i">
             <template v-if="x.type==='input'">
-              <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" :maxlength="x.key==='mobile'?11:20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList" />
+              <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" :maxlength="x.key==='mobile'?11:20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
             </template>
             <template v-else-if="x.type==='select'">
               <el-select v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" v-bind="inputcfg(x, i)">
@@ -26,7 +27,10 @@
               <el-date-picker type="daterange" v-model="searchDateArr" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>([queryParams[x.key1],queryParams[x.key2] ]=arr)">
               </el-date-picker>
             </template>
-            
+            <template v-else-if="x.type==='date1'">
+              <el-date-picker type="date" v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" value-format="yyyy-MM-dd " v-bind="inputcfg(x, i)">
+              </el-date-picker>
+            </template>
             <template v-else-if="x.type==='division'">
               <cp-divisions v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" :lev="3" :checkStrictly="true" v-bind="inputcfg(x, i)" />
             </template>
@@ -34,7 +38,7 @@
           <br class="break" :key="i" v-if="x.br" />
         </template>
         <el-form-item class="btns">
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="getList" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || '筛选'}}</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="getList()" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || '筛选'}}</el-button>
           <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || '重置'}}</el-button>
         </el-form-item>
       </el-form>
@@ -74,7 +78,7 @@ export default {
     return {
       loading: false,
       hidden: false,
-      searchDateArr:[],
+      searchDateArr: [],
       queryParams: {
         pageNum: 1,
         pageSize: 10
@@ -112,7 +116,17 @@ export default {
         });
       });
     }
-    this.getList("reset");
+    this.$nextTick(_ => {
+      const hasVal =
+        this.cfg.searchList &&
+        this.cfg.searchList.find(x => x.type === "input" && x.value);
+      if (hasVal) {
+        this.queryParams[hasVal.key] = hasVal.value;
+        this.getList();
+      } else {
+        this.getList("reset");
+      }
+    });
   },
   methods: {
     getList(reset) {
@@ -166,7 +180,7 @@ export default {
     resetQuery() {
       this.queryParams = this._pick(this.queryParams, ["pageSize"]);
       this.queryParams.pageNum = 1;
-      this.searchDateArr =[]
+      this.searchDateArr = [];
       this.getList("reset");
     },
     handleSelectionChange(val) {
