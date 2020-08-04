@@ -49,7 +49,7 @@
         <template v-for="(x,i) in cfg.tableList">
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
             <template slot-scope="scope">
-              <el-button size="mini" :type="y.type|| 'text'" v-for="(y,j) in x.buttonList" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" :icon="y.icon" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
+              <el-button size="mini" :type="y.type|| 'text'" v-for="(y,j) in x.buttonList" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" :icon="y.icon" :style="typeof y.style ==='function' ? y.style(scope.row):y.style" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
                 {{ typeof y.text === 'function' ? y.text(scope.row,scope.$index) : y.text }}
               </el-button>
             </template>
