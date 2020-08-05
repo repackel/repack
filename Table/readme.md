@@ -86,7 +86,7 @@ tableList: [
 | minWidth | 最小宽度 (同) | `Number` | | `120`  |
 | align | 列表对齐 (同) | `String` |  | `'right'`  |
 | overflow | showOverflowTooltip (同) | `Boolean` |  | `true` |
-| fixed | 列表固定 (同) | `Boolean``String` | false | `'right'`  |
+| fixed | 列表固定 (同) | `Boolean` `String` | false | `'right'`  |
 | transform | 处理显示文字的函数，传入 row ，返回需要显示的格式 | `Function` |  | `row => row.num + 'kg'` | 
 | class | 类名 | `String` | | `"highlight"`  |
 | style | 内联样式 | `String` | | `"color: green;"`  |
