@@ -17,7 +17,7 @@ components: {
 
 ### 配置
 
-- 1. `cfg` 配置
+- 1 `cfg` 配置
 ```
 {
   tree: true, // 是否显示树
@@ -32,7 +32,7 @@ components: {
 }
 ```
 
-- 1-1. `searchList` 配置：
+- 1-1 `searchList` 配置：
 
 > 格式：
 ```
@@ -60,7 +60,7 @@ searchList: [
 | list | 下拉类型的列表 | `Array` | 必传 | [{name:'男',val:'1'}]
 
 
-- 1-2. `tableList` 配置：
+- 1-2 `tableList` 配置：
 > 格式：
 ```
 tableList: [
