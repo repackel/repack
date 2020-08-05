@@ -17,7 +17,7 @@ components: {
 
 ### 配置
 
-1. `cfg` 配置
+- 1. `cfg` 配置
 ```
 {
   tree: true, // 是否显示树
@@ -32,9 +32,9 @@ components: {
 }
 ```
 
-2. `searchList` 配置：
+- 1-1. `searchList` 配置：
 
-格式：
+> 格式：
 ```
 searchList: [
   {
@@ -59,8 +59,9 @@ searchList: [
 | key | 表单的键 | `String` | 必传 | "name"  |
 | list | 下拉类型的列表 | `Array` | 必传 | [{name:'男',val:'1'}]
 
-3. `tableList` 配置：
-格式：
+
+- 1-2. `tableList` 配置：
+> 格式：
 ```
 tableList: [
   {
@@ -94,8 +95,8 @@ tableList: [
 | buttonList | 操作按钮的列表 | `Array` | | `120`  |
 
 
-3. `buttonList` 配置：
-格式：
+- 1-2-1 `buttonList` 配置：
+> 格式：
 ```
 buttonList:[
    {
