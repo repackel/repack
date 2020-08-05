@@ -2,7 +2,7 @@
 
 1. 引入 
 ```
-import FormItem from "../FormItem";
+import { FormItem } from "@repackel/repack";
 
   components: {
     FormItem,
