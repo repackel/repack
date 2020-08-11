@@ -1,9 +1,6 @@
 <template>
   <div class="cp-full">
-    <leftTree class="cp-tree" :class="{hidden}" v-if="cfg.tree" :treeName="cfg.treeName" :treeLev="cfg.treeLev" v-on="$listeners"></leftTree>
-    <div class="toggle-icon" :class="{hidden}" @click="hidden = !hidden" v-if="cfg.tree">
-      <i :class="!hidden?'el-icon-d-arrow-left':'el-icon-d-arrow-right'"></i>
-    </div>
+    <slot name="tree"></slot>
     <div class="cp-page-inner" :class="{hasLeft:cfg.tree}">
       <div class="cp-action-bar" :class="cfg.actionAlign" v-if="_get(cfg, 'actionList.length')">
         <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
@@ -77,7 +74,7 @@ export default {
   data() {
     return {
       loading: false,
-      hidden: false,
+      // hidden: false,
       searchDateArr: [],
       queryParams: {
         pageNum: 1,

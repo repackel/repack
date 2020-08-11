@@ -12,7 +12,7 @@ components: {
 },
 ```
 ```
-<rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection" @treeClick="getTree"></rl-table>
+<rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection"></rl-table>
 ```
 
 ### 配置
@@ -20,8 +20,6 @@ components: {
 - 1 `cfg` 配置
 ```
 {
-  tree: true, // 是否显示树
-  treeName: "小区", //页面名称
   rightName: "人员信息", // 页面名称
   actionList:[], // 操作按钮列表
   actionAlign: "right", // 操作按钮对齐
