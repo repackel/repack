@@ -4,7 +4,7 @@
       <el-input v-model="form[x.key]" v-bind="inputcfg(x)" />
     </template>
     <template v-if="x.type==='textarea'">
-      <el-input v-model="form[x.key]" type="textarea" v-bind="inputcfg(x)" />
+      <el-input v-model="form[x.key]" type="textarea" resize='none' rows="3" v-bind="inputcfg(x)" />
     </template>
     <template v-if="x.type==='radio'">
       <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)">
@@ -50,10 +50,10 @@ export default {
   async mounted() {
     if (this.x.dict) {
       const list = await this.$dict(this.x.dict);
-      if ( this.x.pick ) {
-        this.dictList = list.filter(x=>this.x.pick.includes(x.val))
+      if (this.x.pick) {
+        this.dictList = list.filter(x => this.x.pick.includes(x.val));
       } else {
-        this.dictList = list
+        this.dictList = list;
       }
     }
   },
@@ -65,8 +65,11 @@ export default {
       filterable: x.filterable || Boolean(x.dict),
       style: x.width ? "width:" + x.width : "",
       class: x.class,
+      readonly: x.readonly,
+      disabled: x.disabled,
       placeholder: tipsFn(x),
-      maxlength: x.type === "input" ? x.maxlength || 50 : null
+      maxlength:
+        x.type === "input" || x.type === "textarea" ? x.maxlength || 50 : null
     }),
     rules: x => [
       {

@@ -56,6 +56,12 @@
               <span :style="typeof x.style ==='function' ? x.style(scope.row):x.style" :class="x.class" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ x.transform(scope.row) }}</span>
             </template>
           </el-table-column>
+          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
+            <template slot-scope="scope">
+               <el-image style="width: 60px; height: 60px" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]">
+              </el-image>
+            </template>
+          </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else />
         </template>
       </el-table>
@@ -93,7 +99,8 @@ export default {
       searchCfg: {
         queryBtn: 2
       },
-      currentPage: 1
+      currentPage: 1,
+      imageList:[]
     };
   },
   computed: {},
