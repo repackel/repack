@@ -4,7 +4,9 @@ WIP
 
 ⚠⚠⚠⚠⚠
 
-Under development, please **DO NOT** use in production
+I sure hope you know what you are doing.
+
+please **READ Document** before using in production
 
 ⚠⚠⚠⚠⚠
 
