@@ -12,7 +12,10 @@ components: {
 },
 ```
 ```
-<rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection"></rl-table>
+<rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection">
+  <!-- <div name="searchbox">可选 搜索条件插槽</div>
+  <div name="tree">可选 树选择插槽</div> -->
+</rl-table>
 ```
 
 ### 配置
@@ -53,9 +56,14 @@ searchList: [
 | 键名 | 值 | 类型 | 默认值 | 示例 |
 | --- | --- | --- |--- | --- |
 | name | 中文名 | `String` |必传 |"姓名" |
-| type | `input` `select` | `String` | 必传 |"select" |
+| type | `input` `select` `date` `slot` | `String` | 必传 |"select" |
 | key | 表单的键 | `String` | 必传 | "name"  |
 | list | 下拉类型的列表 | `Array` | 必传 | [{name:'男',val:'1'}]
+| useLabel | 使用下拉框的 label 传值 | `Boolean` |  | true  |
+| key1 | `type="date"` 的开始时间 | `String` |  | "beginDate"  |
+| key2 | `type="date"` 的结束时间 | `String` |  | "endDate"  |
+
+**注：当 `type="slot"` 的时候，可以使用 `name="searchbox"` 的具名插槽，配置更加灵活的内容。*
 
 
 - 1-2 `tableList` 配置：

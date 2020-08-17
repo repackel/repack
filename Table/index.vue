@@ -13,11 +13,11 @@
         <template v-for="(x,i) in cfg.searchList">
           <el-form-item :label="x.name" :key="i">
             <template v-if="x.type==='input'">
-              <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" :maxlength="x.key==='mobile'?11:20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
+              <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" :maxlength="(x.key==='mobile'?11:x.maxlength)||20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
             </template>
             <template v-else-if="x.type==='select'">
               <el-select v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" v-bind="inputcfg(x, i)">
-                <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list] || [] )" :key="dict.val" :label="dict.name" :value="dict.val" />
+                <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list] || [] )" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
               </el-select>
             </template>
             <template v-else-if="x.type==='date'">
@@ -28,8 +28,8 @@
               <el-date-picker type="date" v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" value-format="yyyy-MM-dd " v-bind="inputcfg(x, i)">
               </el-date-picker>
             </template>
-            <template v-else-if="x.type==='division'">
-              <cp-divisions v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" :lev="3" :checkStrictly="true" v-bind="inputcfg(x, i)" />
+            <template v-else-if="x.type='slot'">
+              <slot name="searchbox" v-bind="inputcfg(x, i)"></slot>
             </template>
           </el-form-item>
           <br class="break" :key="i" v-if="x.br" />
@@ -58,7 +58,7 @@
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
             <template slot-scope="scope">
-               <el-image style="width: 60px; height: 60px" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]">
+              <el-image style="width: 60px; height: 60px" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]">
               </el-image>
             </template>
           </el-table-column>
@@ -100,7 +100,7 @@ export default {
         queryBtn: 2
       },
       currentPage: 1,
-      imageList:[]
+      imageList: []
     };
   },
   computed: {},
