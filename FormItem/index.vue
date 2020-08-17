@@ -3,6 +3,9 @@
     <template v-if="x.type==='input'">
       <el-input v-model="form[x.key]" v-bind="inputcfg(x)" />
     </template>
+    <template v-if="x.type==='number'">
+      <el-input-number v-model="form[x.key]" :min="(x.range&&x.range[0])||1" :max="(x.range&&x.range[1])||10" label="描述文字" v-bind="inputcfg(x)" />
+    </template>
     <template v-if="x.type==='textarea'">
       <el-input v-model="form[x.key]" type="textarea" resize='none' rows="3" v-bind="inputcfg(x)" />
     </template>
@@ -68,6 +71,7 @@ export default {
       readonly: x.readonly,
       disabled: x.disabled,
       placeholder: tipsFn(x),
+      multiple: x.multiple,
       maxlength:
         x.type === "input" || x.type === "textarea" ? x.maxlength || 50 : null
     }),

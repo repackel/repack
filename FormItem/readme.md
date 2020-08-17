@@ -48,6 +48,11 @@ list:[
 | placeholder | 占位符 | `String` | 请输入/请选择 | '请输入'  |
 | filterable | 可筛选 | `Boolean` | 无 | true  |
 | clearable | 可清空 | `Boolean` | 无 | true  |
+| multiple | 同 element-ui | `Boolean` | 无 | true  |
+| readonly | 同 element-ui | `Boolean` | 无 | true  |
+| disabled | 同 element-ui | `Boolean` | 无 | true  |
+| range | 即 min 和 max | `Array` | 无 | [1,20]  |
+
 
 
 3. 支持的 form item 类型
@@ -55,6 +60,7 @@ list:[
 | 传值 | 含义 |
 | -- | -- |
 | `input` | 输入框 |
+| `number` | 数字输入框 |
 | `textarea` |文本框 |
 | `radio` | 单选框 |
 | `select`| 下拉框 | 
