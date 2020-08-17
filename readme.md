@@ -2,13 +2,11 @@ WIP
 
 ---
 
-⚠⚠⚠⚠⚠
+⚡⚡⚡
 
-I sure hope you know what you are doing.
+A powerful, flexible and configurable TABLE and FORM **generator**, data-driven view.
 
-please **READ Document** before using in production
-
-⚠⚠⚠⚠⚠
+Please read the document before using in production
 
 ## Install ：
 ```
