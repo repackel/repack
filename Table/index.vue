@@ -7,7 +7,7 @@
           <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" size="small" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
         </div>
       </div>
-      <cpTitle v-if="1 || _get(cfg, 'actionList.length')">{{cfg.rightName}}</cpTitle>
+      <cpTitle v-if="cfg.rightName">{{cfg.rightName}}</cpTitle>
       <el-form :inline="true" class="cp-form" label-width="6em">
         <slot name="searchBefore"></slot>
         <template v-for="(x,i) in cfg.searchList">
@@ -39,7 +39,6 @@
           <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || '重置'}}</el-button>
         </el-form-item>
       </el-form>
-      <!-- <cpTitle v-if="!_get(cfg, 'actionList.length')">{{cfg.rightName}}</cpTitle> -->
       <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
         <el-table-column type="index" width="80" label="序号" />

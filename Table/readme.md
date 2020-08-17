@@ -23,15 +23,62 @@ components: {
 - 1 `cfg` 配置
 ```
 {
-  rightName: "人员信息", // 页面名称
+  rightName: "人员信息", // 页面名称，需要配合 `cpTitle` 组件
   actionList:[], // 操作按钮列表
   actionAlign: "right", // 操作按钮对齐
   searchList:[], // 搜索列表
-  searchFn: Function, // 搜索方法
+  searchFn: this.getList, // 搜索方法 Function
   tableSelection: true, // 表格是否可勾选
   tableList:[], // 表格表头
 }
 ```
+
+- 1-0 `searchFn` 配置：
+
+搜索接口通过异步函数传入，最终由组件内部调用，组件外完成数据的拼装。
+组件内在 mounted() 时调用 搜索，组件外无需再次调用。
+```
+getList(p, reset) {
+  // p 为组件内传入的搜索条件
+  // reset 为重置搜索开关，当使用到了外部条件时，这里要清除
+  // 最后 resolve 的包含 table 数据和分页
+  let { ...pr } = p;
+  if (!reset) {
+    // 搜索时，带上外部的省市区数据
+    const divList = this.divList;
+    switch (divList.length) {
+      case 1:
+        pr.provinceCode = this._last(divList);
+        break;
+      case 2:
+        pr.cityCode = this._last(divList);
+        break;
+      case 3:
+        pr.areaCode = this._last(divList);
+        break;
+      default:
+        break;
+    }
+  } else {
+    // 重置时清空外部的省市区数组
+    this.divList = [];
+  }
+  // 同时可以带上其他必传条件
+  pr.buildingType = 1;
+  return new Promise((resolve, reject) => {
+    this.$req("/community/building/list", {
+      method: "GET",
+      params: pr
+    }).then(res => {
+      resolve({
+        list: res.rows,
+        total: res.total
+      });
+    });
+  });
+},
+```
+
 
 - 1-1 `searchList` 配置：
 
