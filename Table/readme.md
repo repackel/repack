@@ -13,10 +13,19 @@ components: {
 ```
 ```
 <rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection">
-  <!-- <div name="searchbox">可选 搜索条件插槽</div>
-  <div name="tree">可选 树选择插槽</div> -->
+  <!-- <template slot="searchbox">slot</template> -->
 </rl-table>
 ```
+
+**插槽：**
+
+
+| 名称 | 插槽 | 示例 |
+| --- | --- | --- |
+| searchBefore | searchList 之前 | `slot="searchBefore"` |
+| searchbox | searchList 之间，通过 `type='slot'` 控制 | `slot="searchbox"` |
+| tree | 树选择插槽 | `slot="tree"` |
+
 
 ### 配置
 
@@ -95,6 +104,12 @@ searchList: [
     type: "select",
     key: "sex",
     list: "XB"
+  },
+  {
+    name: "时间范围",
+    type: "date",
+    key1: "beginDate",
+    key2: "endDate"
   }
 ]
 ```
@@ -109,6 +124,12 @@ searchList: [
 | useLabel | 使用下拉框的 label 传值 | `Boolean` |  | true  |
 | key1 | `type="date"` 的开始时间 | `String` |  | "beginDate"  |
 | key2 | `type="date"` 的结束时间 | `String` |  | "endDate"  |
+| maxlength | 同 element-ui | `Number` | 20 | 20  |
+| clearable | 同 element-ui | `Boolean` | true | true  |
+| readonly | 同 element-ui | `Boolean` | 无 | true  |
+| disabled | 同 element-ui | `Boolean` | 无 | true  |
+| hidden | 隐藏改搜索项 | `Boolean` | 无 | true  |
+
 
 **注：当 `type="slot"` 的时候，可以使用 `name="searchbox"` 的具名插槽，配置更加灵活的内容。*
 

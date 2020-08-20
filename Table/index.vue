@@ -11,7 +11,7 @@
       <el-form :inline="true" class="cp-form" label-width="6em">
         <slot name="searchBefore"></slot>
         <template v-for="(x,i) in cfg.searchList">
-          <el-form-item :label="x.name" :key="i">
+          <el-form-item :label="x.name" :key="i" v-if="!x.hidden">
             <template v-if="x.type==='input'">
               <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" :maxlength="(x.key==='mobile'?11:x.maxlength)||20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
             </template>
@@ -151,8 +151,10 @@ export default {
       }
     },
     inputcfg: (x, i) => ({
-      clearable: true,
-      size: "small",
+      clearable: x.clearable || true,
+      size: x.size || "small",
+      readonly: x.readonly,
+      disabled: x.disabled,
       style: x.width ? "width:" + x.width : ""
     }),
     colcfg: (x, i) => ({
