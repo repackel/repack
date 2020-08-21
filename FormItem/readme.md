@@ -10,11 +10,13 @@ import { FormItem } from "@repackel/repack";
 ```
 ```
 <form-item :form="form" :x="x" v-for="(x,i) in list" :key="i">
-    <el-input v-if="x.name==='建筑面积'" v-model="form.acreage" placeholder="建筑面积" size="small">
+    <!-- <el-input v-if="x.name==='建筑面积'" v-model="form.acreage" placeholder="建筑面积" size="small">
         <template slot="append">m²</template>
-    </el-input>
+    </el-input> -->
 </form-item>
 ```
+
+**默认插槽：将自定义内容放到 `<form-item></form-item>` 之间即可。可以通过列表项的 `name` 来做判断**
 
 2. 列表字段
 
