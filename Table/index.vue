@@ -152,6 +152,7 @@ export default {
     },
     inputcfg: (x, i) => ({
       clearable: x.clearable || true,
+      filterable: x.filterable || true,
       size: x.size || "small",
       readonly: x.readonly,
       disabled: x.disabled,
