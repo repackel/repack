@@ -1,5 +1,8 @@
 <template>
   <el-form-item :label="x.name" :rules="rules(x)" :class="{'inline-block':x.inline}">
+    <template v-if="x.type==='view'">
+      <span>{{form[x.key] || '未填写'}}</span>
+    </template>
     <template v-if="x.type==='input'">
       <el-input v-model="form[x.key]" v-bind="inputcfg(x)" />
     </template>
@@ -77,7 +80,7 @@ export default {
     }),
     rules: x => [
       {
-        required: !x.norule,
+        required: !(x.norule||x.type==='view'),
         message: tipsFn(x),
         trigger: x.type === "select" ? "change " : "blur"
       }
