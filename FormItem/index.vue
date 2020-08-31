@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="x.name" :rules="rules(x)" :class="{'inline-block':x.inline}">
+  <el-form-item :label="x.name" :rules="rules(x)" :class="x.itemClassName||{'inline-block':x.inline}">
     <template v-if="x.type==='view'">
       <span>{{form[x.key] || '未填写'}}</span>
     </template>

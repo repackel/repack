@@ -44,7 +44,8 @@ list:[
 | maxlength | 输入框的长度 | `Number`| 50| 11 |
 | inline | 行内 | `Boolean` | `false` | true  |
 | norule | 不校验 | `Boolean` | 无 | true  |
-| class | css 类名 | `String` | 无 | 'w300'  |
+| class | content 类名 | `String` | 无 | 'w300'  |
+| itemClassName | el-form-item 类名 | `String` | 无 | 'pct50'  |
 | width | 宽度 | `String` | 无 | '150px'  |
 | size | element size | `String` | small | 'small'  |
 | placeholder | 占位符 | `String` | 请输入/请选择 | '请输入'  |
