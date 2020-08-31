@@ -1,7 +1,10 @@
 <template>
   <el-form-item :label="x.name" :rules="rules(x)" :class="x.itemClassName||{'inline-block':x.inline}">
     <template v-if="x.type==='view'">
-      <span>{{form[x.key] || '未填写'}}</span>
+      <el-tooltip effect="dark" :content="form[x.key]" placement="top" v-if="x.overflow">
+        <div class="overtext">{{form[x.key]}}</div>
+      </el-tooltip>
+      <span v-else>{{form[x.key] || '未填写'}}</span>
     </template>
     <template v-if="x.type==='input'">
       <el-input v-model="form[x.key]" v-bind="inputcfg(x)" />
@@ -80,7 +83,7 @@ export default {
     }),
     rules: x => [
       {
-        required: !(x.norule||x.type==='view'),
+        required: !(x.norule || x.type === "view"),
         message: tipsFn(x),
         trigger: x.type === "select" ? "change " : "blur"
       }
@@ -88,3 +91,14 @@ export default {
   }
 };
 </script>
+<style scoped>
+.el-form-item {
+  vertical-align: top;
+}
+.overtext  {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    text-overflow: ellipsis;
+}
+</style>

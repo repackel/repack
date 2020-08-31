@@ -55,6 +55,7 @@ list:[
 | readonly | 同 element-ui | `Boolean` | 无 | true  |
 | disabled | 同 element-ui | `Boolean` | 无 | true  |
 | range | 即 min 和 max | `Array` | 无 | [1,20]  |
+| overflow | 当 `type="view"` 时，显示溢出文本 | `Boolean` | 无 | true  |
 
 
 
@@ -69,3 +70,4 @@ list:[
 | `select`| 下拉框 | 
 | `date`| 日期范围 | 
 | `date1`| 单个日期 |
+| `view` | 查看文本 |
