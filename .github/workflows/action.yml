@@ -1,5 +1,8 @@
 name: Node.js Package
-on: push
+on:
+  push:
+    tags:
+      - '*'
   # release:
   #   types: [created]
 jobs:
@@ -14,7 +17,6 @@ jobs:
         registry-url: 'https://registry.npmjs.org'
         scope: '@repackel'
     - run: npm install --registry https://registry.npmjs.org
-    - run: cat /home/runner/work/_temp/.npmrc
     # 发布到 npm
     - run: npm publish --access public
       env:
