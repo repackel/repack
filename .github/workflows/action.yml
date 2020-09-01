@@ -12,7 +12,9 @@ jobs:
       with:
         node-version: '12.x'
         registry-url: 'https://registry.npmjs.org'
+        scope: '@repackel'
     - run: npm install --registry https://registry.npmjs.org
+    - run: cat /home/runner/work/_temp/.npmrc
     # 发布到 npm
     - run: npm publish --access public
       env:
@@ -23,7 +25,7 @@ jobs:
         node-version: '12.x'
         registry-url: 'https://npm.pkg.github.com'
         # 默认为拥有工作流程文件的用户或组织
-        scope: '@repackel'        
+        scope: '@repackel'
     - run: npm install
     # 发布到 GitHub 包
     - run: npm publish
