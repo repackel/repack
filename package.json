@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hz2/repackel.git"
+    "url": "git+ssh://git@github.com/repackel/repack.git"
   },
   "keywords": [
     "element-ui"
@@ -20,7 +20,7 @@
   "author": "Hertz Square",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hz2/repackel/issues"
+    "url": "https://github.com/repackel/repack/issues"
   },
-  "homepage": "https://github.com/hz2/repackel#readme"
+  "homepage": "https://github.com/repackel/repack#readme"
 }
