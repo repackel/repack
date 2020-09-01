@@ -12,7 +12,9 @@ Please read the document before using in production
 
 ---
 
-based on element-ui. repackaged TABLE and FORMITEM components that are frequently used in management system , can be configured by the object data.
+Based on element-ui.
+Repackaged TABLE and FORMITEM components that are frequently used in management system.
+It is designed to be configurable by object data.
 
 ## Install ：
 ```
