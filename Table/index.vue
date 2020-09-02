@@ -21,7 +21,7 @@
               </el-select>
             </template>
             <template v-else-if="x.type==='date'">
-              <el-date-picker type="daterange" v-model="searchDateArr" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>([queryParams[x.key1],queryParams[x.key2] ]=arr)">
+              <el-date-picker type="daterange" v-model="searchDateArr" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
               </el-date-picker>
             </template>
             <template v-else-if="x.type==='date1'">
@@ -173,6 +173,9 @@ export default {
           this.$msg("qq");
         })
         .catch(_ => {});
+    },
+    dateChange(arr, x) {
+      [this.queryParams[x.key1], this.queryParams[x.key2]] = arr || [];
     },
     handleSizeChange(size) {
       this.queryParams.pageNum = 1;
