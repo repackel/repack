@@ -2,7 +2,7 @@
   <div class="cp-full">
     <slot name="tree"></slot>
     <div class="cp-page-inner" :class="{hasLeft:cfg.tree}">
-      <div class="cp-action-bar" :class="cfg.actionAlign" v-if="_get(cfg, 'actionList.length')">
+      <div class="cp-action-bar" :class="cfg.actionAlign" v-if="hasActionListLength">
         <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
           <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" size="small" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
         </div>
@@ -193,13 +193,21 @@ export default {
       this.getList();
     },
     resetQuery() {
-      this.queryParams = this._pick(this.queryParams, ["pageSize"]);
+      if (this._pick) {
+        this.queryParams = this._pick(this.queryParams, ["pageSize"]);
+      } else {
+        this.queryParams = { pageSize: this.queryParams.pageSize };
+      }
       this.queryParams.pageNum = 1;
       this.searchDateArr = [];
       this.getList("reset");
     },
     handleSelectionChange(val) {
       this.$emit("getSelection", val);
+    },
+    hasActionListLength(){
+      // return _get(cfg, 'actionList.length')
+      return this.cfg.actionList && this.cfg.actionList.length
     }
   }
 };

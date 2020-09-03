@@ -32,7 +32,6 @@ components: {
 - 1 `cfg` 配置
 ```
 {
-  rightName: "人员信息", // 页面名称，需要配合 `cpTitle` 组件
   actionList:[], // 操作按钮列表
   actionAlign: "right", // 操作按钮对齐
   searchList:[], // 搜索列表
