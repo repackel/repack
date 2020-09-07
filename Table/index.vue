@@ -24,6 +24,10 @@
               <el-date-picker type="daterange" v-model="searchDateArr" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
               </el-date-picker>
             </template>
+            <template v-else-if="x.type==='datetime'">
+              <el-date-picker type="datetimerange" v-model="searchDateArr" start-placeholder="开始时间" end-placeholder="结束时间" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
+              </el-date-picker>
+            </template>
             <template v-else-if="x.type==='date1'">
               <el-date-picker type="date" v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" value-format="yyyy-MM-dd " v-bind="inputcfg(x, i)">
               </el-date-picker>
@@ -65,7 +69,7 @@
         </template>
       </el-table>
       <div class="pager-container">
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams.pageNum" :page-sizes="[10, 20, 50, 100]" :page-size="queryParams.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableTotal">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams.pageNum" :page-sizes="[10, 50, 100, 300]" :page-size="queryParams.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableTotal">
         </el-pagination>
       </div>
     </div>
@@ -182,6 +186,8 @@ export default {
           "23:59:59"
         );
       }
+
+      console.log(' this.queryParams',  this.queryParams);
     },
     handleSizeChange(size) {
       this.queryParams.pageNum = 1;

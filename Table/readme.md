@@ -117,7 +117,7 @@ searchList: [
 | 键名 | 值 | 类型 | 默认值 | 示例 |
 | --- | --- | --- |--- | --- |
 | name | 中文名 | `String` |必传 |"姓名" |
-| type | `input` `select` `date` `slot` | `String` | 必传 |"select" |
+| type | 见下表 | `String` | 必传 |"select" |
 | key | 表单的键 | `String` | 必传 | "name"  |
 | list | 下拉类型的列表 | `Array` | 必传 | [{name:'男',val:'1'}]
 | useLabel | 使用下拉框的 label 传值 | `Boolean` |  | true  |
@@ -129,6 +129,17 @@ searchList: [
 | disabled | 同 element-ui | `Boolean` | 无 | true  |
 | hidden | 隐藏改搜索项 | `Boolean` | 无 | true  |
 
+
+> `type` 类型
+
+| 传值 | 含义 |
+| -- | -- |
+| `input` | 输入框 |
+| `select`| 下拉框 | 
+| `date`| 日期范围 |
+| `datetime` | 日期时间范围 |
+| `date1`| 单个日期 |
+| `slot` | 插槽 |
 
 **注：当 `type="slot"` 的时候，可以使用 `name="searchbox"` 的具名插槽，配置更加灵活的内容。*
 
