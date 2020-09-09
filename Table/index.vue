@@ -49,14 +49,14 @@
         <template v-for="(x,i) in cfg.tableList">
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
             <template slot-scope="scope">
-              <el-button size="mini" :type="y.type|| 'text'" v-for="(y,j) in x.buttonList" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" :icon="y.icon" :style="typeof y.style ==='function' ? y.style(scope.row):y.style" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
+              <el-button size="mini" :type="y.type|| 'text'" v-for="(y,j) in x.buttonList" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" v-bind="genAttr(y,scope)" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
                 {{ typeof y.text === 'function' ? y.text(scope.row,scope.$index) : y.text }}
               </el-button>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform">
+          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style">
             <template slot-scope="scope">
-              <span :style="typeof x.style ==='function' ? x.style(scope.row):x.style" :class="x.class" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ x.transform(scope.row) }}</span>
+              <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ x.transform(scope.row) }}</span>
             </template>
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
@@ -77,6 +77,7 @@
 </template>
 
 <script>
+import { genAttr } from "../commonFn/commonFn.js";
 export default {
   name: "rl-table",
   props: ["cfg"],
@@ -103,7 +104,8 @@ export default {
         queryBtn: 2
       },
       currentPage: 1,
-      imageList: []
+      imageList: [],
+      genAttr
     };
   },
   computed: {},
@@ -186,8 +188,6 @@ export default {
           "23:59:59"
         );
       }
-
-      console.log(' this.queryParams',  this.queryParams);
     },
     handleSizeChange(size) {
       this.queryParams.pageNum = 1;
@@ -211,9 +211,9 @@ export default {
     handleSelectionChange(val) {
       this.$emit("getSelection", val);
     },
-    hasActionListLength(){
+    hasActionListLength() {
       // return _get(cfg, 'actionList.length')
-      return this.cfg.actionList && this.cfg.actionList.length
+      return this.cfg.actionList && this.cfg.actionList.length;
     }
   }
 };
