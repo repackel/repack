@@ -155,7 +155,7 @@ tableList: [
   },
   {
     label: "性别",
-    prop: "sexCn",
+    transform: row => ["","男", "女"][row.sex],
     width: 120
   }
 ]
@@ -172,12 +172,11 @@ tableList: [
 | align | 列表对齐 (同) | `String` |  | `'right'`  |
 | overflow | showOverflowTooltip (同) | `Boolean` |  | `true` |
 | fixed | 列表固定 (同) | `Boolean` `String` | false | `'right'`  |
-| transform | 处理显示文字的函数，传入 row ，返回需要显示的格式 | `Function` |  | `row => row.num + 'kg'` | 
-| class | 类名 | `String` | | `"highlight"`  |
-| style | 内联样式 | `String` | | `"color: green;"`  |
-| style | 处理显示样式的函数，传入 row ，返回内联样式 | `Function` | | `row => ({ color: ["", "green", "red"][row.online]}`  |
+| transform | 处理显示文字的函数，传入`row` ，显示返回结果 | `Function` |  | `row => row.num + 'kg'` | 
+| class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
+| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]}`  |
 | fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
-| buttonList | 操作按钮的列表 | `Array` | | `120`  |
+| buttonList | 操作按钮的列表 | `Array` | | 见下表  |
 
 
 - 1-2-1 `buttonList` 配置：
@@ -196,10 +195,9 @@ buttonList:[
 | --- | --- | --- |--- | --- |
 | icon | 按钮图标 | `String` | | `"el-icon-edit"`  |
 | type | 按钮类型(同) | `String` | `'text'` | `"primary"`  |
-| hidden | 隐藏按钮 | `Boolean` | | `true`  |
-| style | 内联样式 | `String` | | `"color: green;"`  |
-| style | 处理显示样式的函数，传入 row ，返回内联样式 | `Function` | | `row => ({ color: ["", "green", "red"][row.online]}`  |
-| text | 按钮文字 | `String` | | `"编辑"`  |
-| text |按钮文字函数，传入 row | `Function` | | `row => ["", "查看", "编辑"][row.state]`  |
+| disabled |禁用 | `Boolean` `Function` | | `true`  |
+| class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
+| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]}`  |
+| text | 按钮文字 | `String` `Function` | | `row => ["", "查看", "编辑"][row.state]`  |
 | fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
 

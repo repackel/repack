@@ -56,7 +56,7 @@
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style">
             <template slot-scope="scope">
-              <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ x.transform(scope.row) }}</span>
+              <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ x.transform ? x.transform(scope.row) : scope.row[x.prop] }}</span>
             </template>
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
