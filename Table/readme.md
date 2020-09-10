@@ -174,7 +174,7 @@ tableList: [
 | fixed | 列表固定 (同) | `Boolean` `String` | false | `'right'`  |
 | transform | 处理显示文字的函数，传入`row` ，显示返回结果 | `Function` |  | `row => row.num + 'kg'` | 
 | class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
-| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]}`  |
+| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
 | fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
 | buttonList | 操作按钮的列表 | `Array` | | 见下表  |
 
@@ -197,7 +197,7 @@ buttonList:[
 | type | 按钮类型(同) | `String` | `'text'` | `"primary"`  |
 | disabled |禁用 | `Boolean` `Function` | | `true`  |
 | class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
-| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]}`  |
+| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
 | text | 按钮文字 | `String` `Function` | | `row => ["", "查看", "编辑"][row.state]`  |
 | fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
 
