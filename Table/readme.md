@@ -22,9 +22,10 @@ components: {
 
 | 名称 | 插槽 | 示例 |
 | --- | --- | --- |
-| searchBefore | searchList 之前 | `slot="searchBefore"` |
+| pageBegin | 页面最开始的插槽 | `slot="pageBegin"` |
+| beforeTable | Table 之前的插槽 | `slot="beforeTable"` |
+| searchBegin | searchList 开始的插槽 | `slot="searchBegin"` |
 | searchbox | searchList 之间，通过 `type='slot'` 控制 | `slot="searchbox"` |
-| tree | 树选择插槽 | `slot="tree"` |
 
 
 ### 配置

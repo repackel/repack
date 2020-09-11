@@ -1,15 +1,16 @@
 <template>
-  <div class="cp-full">
-    <slot name="tree"></slot>
-    <div class="cp-page-inner" :class="{hasLeft:cfg.tree}">
-      <div class="cp-action-bar" :class="cfg.actionAlign" v-if="hasActionListLength">
+  <section class="full-page">
+    <slot name="pageBegin"></slot>
+    <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
+      <div class="action-bar" :class="cfg.actionAlign" v-if="hasActionListLength">
         <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
           <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" size="small" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
         </div>
       </div>
       <cpTitle v-if="cfg.rightName">{{cfg.rightName}}</cpTitle>
+      <slot name="beforeTable"></slot>
       <el-form :inline="true" class="cp-form" label-width="6em">
-        <slot name="searchBefore"></slot>
+        <slot name="searchBegin"></slot>
         <template v-for="(x,i) in cfg.searchList">
           <el-form-item :label="x.name" :key="i" v-if="!x.hidden">
             <template v-if="x.type==='input'">
@@ -73,7 +74,7 @@
         </el-pagination>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
