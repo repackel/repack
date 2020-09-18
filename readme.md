@@ -4,7 +4,7 @@ WIP
 
 ⚡⚡⚡
 
-A powerful, flexible and configurable TABLE and FORM **generator**, data-driven view.
+A powerful, flexible, and configurable TABLE and FORM **generator**, data-driven view.
 
 Please read the document before using in production
 
@@ -14,7 +14,7 @@ Please read the document before using in production
 
 Based on element-ui.
 
-Repackaged TABLE and FORMITEM components that are frequently used in management system.
+Repackaged TABLE and FORMITEM components that are frequently used in the management system.
 
 It is designed to be configurable by object data.
 
