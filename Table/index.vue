@@ -40,7 +40,7 @@
           <br class="break" :key="i" v-if="x.br" />
         </template>
         <el-form-item class="btns">
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="getList()" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || '筛选'}}</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || '筛选'}}</el-button>
           <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || '重置'}}</el-button>
         </el-form-item>
       </el-form>
@@ -197,6 +197,10 @@ export default {
     },
     handleCurrentChange(page) {
       this.queryParams.pageNum = page;
+      this.getList();
+    },
+    searchButton(){
+      this.queryParams.pageNum = 1;
       this.getList();
     },
     resetQuery() {
