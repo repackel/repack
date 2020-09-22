@@ -1,6 +1,6 @@
-## 组件文档
+## **Form Item** Document
 
-1. 引入 
+1. Import 
 ```
 import { FormItem } from "@repackel/repack";
 
@@ -10,64 +10,77 @@ import { FormItem } from "@repackel/repack";
 ```
 ```
 <form-item :form="form" :x="x" v-for="(x,i) in list" :key="i">
-    <!-- <el-input v-if="x.name==='建筑面积'" v-model="form.acreage" placeholder="建筑面积" size="small">
+    <!-- <el-input v-if="x.name==='construction area'" v-model="form.acreage" placeholder="Construction Area" size="small">
         <template slot="append">m²</template>
     </el-input> -->
 </form-item>
 ```
 
-**默认插槽：将自定义内容放到 `<form-item></form-item>` 之间即可。可以通过列表项的 `name` 来做判断**
+**Default slot: put the custom content between `<form-item></form-item>`. Can be judged by the `name` of the list item*
 
-2. 列表字段
+2. List field
 
-列表结构
+List structure
 ```
 list:[
     {
-        name: "房屋类型",
+        name: "House type",
         type: "select",
         inline: true,
         key: "housingCategory",
-        list: this.$dictLoc("房屋类型")
+        list: this.$dictLoc("House type")
     }
 ]
 
 ```
 
-| 键名 | 值 | 类型 | 默认值 | 示例 |
+| Key | Value | Data Type | Default | Example |
 | --- | --- | --- |--- | --- |
-| name | 中文名 | `String` |必传 |"房屋类型" |
-| type | 见下表 | `String`| 必传 | "select" |
-| key | 表单的键 | `String` | 必传 | "housingCategory"  |
-| list | 下拉类型的列表 | `Array` | 必传 | this.$dictLoc("房屋类型") |
-| pick | 过滤列表，仅保留 val 在数组内的项 | `Array` |   | ['1','2'] |
-| maxlength | 输入框的长度 | `Number`| 50| 11 |
-| inline | 行内 | `Boolean` | `false` | true  |
-| norule | 不校验 | `Boolean` | 无 | true  |
-| class | content 类名 | `String` | 无 | 'w300'  |
-| itemClassName | el-form-item 类名 | `String` | 无 | 'pct50'  |
-| width | 宽度 | `String` | 无 | '150px'  |
+| name | Display name | `String` | Mandatory |"House type" |
+| type | See table below | `String`| Mandatory | "select" |
+| key | Key of form item | `String` | Mandatory | "housingCategory"  |
+| list | `Select` list | `Array` | Mandatory | this.$dictLoc("House type") |
+| pick | Filter the list, only keep `val` items in the array | `Array` |   | ['1','2'] |
+| maxlength | Length of input box | `Number`| 50| 11 |
+| inline | Inline | `Boolean` | `false` | true  |
+| norule | No verification | `Boolean` | - | true  |
+| class | content class Name | `String` | - | 'w300'  |
+| itemClassName | `<el-form-item>` class Name | `String` | - | 'pct50'  |
+| width | Width | `String` | - | '150px'  |
 | size | element size | `String` | small | 'small'  |
-| placeholder | 占位符 | `String` | 请输入/请选择 | '请输入'  |
-| filterable | 可筛选 | `Boolean` | 无 | true  |
-| clearable | 可清空 | `Boolean` | 无 | true  |
-| multiple | 同 element-ui | `Boolean` | 无 | true  |
-| readonly | 同 element-ui | `Boolean` | 无 | true  |
-| disabled | 同 element-ui | `Boolean` | 无 | true  |
-| range | 即 min 和 max | `Array` | 无 | [1,20]  |
-| overflow | 当 `type="view"` 时，显示溢出文本 | `Boolean` | 无 | true  |
+| placeholder | Placeholder | `String` | Please input/select | 'Please input'  |
+| filterable | Filterable | `Boolean` | - | true  |
+| clearable | Clearable | `Boolean` | - | true  |
+| multiple | Same as element-ui | `Boolean` | - | true  |
+| readonly | Same as element-ui | `Boolean` | - | true  |
+| disabled | Same as element-ui | `Boolean` | - | true  |
+| range | I.e., min and max | `Array` | - | [1,20]  |
+| overflow | When `type="view"`, show overflow text | `Boolean` | - | true  |
 
+** The data of the select list must be set to the following format, key `name`, value `val`*
 
+```
+list: [{
+  val: "1",
+  name: "Residential"
+}, {
+  val: "2",
+  name: "Public facilities"
+}, {
+  val: "3",
+  name: "Commercial premises"
+}]
+```
 
-3. 支持的 form item 类型
+3. Supported form item types
 
-| 传值 | 含义 |
+| Value | Description |
 | -- | -- |
-| `input` | 输入框 |
-| `number` | 数字输入框 |
-| `textarea` |文本框 |
-| `radio` | 单选框 |
-| `select`| 下拉框 | 
-| `date`| 日期范围 | 
-| `date1`| 单个日期 |
-| `view` | 查看文本 |
+| `input` | Input box |
+| `number` | Number input box |
+| `textarea` | Textarea box |
+| `radio` | Radio |
+| `select`| Select | 
+| `date`| Date range | 
+| `date1`| Single date |
+| `view` | View text |

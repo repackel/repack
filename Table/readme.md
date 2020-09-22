@@ -1,8 +1,6 @@
-## 表格文档
+## **Table** Document
 
-
-### 引入
-1. 引入 
+### Import
 ```
 import { Table } from "@repackel/repack";
 ```
@@ -17,43 +15,43 @@ components: {
 </rl-table>
 ```
 
-**插槽：**
+**Slot：**
 
 
-| 名称 | 插槽 | 示例 |
+| Name | Slot | Example |
 | --- | --- | --- |
-| pageBegin | 页面最开始的插槽 | `slot="pageBegin"` |
-| beforeTable | Table 之前的插槽 | `slot="beforeTable"` |
-| searchBegin | searchList 开始的插槽 | `slot="searchBegin"` |
-| searchbox | searchList 之间，通过 `type='slot'` 控制 | `slot="searchbox"` |
+| pageBegin | at page beginning | `slot="pageBegin"` |
+| beforeTable | before `Table` Tag | `slot="beforeTable"` |
+| searchBegin | at searchList beginning | `slot="searchBegin"` |
+| searchbox | between searchList, controlled by `type = 'slot'` | `slot="searchbox"` |
 
 
-### 配置
+### Configuration
 
-- 1 `cfg` 配置
+- 1 `cfg` Configuration
 ```
 {
-  actionList:[], // 操作按钮列表
-  actionAlign: "right", // 操作按钮对齐
-  searchList:[], // 搜索列表
-  searchFn: this.getList, // 搜索方法 Function
-  tableSelection: true, // 表格是否可勾选
-  tableList:[], // 表格表头
+  actionList:[], // Action button list
+  actionAlign: "right", // Action button alignment
+  searchList:[], // Search list
+  searchFn: this.getList, // Search method `Function`
+  tableSelection: true, // Multiple select Table
+  tableList:[], // Table header Props
 }
 ```
 
-- 1-0 `searchFn` 配置：
+- 1-0 `searchFn` Configuration
 
-搜索接口通过异步函数传入，最终由组件内部调用，组件外完成数据的拼装。
-组件内在 mounted() 时调用 搜索，组件外无需再次调用。
+The search interface is passed in through an asynchronous function, Eventually called internally by the component, Complete data assembly outside the component.
+Search is called when `mounted()` inside the component, and there is no need to call it again outside the component.
 ```
 getList(p, reset) {
-  // p 为组件内传入的搜索条件
-  // reset 为重置搜索开关，当使用到了外部条件时，这里要清除
-  // 最后 resolve 的包含 table 数据和分页
+  // `p` is the search parameters passed in the component
+  // `reset` is the reset search switch, when the external parameters are used, it should be cleared here
+  // Finally, `resolve` contains `table` data and pagination
   let { ...pr } = p;
   if (!reset) {
-    // 搜索时，带上外部的省市区数据
+    // For example: when searching, take the external province and city data
     const divList = this.divList;
     switch (divList.length) {
       case 1:
@@ -69,10 +67,10 @@ getList(p, reset) {
         break;
     }
   } else {
-    // 重置时清空外部的省市区数组
+    // clear the external provinces and municipalities array when reset
     this.divList = [];
   }
-  // 同时可以带上其他必传条件
+  // At the same time, you can take other mandatory conditions
   pr.buildingType = 1;
   return new Promise((resolve, reject) => {
     this.$req("/community/building/list", {
@@ -88,117 +86,156 @@ getList(p, reset) {
 },
 ```
 
+- 1-1 `searchList` Configuration
 
-- 1-1 `searchList` 配置：
-
-> 格式：
+> scheme:
 ```
 searchList: [
   {
-    name: "姓名",
+    name: "Name",
     type: "input",
     key: "name"
   },
   {
-    name: "性别",
+    name: "Gender",
     type: "select",
     key: "sex",
     list: "XB"
   },
   {
-    name: "时间范围",
+    name: "Time Range",
     type: "date",
     key1: "beginDate",
     key2: "endDate"
   }
 ]
 ```
-> 属性说明：
+> Property description:
 
-| 键名 | 值 | 类型 | 默认值 | 示例 |
+| Key | Value | Data Type | Default | Example |
 | --- | --- | --- |--- | --- |
-| name | 中文名 | `String` |必传 |"姓名" |
-| type | 见下表 | `String` | 必传 |"select" |
-| key | 表单的键 | `String` | 必传 | "name"  |
-| list | 下拉类型的列表 | `Array` | 必传 | [{name:'男',val:'1'}]
-| useLabel | 使用下拉框的 label 传值 | `Boolean` |  | true  |
-| key1 | `type="date"` 的开始时间 | `String` |  | "beginDate"  |
-| key2 | `type="date"` 的结束时间 | `String` |  | "endDate"  |
-| maxlength | 同 element-ui | `Number` | 20 | 20  |
-| clearable | 同 element-ui | `Boolean` | true | true  |
-| readonly | 同 element-ui | `Boolean` | 无 | true  |
-| disabled | 同 element-ui | `Boolean` | 无 | true  |
-| hidden | 隐藏改搜索项 | `Boolean` | 无 | true  |
+| name | Display name | `String` | Mandatory |"Name" |
+| type | See table below | `String` | Mandatory |"select" |
+| key | key of the search form | `String` | Mandatory | "name"  |
+| list | `Select` list | `Array` | Mandatory | [{name:'Male',val:'1'}]
+| useLabel | Use the `label` of Select to pass the value | `Boolean` |  | true  |
+| key1 | Begin date of `type="date"` | `String` |  | "beginDate"  |
+| key2 | End date of `type="date"` | `String` |  | "endDate"  |
+| maxlength | Same as element-ui | `Number` | 20 | 20  |
+| clearable | Same as element-ui | `Boolean` | true | true  |
+| readonly | Same as element-ui | `Boolean` | - | true  |
+| disabled | Same as element-ui | `Boolean` | - | true  |
+| hidden | Hide this search item | `Boolean` | - | true  |
 
 
-> `type` 类型
+> `type` Type
 
-| 传值 | 含义 |
+| Value | Description |
 | -- | -- |
-| `input` | 输入框 |
-| `select`| 下拉框 | 
-| `date`| 日期范围 |
-| `datetime` | 日期时间范围 |
-| `date1`| 单个日期 |
-| `slot` | 插槽 |
+| `input` | Input box |
+| `select`| Select box | 
+| `date`| Date range |
+| `datetime` | Date time range |
+| `date1`| Single date |
+| `slot` | Slot |
 
-**注：当 `type="slot"` 的时候，可以使用 `name="searchbox"` 的具名插槽，配置更加灵活的内容。*
+** Note: When `type="slot"`, you can use the named slot of `name="searchbox"` to configure more flexible content.*
 
+** The data of the select list must be set to the following format, key `name`, value `val`*
 
-- 1-2 `tableList` 配置：
-> 格式：
+```
+list: [{
+  val: "1",
+  name: "Residential"
+}, {
+  val: "2",
+  name: "Public facilities"
+}, {
+  val: "3",
+  name: "Commercial premises"
+}]
+```
+
+- 1-2 `tableList` Configuration
+> scheme:
 ```
 tableList: [
   {
-    label: "姓名",
+    label: "Name",
     prop: "name",
     width: 80
   },
   {
-    label: "性别",
-    transform: row => ["","男", "女"][row.sex],
+    label: "Gender",
+    transform: row => ["","Male", "Female"][row.sex],
     width: 120
   }
 ]
 ```
-> 属性说明：
+> Description:
 
-| 键名 | 值 | 类型 | 默认值 | 示例 |
+| Key | Value | Data Type | Default | Example |
 | --- | --- | --- |--- | --- |
-| label | 表头 | `String` |必传 |`"姓名"` |
-| prop | 表单循环的 key | `String` | 默认必传 |`"name"` |
-| viewImg | 取 prop 字段显示看图 | `Boolean` | | `true` |
-| width | 宽度 (同element) | `Number` | | `80`  |
-| minWidth | 最小宽度 (同) | `Number` | | `120`  |
-| align | 列表对齐 (同) | `String` |  | `'right'`  |
-| overflow | showOverflowTooltip (同) | `Boolean` |  | `true` |
-| fixed | 列表固定 (同) | `Boolean` `String` | false | `'right'`  |
-| transform | 处理显示文字的函数，传入`row` ，显示返回结果 | `Function` |  | `row => row.num + 'kg'` | 
-| class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
-| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
-| fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
-| buttonList | 操作按钮的列表 | `Array` | | 见下表  |
+| label | Header | `String` | Mandatory |`"Name"` |
+| prop | Key of form loop | `String` | Mandatory |`"name"` |
+| viewImg | Take the prop field to display the picture | `Boolean` | | `true` |
+| width | Width (same as element) | `Number` | | `80`  |
+| minWidth | Minimum width (same) | `Number` | | `120`  |
+| align | List alignment (same) | `String` |  | `'right'`  |
+| overflow | showOverflowTooltip (same) | `Boolean` |  | `true` |
+| fixed | Fixed list (same) | `Boolean` `String` | `false` | `'right'`  |
+| transform | Functions for processing displayed text, pass in `row` return result | `Function` |  | `row => row.num + 'kg'` | 
+| class | Class name | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
+| style | Inline style | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
+| fn | Click event, pass in `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
+| buttonList | List of table action buttons | `Array` | | See table below  |
 
 
-- 1-2-1 `buttonList` 配置：
-> 格式：
+- 1-2-1 `buttonList` Configuration
+> scheme:
 ```
 buttonList:[
    {
-     text: "编辑",
-     fn: () => this.$info("编辑")
+     text: "Edit",
+     fn: () => this.$info("Edit")
    }
  ]
 ```
-> 属性说明：
+> Property description:
 
-| 键名 | 值 | 类型 | 默认值 | 示例 |
+| Key | Value | Data Type | Default | Example |
 | --- | --- | --- |--- | --- |
-| icon | 按钮图标 | `String` | | `"el-icon-edit"`  |
-| type | 按钮类型(同) | `String` | `'text'` | `"primary"`  |
-| disabled |禁用 | `Boolean` `Function` | | `true`  |
-| class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
-| style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
-| text | 按钮文字 | `String` `Function` | | `row => ["", "查看", "编辑"][row.state]`  |
-| fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
+| icon | Button icon | `String` | | `"el-icon-edit"`  |
+| type | Button type (same) | `String` | `'text'` | `"primary"`  |
+| disabled | Disabled | `Boolean` `Function` | | `true`  |
+| class | Class name | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
+| style | Inline style | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})` |
+| text | Button text | `String` `Function` | | `row => ["", "View", "Edit"][row.state]`  |
+| fn | Click event, pass in `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
 
+### Method
+
+usage:
+
+```
+this.$refs[ ref name ].[ Method name ]
+// this.$refs.staffTable.getList()
+```
+> Method list:
+
+| Method name | Description | 
+| --- | --- |
+| `searchButton()` | Search button |
+| `getList()` | Search function |
+| `resetQuery()` | Reset function |
+| `handleSizeChange()` | Page size change |
+| `handleCurrentChange()` | Paging index change |
+
+### Event
+
+usage:
+
+```
+@getSelection="myGetSelectionMethod"
+// It is the `selection-change` method of element
+```

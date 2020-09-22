@@ -20,12 +20,17 @@ It is designed to be configurable by object data.
 
 ## Install ：
 ```
-npm i  @repackel/repack -D
+npm i @repackel/repack -D
 ```
 ## Document:
 
 - [FormItem](./FormItem/readme.md)
 - [Table](./Table/readme.md)
+
+## 中文文档:
+
+- [FormItem](./FormItem/readme.zh.md)
+- [Table](./Table/readme.zh.md)
 
 ## Live Demo:
 
