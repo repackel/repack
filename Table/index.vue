@@ -14,23 +14,23 @@
         <template v-for="(x,i) in cfg.searchList">
           <el-form-item :label="x.name" :key="i" v-if="!x.hidden">
             <template v-if="x.type==='input'">
-              <el-input v-model="queryParams[x.key]" :placeholder="'请输入'+x.name" :maxlength="(x.key==='mobile'?11:x.maxlength)||20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
+              <el-input v-model="queryParams[x.key]" :placeholder="locz('pleaseInput')+x.name" :maxlength="(x.key==='mobile'?11:x.maxlength)||20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
             </template>
             <template v-else-if="x.type==='select'">
-              <el-select v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" v-bind="inputcfg(x, i)">
+              <el-select v-model="queryParams[x.key]" :placeholder="locz('pleaseSelect')+x.name" v-bind="inputcfg(x, i)">
                 <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list] || [] )" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
               </el-select>
             </template>
             <template v-else-if="x.type==='date'">
-              <el-date-picker type="daterange" v-model="searchDateArr" start-placeholder="开始日期" end-placeholder="结束日期" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
+              <el-date-picker type="daterange" v-model="searchDateArr" :start-placeholder="locz('startDate')" :end-placeholder="locz('endDate')" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
               </el-date-picker>
             </template>
             <template v-else-if="x.type==='datetime'">
-              <el-date-picker type="datetimerange" v-model="searchDateArr" start-placeholder="开始时间" end-placeholder="结束时间" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
+              <el-date-picker type="datetimerange" v-model="searchDateArr" :start-placeholder="locz('startTime')" :end-placeholder="locz('endTime')" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
               </el-date-picker>
             </template>
             <template v-else-if="x.type==='date1'">
-              <el-date-picker type="date" v-model="queryParams[x.key]" :placeholder="'请选择'+x.name" value-format="yyyy-MM-dd " v-bind="inputcfg(x, i)">
+              <el-date-picker type="date" v-model="queryParams[x.key]" :placeholder="locz('pleaseSelect')+x.name" value-format="yyyy-MM-dd " v-bind="inputcfg(x, i)">
               </el-date-picker>
             </template>
             <template v-else-if="x.type='slot'">
@@ -40,19 +40,21 @@
           <br class="break" :key="i" v-if="x.br" />
         </template>
         <el-form-item class="btns">
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || '筛选'}}</el-button>
-          <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || '重置'}}</el-button>
+          <el-button type="primary" icon="el-icon-search" size="mini" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || locz('search') }}</el-button>
+          <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
         </el-form-item>
       </el-form>
       <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
-        <el-table-column type="index" width="80" label="序号" />
+        <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in cfg.tableList">
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
             <template slot-scope="scope">
-              <el-button size="mini" :type="y.type|| 'text'" v-for="(y,j) in x.buttonList" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" v-bind="genAttr(y,scope)" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
-                {{ typeof y.text === 'function' ? y.text(scope.row,scope.$index) : y.text }}
-              </el-button>
+              <template v-for="(y,j) in x.buttonList">
+                <el-button size="mini" :type="y.type|| 'text'" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" v-bind="genAttr(y,scope)" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
+                  {{ typeof y.text === 'function' ? y.text(scope.row,scope.$index) : y.text }}
+                </el-button>
+              </template>
             </template>
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style">
@@ -78,7 +80,7 @@
 </template>
 
 <script>
-import { genAttr } from "../commonFn/commonFn.js";
+import { genAttr ,locz  } from "../commonFn/commonFn.js";
 export default {
   name: "rl-table",
   props: ["cfg"],
@@ -92,12 +94,6 @@ export default {
         pageSize: 10
       },
       queryList: {},
-      list: [
-        {
-          dictValue: "1",
-          dictLabel: "选择"
-        }
-      ],
       tableData: this.cfg.tableData || [],
       tableTotal: 0,
       dialogVisible: false,
@@ -106,13 +102,12 @@ export default {
       },
       currentPage: 1,
       imageList: [],
-      genAttr
     };
   },
   computed: {},
   mounted() {
     this.searchCfg = this.cfg.searchCfg || this.searchCfg;
-    // 搜索下拉框的列表
+    // Search Select List
     const searchList =
       (this.cfg.searchList &&
         this.cfg.searchList
@@ -139,8 +134,10 @@ export default {
     });
   },
   methods: {
+    genAttr,
+    locz,
     getList(reset) {
-      // 搜索函数
+      // Search FN
       if (this.cfg.searchFn) {
         this.loading = true;
 
@@ -174,13 +171,6 @@ export default {
       showOverflowTooltip: x.overflow,
       fixed: x.fixed
     }),
-    handleClose(done) {
-      this.$confirm("确认关闭？")
-        .then(_ => {
-          this.$msg("qq");
-        })
-        .catch(_ => {});
-    },
     dateChange(arr, x) {
       [this.queryParams[x.key1], this.queryParams[x.key2]] = arr || [];
       if (this.queryParams[x.key2]) {
@@ -217,7 +207,6 @@ export default {
       this.$emit("getSelection", val);
     },
     hasActionListLength() {
-      // return _get(cfg, 'actionList.length')
       return this.cfg.actionList && this.cfg.actionList.length;
     }
   }

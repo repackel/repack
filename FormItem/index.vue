@@ -4,13 +4,13 @@
       <el-tooltip effect="dark" :content="form[x.key]" placement="top" v-if="x.overflow">
         <div class="overtext">{{form[x.key]}}</div>
       </el-tooltip>
-      <span v-else>{{form[x.key] || '未填写'}}</span>
+      <span v-else>{{form[x.key] || locz('na')}}</span>
     </template>
     <template v-if="x.type==='input'">
       <el-input v-model="form[x.key]" v-bind="inputcfg(x)" />
     </template>
     <template v-if="x.type==='number'">
-      <el-input-number v-model="form[x.key]" :min="(x.range&&x.range[0])||1" :max="(x.range&&x.range[1])||10" label="描述文字" v-bind="inputcfg(x)" />
+      <el-input-number v-model="form[x.key]" :min="(x.range&&x.range[0])||1" :max="(x.range&&x.range[1])||10" v-bind="inputcfg(x)" />
     </template>
     <template v-if="x.type==='textarea'">
       <el-input v-model="form[x.key]" type="textarea" resize='none' rows="3" v-bind="inputcfg(x)" />
@@ -26,11 +26,11 @@
       </el-select>
     </template>
     <template v-else-if="x.type==='date'">
-      <el-date-picker v-model="form[x.key]" type="daterange" start-placeholder="开始日期" end-placeholder="结束日期" v-bind="inputcfg(x)" value-format="yyyy-MM-dd">
+      <el-date-picker v-model="form[x.key]" type="daterange" :start-placeholder="locz('startDate')" :end-placeholder="locz('endDate')" v-bind="inputcfg(x)" value-format="yyyy-MM-dd">
       </el-date-picker>
     </template>
     <template v-else-if="x.type==='date1'">
-      <el-date-picker v-model="form[x.key]" type="date" placeholder="选择日期" v-bind="inputcfg(x)" value-format="yyyy-MM-dd">
+      <el-date-picker v-model="form[x.key]" type="date" :placeholder="locz('pleaseSelect')+x.name" v-bind="inputcfg(x)" value-format="yyyy-MM-dd">
       </el-date-picker>
     </template>
     <template v-else>
@@ -39,11 +39,12 @@
   </el-form-item>
 </template>
 <script>
+import { locz } from "../commonFn/commonFn.js";
 const tipsFn = x => {
   if (x.type === "input") {
-    return "请输入" + x.name;
+    return locz("pleaseInput") + x.name;
   } else if (x.type === "select") {
-    return "请选择" + x.name;
+    return locz("pleaseSelect")  + x.name;
   }
 };
 export default {
@@ -68,6 +69,7 @@ export default {
   },
   computed: {},
   methods: {
+    locz,
     inputcfg: x => ({
       clearable: true,
       size: "small",

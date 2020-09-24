@@ -1,3 +1,4 @@
+import i18n from "./i18n.json";
 const genText = (fnText, arg) => {
   if (!fnText) {
     return ''
@@ -18,4 +19,18 @@ export const genAttr = (x, scope) => {
     attrs[icon] = x.icon
   }
   return attrs
+}
+
+export const locz = key => {
+  const lang = window.navigator.language;
+  let locList = {}
+  if (/zh/ig.test(lang)) {
+    locList = i18n['zh']
+  } else if (/en/ig.test(lang)) {
+    // add your language
+    locList = i18n['en']
+  } else {
+    locList = i18n['en']
+  }
+  return locList[key]
 }
