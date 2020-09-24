@@ -15,7 +15,10 @@
     "url": "git+ssh://git@github.com/repackel/repack.git"
   },
   "keywords": [
-    "element-ui"
+    "element-ui",
+    "table",
+    "form-item",
+    "form-builder"
   ],
   "author": "Hz²",
   "license": "MIT",
