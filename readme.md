@@ -33,7 +33,7 @@ npm i @repackel/repack -D
 - [FormItem](./FormItem/readme.zh.md)
 - [Table](./Table/readme.zh.md)
 
-## 🍺 Live Demo
+## 🎬 Live Demo
 
 - [CodeSandBox development Demo](https://codesandbox.io/s/github/repackel/repack-demo?file=/src/demo.vue)
 - [Source code](https://github.com/repackel/repack-demo/)
