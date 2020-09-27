@@ -2,9 +2,9 @@
   <el-form-item :label="x.name" :rules="rules(x)" :class="x.itemClassName||{'inline-block':x.inline}">
     <template v-if="x.type==='view'">
       <el-tooltip effect="dark" :content="form[x.key]" placement="top" v-if="x.overflow">
-        <div class="overtext">{{form[x.key]}}</div>
+        <div class="overtext">{{x.transform ? x.transform(form[x.key]) :form[x.key]}}</div>        
       </el-tooltip>
-      <span v-else>{{form[x.key] || locz('na')}}</span>
+      <span v-else>{{x.transform ? x.transform(form[x.key]) :form[x.key] || locz('na')}}</span>
     </template>
     <template v-if="x.type==='input'">
       <el-input v-model="form[x.key]" v-bind="inputcfg(x)" />

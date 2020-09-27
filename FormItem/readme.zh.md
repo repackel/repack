@@ -56,6 +56,7 @@ list:[
 | disabled | 同 element-ui | `Boolean` | - | true  |
 | range | 即 min 和 max | `Array` | - | [1,20]  |
 | overflow | 当 `type="view"` 时，显示溢出文本 | `Boolean` | - | true  |
+| transform | 当 `type="view"` 时，处理显示文本，传入`form[x.key]` | `Function` | - | `str => str.substr(0,4)`  |
 
 **下拉框列表数据的必须设为以下格式，键名 `name`, 键值 `val`*
 

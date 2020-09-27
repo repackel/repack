@@ -56,6 +56,7 @@ list:[
 | disabled | Same as element-ui | `Boolean` | - | true  |
 | range | I.e., min and max | `Array` | - | [1,20]  |
 | overflow | When `type="view"`, show overflow text | `Boolean` | - | true  |
+| transform | When `type="view"`, processing displayed text, pass in `form[x.key]` | `Function` | - | `str => str.substr(0,4)`  |
 
 ** The data of the select list must be set to the following format, key `name`, value `val`*
 
