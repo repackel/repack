@@ -13,7 +13,7 @@
       <el-input-number v-model="form[x.key]" :min="(x.range&&x.range[0])||1" :max="(x.range&&x.range[1])||10" v-bind="inputcfg(x)" />
     </template>
     <template v-if="x.type==='textarea'">
-      <el-input v-model="form[x.key]" type="textarea" resize='none' rows="3" v-bind="inputcfg(x)" />
+      <el-input v-model="form[x.key]" type="textarea" resize='none' rows="3" v-bind="inputcfg(x)"  @change="val=> x.changeFn ? x.changeFn(val) : void 0"  @input="val=> x.inputFn ? x.inputFn(val) : void 0"/>
     </template>
     <template v-if="x.type==='radio'">
       <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)">
@@ -21,7 +21,7 @@
       </el-radio-group>
     </template>
     <template v-else-if="x.type==='select'">
-      <el-select v-model="form[x.key]" v-bind="inputcfg(x)">
+      <el-select v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
         <el-option v-for="dict in (x.dict ? dictList : x.list || [])" :key="dict.val" :label="dict.name" :value="dict.val" />
       </el-select>
     </template>
