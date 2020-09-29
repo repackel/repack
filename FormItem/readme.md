@@ -55,9 +55,9 @@ list:[
 | readonly | Same as element-ui | `Boolean` | - | true  |
 | disabled | Same as element-ui | `Boolean` | - | true  |
 | range | I.e., min and max | `Array` | - | [1,20]  |
-| overflow | When `type="view"`, show overflow text | `Boolean` | - | true  |
-| transform | When `type="view"`, processing displayed text, pass in `form[x.key]` | `Function` | - | `str => str.substr(0,4)`  |
-| inputFn | When `type="input"`, trigger input event, same as `@input` | `Function` | - | ` val=>{console.log('input=>',val)}`  |
+| overflow | When `type="view"` , show overflow text | `Boolean` | - | true  |
+| transform | When `type="view"` , processing displayed text, pass in `form[x.key]` | `Function` | - | `str => str.substr(0,4)`  |
+| inputFn | When `type="input"` , trigger input event, same as `@input` | `Function` | - | ` val=>{console.log('input=>',val)}`  |
 | changeFn | When `type="input"` and `type="select"` , trigger change event, same as `@change` | `Function` | - | ` val=>{console.log('change=>',val)}` |
 
 ** The data of the select list must be set to the following format, key `name`, value `val`*
