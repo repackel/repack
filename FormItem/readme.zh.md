@@ -47,7 +47,8 @@ list:[
 | class | content 类名 | `String` | - | 'w300'  |
 | itemClassName | `<el-form-item>` 类名 | `String` | - | 'pct50'  |
 | width | 宽度 | `String` | - | '150px'  |
-| size | element size | `String` | small | 'small'  |
+| labelWidth | 同 element-ui `label-width` | `String` | - | '15em'  |
+| size | 同 element-ui | `String` | small | 'small'  |
 | placeholder | 占位符 | `String` | 请输入/请选择 | '请输入'  |
 | filterable | 可筛选 | `Boolean` | - | true  |
 | clearable | 可清空 | `Boolean` | - | true  |

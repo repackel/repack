@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :label="x.name" :rules="rules(x)" :class="x.itemClassName||{'inline-block':x.inline}">
+  <el-form-item :label="x.name" :label-width="x.labelWidth" :rules="rules(x)" :class="x.itemClassName||{'inline-block':x.inline}">
     <template v-if="x.type==='view'">
       <el-tooltip effect="dark" :content="form[x.key]" placement="top" v-if="x.overflow">
         <div class="overtext">{{x.transform ? x.transform(form[x.key]) :form[x.key]}}</div>        

@@ -47,7 +47,8 @@ list:[
 | class | content class Name | `String` | - | 'w300'  |
 | itemClassName | `<el-form-item>` class Name | `String` | - | 'pct50'  |
 | width | Width | `String` | - | '150px'  |
-| size | element size | `String` | small | 'small'  |
+| labelWidth | Same as element-ui `label-width` | `String` | - | '15em'  |
+| size | Same as element-ui | `String` | small | 'small'  |
 | placeholder | Placeholder | `String` | Please input/select | 'Please input'  |
 | filterable | Filterable | `Boolean` | - | true  |
 | clearable | Clearable | `Boolean` | - | true  |
