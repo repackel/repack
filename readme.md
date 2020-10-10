@@ -1,9 +1,10 @@
-
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/repackel/repack/Node.js%20Package) 
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/repackel/repack) 
 ![npm](https://img.shields.io/npm/v/@repackel/repack) 
-![npm](https://img.shields.io/npm/dm/@repackel/repack)
-![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/@repackel/repack)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/repackel/repack)
+![npm](https://img.shields.io/npm/dm/@repackel/repack) 
+![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/@repackel/repack) 
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/repackel/repack) 
+![GitHub last commit](https://img.shields.io/github/last-commit/repackel/repack) 
 
 
 
