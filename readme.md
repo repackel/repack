@@ -29,7 +29,7 @@ Repackaged TABLE and FORMITEM components that are frequently used in the managem
 It is designed to be configurable by object data.
 
 ## 🚀 Install
-[![NPM](https://nodei.co/npm/@repackel/repack.png?downloads=true)](https://www.npmjs.com/package/@repackel/repack)
+![NPM](https://nodei.co/npm/@repackel/repack.png?downloads=true)
 ```
 npm i @repackel/repack -D
 ```
