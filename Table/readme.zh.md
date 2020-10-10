@@ -24,6 +24,7 @@ components: {
 | beforeTable | `Table` 标签之前 | `slot="beforeTable"` |
 | searchBegin | 位于 searchList 开始 | `slot="searchBegin"` |
 | searchbox | searchList 之间，由 `type='slot'` 控制 | `slot="searchbox"` |
+| customTable | 自定义表格，当 `cfg.customTable` 为 `true` 时生效 | `slot="customTable"` |
 
 
 ### 配置
@@ -31,12 +32,13 @@ components: {
 - 1 `cfg` 配置
 ```
 {
-  actionList:[], // 操作按钮列表
-  actionAlign: "right", // 操作按钮对齐
+  actionList:[], // 操作按钮列表，可选
+  actionAlign: "right", // 操作按钮对齐，默认 `"right"`
   searchList:[], // 搜索列表
   searchFn: this.getList, // 搜索方法 `Function`
-  tableSelection: true, // 表格是否可勾选
-  tableList:[], // 表格表头
+  tableSelection: true, // 表格是否可勾选，默认 `false`
+  customTable: true, // 自定义表格，默认 `false`
+  tableList:[], // 表格表头，自定义表格时不需要
 }
 ```
 

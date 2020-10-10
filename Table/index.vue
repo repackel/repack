@@ -44,7 +44,8 @@
           <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
         </el-form-item>
       </el-form>
-      <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange">
+      <slot name="customTable" v-if="cfg.customTable" v-loading="loading"></slot>
+      <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange" v-else>
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in cfg.tableList">

@@ -24,6 +24,7 @@ components: {
 | beforeTable | before `Table` Tag | `slot="beforeTable"` |
 | searchBegin | at searchList beginning | `slot="searchBegin"` |
 | searchbox | between searchList, controlled by `type = 'slot'` | `slot="searchbox"` |
+| customTable | custom Table, take effect when `cfg.customTable` is `true` | `slot="customTable"` |
 
 
 ### Configuration
@@ -31,12 +32,13 @@ components: {
 - 1 `cfg` Configuration
 ```
 {
-  actionList:[], // Action button list
-  actionAlign: "right", // Action button alignment
+  actionList:[], // Action button list, Optional
+  actionAlign: "right", // Action button alignment, default `"right"`
   searchList:[], // Search list
   searchFn: this.getList, // Search method `Function`
-  tableSelection: true, // Multiple select Table
-  tableList:[], // Table header Props
+  tableSelection: true, // Multiple select Table, default `false`
+  customTable: true, // custom Table, default `false`
+  tableList:[], // Table header Props, Not necessary when customizing the table
 }
 ```
 
