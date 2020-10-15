@@ -1,14 +1,14 @@
 {
   "name": "@repackel/repack",
-  "version": "0.0.3-2",
+  "version": "0.1.0",
   "description": "A repackage of element-ui to help you build pages faster.",
   "main": "index.js",
   "scripts": {
-    "test": "test.js"
+    "test": "node test.js"
   },
   "publishConfig": {
     "access": "public",
-    "registry": "https://npm.pkg.github.com/@repackel" 
+    "registry": "https://npm.pkg.github.com/@repackel"
   },
   "repository": {
     "type": "git",
@@ -20,10 +20,24 @@
     "form-item",
     "form-builder"
   ],
-  "author": "Hz²",
+  "author": "Hz² <qumteq@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/repackel/repack/issues"
   },
-  "homepage": "https://github.com/repackel/repack#readme"
+  "homepage": "https://github.com/repackel/repack#readme",
+  "peerDependencies": {
+    "vue": "^2.5.10",
+    "element-ui": "^2.10"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  },
+  "devDependencies": {
+    "regenerator-runtime": "^0.13.7"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
 }
