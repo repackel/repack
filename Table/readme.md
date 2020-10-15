@@ -36,16 +36,19 @@ components: {
   actionAlign: "right", // Action button alignment, default `"right"`
   searchList:[], // Search list
   searchFn: this.getList, // Search method `Function`
+  fetchConditionFn: this.fetchConditionList, // Asynchronous method to get the list of search conditions `Function`
   tableSelection: true, // Multiple select Table, default `false`
   customTable: true, // custom Table, default `false`
   tableList:[], // Table header Props, Not necessary when customizing the table
 }
 ```
 
-- 1-0 `searchFn` Configuration
+- 1-1 `searchFn` Configuration
 
 The search interface is passed in through an asynchronous function, Eventually called internally by the component, Complete data assembly outside the component.
 Search is called when `mounted()` inside the component, and there is no need to call it again outside the component.
+
+Example:
 ```
 getList(p, reset) {
   // `p` is the search parameters passed in the component
@@ -88,7 +91,27 @@ getList(p, reset) {
 },
 ```
 
-- 1-1 `searchList` Configuration
+- 1-2 `fetchConditionFn` Configuration
+
+A method to get the list of search conditions asynchronously, `return` a `Promise`, and finally `resolve` an object.
+Each object key is the `key` of an item in `searchList`, and the object value is the corresponding Select box option `list`.
+Called when `mounted()`.
+
+Example:
+```
+fetchConditionList() {
+  return new Promise(async (resolve, reject) => {
+    const childType = await this.$req("/getList");
+    // const subChildType = await this.$req("/getChildType");
+    resolve({
+      childType: childType,
+      // subChildType: subChildType
+    });
+  });
+},
+```
+
+- 1-3 `searchList` Configuration
 
 > scheme:
 ```
@@ -158,7 +181,7 @@ list: [{
 }]
 ```
 
-- 1-2 `tableList` Configuration
+- 1-4 `tableList` Configuration
 > scheme:
 ```
 tableList: [
@@ -193,7 +216,7 @@ tableList: [
 | buttonList | List of table action buttons | `Array` | | See table below  |
 
 
-- 1-2-1 `buttonList` Configuration
+- 1-5-1 `buttonList` Configuration
 > scheme:
 ```
 buttonList:[

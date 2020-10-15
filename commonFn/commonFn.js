@@ -34,3 +34,9 @@ export const locz = key => {
   }
   return locList[key]
 }
+
+// Lodash
+const Lodash = {};
+const LodashList = ['get', 'has', 'last', 'pick', 'omit', 'omitBy', 'padStart']
+LodashList.forEach(x => Lodash[ x] = require('lodash/' + x + '.js'))
+export const _ = Lodash;

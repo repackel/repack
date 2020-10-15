@@ -11,14 +11,14 @@
       <slot name="beforeTable"></slot>
       <el-form :inline="true" class="cp-form" label-width="6em">
         <slot name="searchBegin"></slot>
-        <template v-for="(x,i) in cfg.searchList">
+        <template v-for="(x,i) in (cfg.searchList.filter(x=>x))">
           <el-form-item :label="x.name" :key="i" v-if="!x.hidden">
             <template v-if="x.type==='input'">
               <el-input v-model="queryParams[x.key]" :placeholder="locz('pleaseInput')+x.name" :maxlength="(x.key==='mobile'?11:x.maxlength)||20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
             </template>
             <template v-else-if="x.type==='select'">
               <el-select v-model="queryParams[x.key]" :placeholder="locz('pleaseSelect')+x.name" v-bind="inputcfg(x, i)">
-                <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list] || [] )" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
+                <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list||x.key] || [] )" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
               </el-select>
             </template>
             <template v-else-if="x.type==='date'">
@@ -81,12 +81,13 @@
 </template>
 
 <script>
-import { genAttr ,locz  } from "../commonFn/commonFn.js";
+import { genAttr ,locz , _ } from "../commonFn/commonFn.js";
 export default {
   name: "rl-table",
   props: ["cfg"],
   data() {
     return {
+      _,
       loading: false,
       // hidden: false,
       searchDateArr: [],
@@ -107,30 +108,37 @@ export default {
   },
   computed: {},
   mounted() {
-    this.searchCfg = this.cfg.searchCfg || this.searchCfg;
     // Search Select List
-    const searchList =
-      (this.cfg.searchList &&
-        this.cfg.searchList
-          .map(x => !(x.list instanceof Array) && x.list)
-          .filter(x => x)) ||
-      [];
-    if (searchList.length) {
-      this.$dictArr(...searchList).then(res => {
-        searchList.forEach((x, i) => {
-          this.$set(this.queryList, x, res[i]);
-        });
-      });
+    this.searchCfg = this.cfg.searchCfg || this.searchCfg;
+    // dictList only available when $dictArr exit
+    if (this.$dictArr) {
+      const dictList =
+        (this.cfg.searchList &&
+          this.cfg.searchList
+            .map((x) => !(x.list instanceof Array) && x.list)
+            .filter((x) => x)) ||
+        [];
+      if (dictList.length) {
+        this.$dictArr(...dictList).then((res) => dictList.forEach((x, i) => this.$set(this.queryList, x, res[i])));
+      }
     }
     this.$nextTick(_ => {
       const hasVal =
         this.cfg.searchList &&
-        this.cfg.searchList.find(x => x.type === "input" && x.value);
+        this.cfg.searchList.find(x => x && x.type === "input" && x.value);
       if (hasVal) {
         this.queryParams[hasVal.key] = hasVal.value;
         this.getList();
       } else {
         this.getList("reset");
+      }
+      // fetchConditionFn
+      if ( this.cfg.fetchConditionFn ) {
+        this.cfg.fetchConditionFn().then((res)=>{
+          Object.entries(res).forEach(x=>this.$set(this.queryList, x[0], x[1]))          
+        }).catch(err=>{
+          console.log('err',err)
+        })
       }
     });
   },
@@ -141,7 +149,6 @@ export default {
       // Search FN
       if (this.cfg.searchFn) {
         this.loading = true;
-
         this.cfg
           .searchFn(this.queryParams, reset)
           .then(res => {

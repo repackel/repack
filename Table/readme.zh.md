@@ -36,16 +36,19 @@ components: {
   actionAlign: "right", // 操作按钮对齐，默认 `"right"`
   searchList:[], // 搜索列表
   searchFn: this.getList, // 搜索方法 `Function`
+  fetchConditionFn: this.fetchConditionList, // 异步获取搜索条件列表的方法 `Function`
   tableSelection: true, // 表格是否可勾选，默认 `false`
   customTable: true, // 自定义表格，默认 `false`
   tableList:[], // 表格表头，自定义表格时不需要
 }
 ```
 
-- 1-0 `searchFn` 配置
+- 1-1 `searchFn` 配置
 
 搜索接口通过异步函数传入，最终由组件内部调用，组件外完成数据的拼装。
 组件内在 `mounted()` 时调用 搜索，组件外无需再次调用。
+
+示例：
 ```
 getList(p, reset) {
   // `p` 为组件内传入的搜索条件
@@ -88,7 +91,27 @@ getList(p, reset) {
 },
 ```
 
-- 1-1 `searchList` 配置
+- 1-2 `fetchConditionFn` 配置
+
+异步获取搜索条件列表的方法，`return` 一个 `Promise`，最后 `resolve` 一个对象。
+每一个键名为 `searchList` 某项的 `key` ，键值为其对应的下拉框选项 `list`。
+在 `mounted()` 时调用。
+
+示例：
+```
+fetchConditionList() {
+  return new Promise(async (resolve, reject) => {
+    const childType = await this.$req("/getList");
+    // const subChildType = await this.$req("/getChildType");
+    resolve({
+      childType: childType,
+      // subChildType: subChildType
+    });
+  });
+},
+```
+
+- 1-3 `searchList` 配置
 
 > 格式：
 ```
@@ -158,7 +181,7 @@ list: [{
 }]
 ```
 
-- 1-2 `tableList` 配置
+- 1-4 `tableList` 配置
 > 格式：
 ```
 tableList: [
@@ -193,7 +216,7 @@ tableList: [
 | buttonList | 操作按钮的列表 | `Array` | | 见下表  |
 
 
-- 1-2-1 `buttonList` 配置：
+- 1-5-1 `buttonList` 配置：
 > 格式：
 ```
 buttonList:[
