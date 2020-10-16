@@ -93,7 +93,8 @@ export default {
       searchDateArr: [],
       queryParams: {
         pageNum: 1,
-        pageSize: 10
+        pageSize: 10,
+        ...this.cfg.queryParams
       },
       queryList: {},
       tableData: this.cfg.tableData || [],
