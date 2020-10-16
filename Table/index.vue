@@ -48,7 +48,7 @@
       <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange" v-else>
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
         <el-table-column type="index" width="80" :label="locz('index')" />
-        <template v-for="(x,i) in cfg.tableList">
+        <template v-for="(x,i) in cfg.tableList.filter(x=>x && !x.hidden)">
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
             <template slot-scope="scope">
               <template v-for="(y,j) in x.buttonList">

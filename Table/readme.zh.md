@@ -203,6 +203,7 @@ tableList: [
 | --- | --- | --- |--- | --- |
 | label | 表头 | `String` | 必传 |`"姓名"` |
 | prop | 表单循环的 key | `String` | 必传 |`"name"` |
+| hidden | 隐藏该列 | `Boolean` | `false` |`true` |
 | viewImg | 取 prop 字段显示看图 | `Boolean` | | `true` |
 | width | 宽度 (同element) | `Number` | | `80`  |
 | minWidth | 最小宽度 (同) | `Number` | | `120`  |

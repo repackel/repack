@@ -203,6 +203,7 @@ tableList: [
 | --- | --- | --- |--- | --- |
 | label | Header | `String` | Mandatory |`"Name"` |
 | prop | Key of form loop | `String` | Mandatory |`"name"` |
+| hidden | Hide the column | `Boolean` | `false` |`true` |
 | viewImg | Take the prop field to display the picture | `Boolean` | | `true` |
 | width | Width (same as element) | `Number` | | `80`  |
 | minWidth | Minimum width (same) | `Number` | | `120`  |
