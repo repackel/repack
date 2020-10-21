@@ -150,6 +150,10 @@ searchList: [
 | clearable | 同 element-ui | `Boolean` | true | true  |
 | readonly | 同 element-ui | `Boolean` | - | true  |
 | disabled | 同 element-ui | `Boolean` | - | true  |
+| placeholder | 同 element-ui | `String` | - | "请选择"  |
+| startPlaceholder | 同 element-ui | `String` | - | "请选择开始时间"  |
+| endPlaceholder | 同 element-ui | `String` | - | "请选择结束时间"  |
+| valueFormat | 同 element-ui | `String` | - | "yyyy-MM-dd HH:mm:ss"  |
 | hidden | 隐藏该搜索项 | `Boolean` | - | true  |
 
 

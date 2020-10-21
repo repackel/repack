@@ -14,26 +14,26 @@
         <template v-for="(x,i) in (cfg.searchList.filter(x=>x))">
           <el-form-item :label="x.name" :key="i" v-if="!x.hidden">
             <template v-if="x.type==='input'">
-              <el-input v-model="queryParams[x.key]" :placeholder="locz('pleaseInput')+x.name" :maxlength="(x.key==='mobile'?11:x.maxlength)||20" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
+              <el-input v-model="queryParams[x.key]" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
             </template>
             <template v-else-if="x.type==='select'">
-              <el-select v-model="queryParams[x.key]" :placeholder="locz('pleaseSelect')+x.name" v-bind="inputcfg(x, i)">
+              <el-select v-model="queryParams[x.key]" v-bind="inputcfg(x, i)">
                 <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list||x.key] || [] )" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
               </el-select>
             </template>
             <template v-else-if="x.type==='date'">
-              <el-date-picker type="daterange" v-model="searchDateArr" :start-placeholder="locz('startDate')" :end-placeholder="locz('endDate')" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
+              <el-date-picker type="daterange" v-model="searchDateArr" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
               </el-date-picker>
             </template>
             <template v-else-if="x.type==='datetime'">
-              <el-date-picker type="datetimerange" v-model="searchDateArr" :start-placeholder="locz('startTime')" :end-placeholder="locz('endTime')" value-format="yyyy-MM-dd HH:mm:ss" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
+              <el-date-picker type="datetimerange" v-model="searchDateArr" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
               </el-date-picker>
             </template>
             <template v-else-if="x.type==='date1'">
-              <el-date-picker type="date" v-model="queryParams[x.key]" :placeholder="locz('pleaseSelect')+x.name" value-format="yyyy-MM-dd " v-bind="inputcfg(x, i)">
+              <el-date-picker type="date" v-model="queryParams[x.key]" v-bind="inputcfg(x, i)">
               </el-date-picker>
             </template>
-            <template v-else-if="x.type='slot'">
+            <template v-else-if="x.type==='slot'">
               <slot name="searchbox" v-bind="inputcfg(x, i)"></slot>
             </template>
           </el-form-item>
@@ -164,14 +164,49 @@ export default {
           });
       }
     },
-    inputcfg: (x, i) => ({
-      clearable: x.clearable || true,
-      filterable: x.filterable || true,
-      size: x.size || "small",
-      readonly: x.readonly,
-      disabled: x.disabled,
-      style: x.width ? "width:" + x.width : ""
-    }),
+    inputcfg(x, i) {
+      let cfg = {
+        clearable: x.clearable || true,
+        filterable: x.filterable || true,
+        size: x.size || "small",
+        readonly: x.readonly,
+        disabled: x.disabled,
+        style: x.width ? "width:" + x.width : ""
+      }
+      switch (x.type) {
+        case 'input':
+          cfg.placeholder = x.placeholder || locz('pleaseInput') + x.name
+          cfg.maxlength = x.maxlength || (x.key === 'mobile' ? 11 : 20)
+
+          break;
+        case 'select':
+          cfg.placeholder = x.placeholder || locz('pleaseSelect') + x.name
+
+          break;
+        case 'date':
+          cfg['start-placeholder'] = x.startPlaceholder || locz('startDate')
+          cfg['end-placeholder'] = x.endPlaceholder || locz('endDate')
+          cfg['value-format'] = x.valueFormat || "yyyy-MM-dd HH:mm:ss"
+
+          break;
+        case 'datetime':
+          cfg['start-placeholder'] = x.startPlaceholder || locz('startTime')
+          cfg['end-placeholder'] = x.endPlaceholder || locz('endTime')
+          cfg['value-format'] = x.valueFormat || "yyyy-MM-dd HH:mm:ss"
+
+          break;
+        case 'date1':
+          cfg.placeholder = x.placeholder || locz('pleaseSelect') + x.name
+          cfg['value-format'] = x.valueFormat || "yyyy-MM-dd"
+
+          break;
+
+        default:
+          break;
+      }
+
+      return cfg
+    },
     colcfg: (x, i) => ({
       label: x.label,
       width: x.width,

@@ -150,6 +150,10 @@ searchList: [
 | clearable | Same as element-ui | `Boolean` | true | true  |
 | readonly | Same as element-ui | `Boolean` | - | true  |
 | disabled | Same as element-ui | `Boolean` | - | true  |
+| placeholder | Same as element-ui | `String` | - | "Please Select"  |
+| startPlaceholder | Same as element-ui | `String` | - | "Please Select Start Time"  |
+| endPlaceholder | Same as element-ui | `String` | - | "Please Select End Time"  |
+| valueFormat | Same as element-ui | `String` | - | "yyyy-MM-dd HH:mm:ss"  |
 | hidden | Hide this search item | `Boolean` | - | true  |
 
 
