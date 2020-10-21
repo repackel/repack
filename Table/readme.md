@@ -155,6 +155,9 @@ searchList: [
 | endPlaceholder | Same as element-ui | `String` | - | "Please Select End Time"  |
 | valueFormat | Same as element-ui | `String` | - | "yyyy-MM-dd HH:mm:ss"  |
 | hidden | Hide this search item | `Boolean` | - | true  |
+| width | item content width, unit is px | `Number` | - | "220"  |
+| class | item content class name | `String` | - | "w250"  |
+| itemClassName | item class name | `String` | - | "block"  |
 
 
 > `type` Type

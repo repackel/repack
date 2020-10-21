@@ -155,6 +155,9 @@ searchList: [
 | endPlaceholder | 同 element-ui | `String` | - | "请选择结束时间"  |
 | valueFormat | 同 element-ui | `String` | - | "yyyy-MM-dd HH:mm:ss"  |
 | hidden | 隐藏该搜索项 | `Boolean` | - | true  |
+| width | item content 宽度，单位为 px | `Number` | - | "220"  |
+| class | item content 类名 | `String` | - | "w250"  |
+| itemClassName | item 类名 | `String` | - | "w250"  |
 
 
 > `type` 类型

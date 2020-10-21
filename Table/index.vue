@@ -12,7 +12,7 @@
       <el-form :inline="true" class="cp-form" label-width="6em">
         <slot name="searchBegin"></slot>
         <template v-for="(x,i) in (cfg.searchList.filter(x=>x))">
-          <el-form-item :label="x.name" :key="i" v-if="!x.hidden">
+          <el-form-item :label="x.name" :key="i" v-if="!x.hidden" :class="x.itemClassName">
             <template v-if="x.type==='input'">
               <el-input v-model="queryParams[x.key]" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
             </template>
@@ -171,7 +171,8 @@ export default {
         size: x.size || "small",
         readonly: x.readonly,
         disabled: x.disabled,
-        style: x.width ? "width:" + x.width : ""
+        style: x.width ? "width:" + x.width : "",
+        class: x.class
       }
       switch (x.type) {
         case 'input':
