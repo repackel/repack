@@ -2,7 +2,7 @@
   <section class="full-page">
     <slot name="pageBegin"></slot>
     <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
-      <div class="action-bar" :class="cfg.actionAlign" v-if="hasActionListLength">
+      <div class="action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
         <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
           <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" size="small" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
         </div>
@@ -250,9 +250,6 @@ export default {
     },
     handleSelectionChange(val) {
       this.$emit("getSelection", val);
-    },
-    hasActionListLength() {
-      return this.cfg.actionList && this.cfg.actionList.length;
     }
   }
 };
