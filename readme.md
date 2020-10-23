@@ -8,7 +8,7 @@
 
 
 
-🚧 WIP 🚧
+⚓ WIP ⚓
 
 ---
 
@@ -28,22 +28,22 @@ Repackaged TABLE and FORMITEM components that are frequently used in the managem
 
 It is designed to be configurable by object data.
 
-## 🚀 Install
+## 🛰️ Install
 ![NPM](https://nodei.co/npm/@repackel/repack.svg)
 ```
 npm i @repackel/repack -D
 ```
-## 📚 Document
+## 📜 Document
 
 - [FormItem](./FormItem/readme.md)
 - [Table](./Table/readme.md)
 
-## 🚩 中文文档
+## 🌏 中文文档
 
 - [FormItem](./FormItem/readme.zh.md)
 - [Table](./Table/readme.zh.md)
 
-## 🎬 Live Demo
+## 🔮 Live Demo
 
 - [CodeSandBox development Demo](https://codesandbox.io/s/github/repackel/repack-demo?file=/src/demo.vue)
-- [Source code](https://github.com/repackel/repack-demo/)
+- [Demo source code](https://github.com/repackel/repack-demo/)
