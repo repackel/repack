@@ -40,6 +40,7 @@ components: {
   tableSelection: true, // 表格是否可勾选，默认 `false`
   customTable: true, // 自定义表格，默认 `false`
   tableList:[], // 表格表头，自定义表格时不需要
+  tableCellFallbackText: '-', // 表格单元备用文本，可选。当表格的值为空时显示，对整个表格生效。无默认
 }
 ```
 

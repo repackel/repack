@@ -58,9 +58,9 @@
               </template>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style">
+          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style || cfg.tableCellFallbackText ">
             <template slot-scope="scope">
-              <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ x.transform ? x.transform(scope.row) : scope.row[x.prop] }}</span>
+              <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ (x.transform ? x.transform(scope.row) : scope.row[x.prop]) || cfg.tableCellFallbackText || ''}}</span>
             </template>
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
