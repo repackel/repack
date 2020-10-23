@@ -58,15 +58,15 @@
               </template>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style || cfg.tableCellFallbackText ">
-            <template slot-scope="scope">
-              <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ (x.transform ? x.transform(scope.row) : scope.row[x.prop]) || cfg.tableCellFallbackText || ''}}</span>
-            </template>
-          </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
             <template slot-scope="scope">
               <el-image style="width: 60px; height: 60px" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]">
               </el-image>
+            </template>
+          </el-table-column>
+          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style || cfg.tableCellFallbackText ">
+            <template slot-scope="scope">
+              <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ fallbackText(x.transform ? x.transform(scope.row) : scope.row[x.prop]) }}</span>
             </template>
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else />
@@ -147,6 +147,13 @@ export default {
   methods: {
     genAttr,
     locz,
+    fallbackText(val){
+      if ( this.cfg.tableCellFallbackText && [null,undefined,''].includes( val)) {
+         return this.cfg.tableCellFallbackText
+      } else {
+        return val
+      }
+    },
     getList(reset) {
       // Search FN
       if (this.cfg.searchFn) {
