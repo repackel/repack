@@ -163,8 +163,10 @@ export default {
         this.cfg
           .searchFn(this.queryParams, reset)
           .then(res => {
-            this.tableData = res.list;
-            this.tableTotal = res.total;
+            if ( res ) {
+              this.tableData = res.list;
+              this.tableTotal = res.total;
+            }
           })
           .catch(e => {
             console.error(e);
