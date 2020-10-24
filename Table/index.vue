@@ -44,7 +44,9 @@
           <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
         </el-form-item>
       </el-form>
-      <slot name="customTable" v-if="cfg.customTable" v-loading="loading"></slot>
+      <div class="customTable" v-if="cfg.customTable" v-loading="loading">
+        <slot name="customTable"></slot>
+      </div>
       <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange" v-else>
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
         <el-table-column type="index" width="80" :label="locz('index')" />
@@ -161,12 +163,13 @@ export default {
         this.cfg
           .searchFn(this.queryParams, reset)
           .then(res => {
-            this.loading = false;
             this.tableData = res.list;
             this.tableTotal = res.total;
           })
           .catch(e => {
             console.error(e);
+          })
+          .finally(f => {
             this.loading = false;
           });
       }
