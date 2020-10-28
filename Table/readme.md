@@ -41,6 +41,8 @@ components: {
   customTable: true, // custom Table, default `false`
   tableList:[], // Table header Props, Not necessary when customizing the table
   tableCellFallbackText: 'N/A', // Alternative text for table cells, optional. Displayed when the value of the table cell is empty, it is effective for the whole table. No default
+  hideSearchForm: true, // Hide search items and search buttons, Display default
+  hidePagination: true, // Hide the paging component, Display default
 }
 ```
 

@@ -9,7 +9,7 @@
       </div>
       <cpTitle v-if="cfg.rightName">{{cfg.rightName}}</cpTitle>
       <slot name="beforeTable"></slot>
-      <el-form :inline="true" class="cp-form" label-width="6em">
+      <el-form :inline="true" class="cp-form" label-width="6em" v-if="!cfg.hideSearchForm">
         <slot name="searchBegin"></slot>
         <template v-for="(x,i) in (cfg.searchList.filter(x=>x))">
           <el-form-item :label="x.name" :key="i" v-if="!x.hidden" :class="x.itemClassName">
@@ -74,7 +74,7 @@
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else />
         </template>
       </el-table>
-      <div class="pager-container">
+      <div class="pager-container" v-if="!cfg.hidePagination">
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams.pageNum" :page-sizes="pageList" :page-size="queryParams.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableTotal">
         </el-pagination>
       </div>
