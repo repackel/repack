@@ -14,9 +14,9 @@
 
 ⚡⚡⚡
 
-A powerful, flexible, and configurable TABLE and FORM **generator**, data-driven view.
+A powerful, flexible, and configurable TABLE and FORM **generator** with data-driven view.
 
-Please read the document before using in production
+Please read the documentation before using in production
 
 ⚡⚡⚡
 
@@ -24,9 +24,9 @@ Please read the document before using in production
 
 Based on element-ui.
 
-Repackaged TABLE and FORMITEM components that are frequently used in the management system.
+Repackaged the TABLE and FORMITEM components that are frequently used in management systems.
 
-It is designed to be configurable by object data.
+It was designed to be configurable from object data.
 
 ## 🛰️ Install
 ![NPM](https://nodei.co/npm/@repackel/repack.svg)
