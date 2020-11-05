@@ -47,3 +47,7 @@ npm i @repackel/repack -D
 
 - [CodeSandBox development Demo](https://codesandbox.io/s/github/repackel/repack-demo?file=/src/demo.vue)
 - [Demo source code](https://github.com/repackel/repack-demo/)
+
+## 🎈 Code Snippet
+- [Using code snippets in VS code](./codeSnippets/readme.zh.md)
+- [在 VS code 中使用代码片段](./codeSnippets/readme.md)
