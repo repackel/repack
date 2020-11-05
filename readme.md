@@ -49,5 +49,5 @@ npm i @repackel/repack -D
 - [Demo source code](https://github.com/repackel/repack-demo/)
 
 ## 🎈 Code Snippet
-- [Using code snippets in VS code](./codeSnippets/readme.zh.md)
-- [在 VS code 中使用代码片段](./codeSnippets/readme.md)
+- [Using code snippets in VS code](./codeSnippets/readme.md)
+- [在 VS code 中使用代码片段](./codeSnippets/readme.zh.md)
