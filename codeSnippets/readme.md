@@ -9,7 +9,7 @@
 
 ```
 {
-	// Your old code snippets
+    // Your old code snippets
     // Paste here, for example
     "Generate repackel page": {
         ...
