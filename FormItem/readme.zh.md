@@ -51,7 +51,7 @@ list:[
 | overflow | 当 `type="view"` 时，显示溢出文本 | `Boolean` | - | true  |
 | transform | 当 `type="view"` 时，处理显示文本，传入`form[x.key]` | `Function` | - | `str => str.substr(0,4)`  |
 | inputFn | 当 `type="input"` 时，触发输入事件，同 `@input` | `Function` | - | ` val=>{console.log('input=>',val)}`  |
-| changeFn | 当 `type="input"` 和 `type="select"` 时，触发变更事件，同 `@change` | `Function` | - | ` val=>{console.log('change=>',val)}` |
+| changeFn | 当 `type` 为 `"input","select","radio","checkbox"` 时，触发变更事件，同 `@change` | `Function` | - | ` val=>{console.log('change=>',val)}` |
 | - | 以下同 element-ui ||||
 | size | - | `String` | "small" | "small"  |
 | filterable | - | `Boolean` | - | true  |

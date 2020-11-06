@@ -16,12 +16,12 @@
       <el-input v-model="form[x.key]" type="textarea" v-bind="inputcfg(x)" />
     </template>
     <template v-else-if="x.type==='radio'">
-      <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)">
+      <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
         <el-radio v-for="y in dictList" :key="y.val" :label="y.val">{{y.name}}</el-radio>
       </el-radio-group>
     </template>
     <template v-else-if="x.type==='checkbox'">
-      <el-checkbox-group v-model="form[x.key]" v-bind="inputcfg(x)">
+      <el-checkbox-group v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
         <el-checkbox v-for="y in dictList" :key="y.val" :label="y.val">{{y.name}}</el-checkbox>
       </el-checkbox-group>
     </template>    
