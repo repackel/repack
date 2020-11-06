@@ -179,9 +179,9 @@ searchList: [
 | `date1`| Single date |
 | `slot` | Slot |
 
-** Note: When `type="slot"`, you can use the named slot of `name="searchbox"` to configure more flexible content.*
+**Note: When `type="slot"`, you can use the named slot of `name="searchbox"` to configure more flexible content.*
 
-** The data of the select list must be set to the following format, key `name`, value `val`*
+**The data of the select list must be set to the following format, key `name`, value `val`*
 
 ```
 list: [{

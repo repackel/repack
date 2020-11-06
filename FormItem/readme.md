@@ -68,7 +68,7 @@ list:[
 | endPlaceholder | - | `String` | - | "Please Select End Time"  ||
 | valueFormat | - | `String` | - | "yyyy-MM-dd HH:mm:ss" |
 
-** The data of the select list must be set to the following format, key `name`, value `val`*
+**The data of the select list must be set to the following format, key `name`, value `val`*
 
 ```
 list: [{
