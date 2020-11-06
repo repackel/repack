@@ -78,6 +78,13 @@ export default {
       this.dictList = this.x.list || []
     }
   },
+  watch: {
+    "x.list"(val) {
+      if (val) {
+        this.dictList = this.x.list || []
+      }
+    }
+  },
   computed: {},
   methods: {
     locz,
