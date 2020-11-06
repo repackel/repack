@@ -48,18 +48,25 @@ list:[
 | itemClassName | `<el-form-item>` class Name | `String` | - | 'pct50'  |
 | width | Width | `String` | - | '150px'  |
 | labelWidth | Same as element-ui `label-width` | `String` | - | '15em'  |
-| size | Same as element-ui | `String` | small | 'small'  |
-| placeholder | Placeholder | `String` | Please input/select | 'Please input'  |
-| filterable | Filterable | `Boolean` | - | true  |
-| clearable | Clearable | `Boolean` | - | true  |
-| multiple | Same as element-ui | `Boolean` | - | true  |
-| readonly | Same as element-ui | `Boolean` | - | true  |
-| disabled | Same as element-ui | `Boolean` | - | true  |
 | range | I.e., min and max | `Array` | - | [1,20]  |
 | overflow | When `type="view"` , show overflow text | `Boolean` | - | true  |
 | transform | When `type="view"` , processing displayed text, pass in `form[x.key]` | `Function` | - | `str => str.substr(0,4)`  |
 | inputFn | When `type="input"` , trigger input event, same as `@input` | `Function` | - | ` val=>{console.log('input=>',val)}`  |
 | changeFn | When `type="input"` and `type="select"` , trigger change event, same as `@change` | `Function` | - | ` val=>{console.log('change=>',val)}` |
+| Same as element-ui below |||||
+| size | - | `String` | "small" | "small"  |
+| filterable | - | `Boolean` | - | true  |
+| clearable | - | `Boolean` | true | true  |
+| multiple | - | `Boolean` | - | true  |
+| readonly | - | `Boolean` | - | true  |
+| disabled | - | `Boolean` | - | true  |
+| maxlength | - | `Number` | 25 | 20  |
+| rows | - | `Boolean` | "3" | "5" |
+| resize | - | `Boolean` | "none" | "none" |
+| placeholder | - | `String` | - | "Please Select"  |
+| startPlaceholder | - | `String` | - | "Please Select Start Time"  |
+| endPlaceholder | - | `String` | - | "Please Select End Time"  ||
+| valueFormat | - | `String` | - | "yyyy-MM-dd HH:mm:ss" |
 
 ** The data of the select list must be set to the following format, key `name`, value `val`*
 
@@ -85,6 +92,7 @@ list: [{
 | `textarea` | Textarea box |
 | `radio` | Radio |
 | `select`| Select | 
-| `date`| Date range | 
+| `date`| Date range |
+| `datetime` | Date time range |
 | `date1`| Single date |
 | `view` | View text |

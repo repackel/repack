@@ -1,6 +1,7 @@
 {
     "en": {
         "pleaseInput": "Please Input ",
+        "pleaseFillin": "Please Fill in ",
         "pleaseSelect": "Please Select ",
         "select": "Select",
         "index": "Index",
@@ -14,6 +15,7 @@
     },
     "zh": {
         "pleaseInput": "请输入",
+        "pleaseFillin": "请填写",
         "pleaseSelect": "请选择",
         "select": "选择",
         "index": "序号",

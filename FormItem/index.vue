@@ -13,7 +13,7 @@
       <el-input-number v-model="form[x.key]" :min="(x.range&&x.range[0])||1" :max="(x.range&&x.range[1])||10" v-bind="inputcfg(x)" />
     </template>
     <template v-if="x.type==='textarea'">
-      <el-input v-model="form[x.key]" type="textarea" resize='none' rows="3" v-bind="inputcfg(x)" />
+      <el-input v-model="form[x.key]" type="textarea" v-bind="inputcfg(x)" />
     </template>
     <template v-if="x.type==='radio'">
       <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)">
@@ -22,15 +22,19 @@
     </template>
     <template v-else-if="x.type==='select'">
       <el-select v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
-        <el-option v-for="dict in (x.dict ? dictList : x.list || [])" :key="dict.val" :label="dict.name" :value="dict.val" />
+        <el-option v-for="dict in (x.dict ? dictList : x.list || [])" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
       </el-select>
     </template>
     <template v-else-if="x.type==='date'">
-      <el-date-picker v-model="form[x.key]" type="daterange" :start-placeholder="locz('startDate')" :end-placeholder="locz('endDate')" v-bind="inputcfg(x)" value-format="yyyy-MM-dd">
+      <el-date-picker v-model="form[x.key]" type="daterange" v-bind="inputcfg(x)">
+      </el-date-picker>
+    </template>
+    <template v-else-if="x.type==='datetime'">
+      <el-date-picker v-model="form[x.key]" type="datetimerange" v-bind="inputcfg(x)">
       </el-date-picker>
     </template>
     <template v-else-if="x.type==='date1'">
-      <el-date-picker v-model="form[x.key]" type="date" :placeholder="locz('pleaseSelect')+x.name" v-bind="inputcfg(x)" value-format="yyyy-MM-dd">
+      <el-date-picker v-model="form[x.key]" type="date" v-bind="inputcfg(x)">
       </el-date-picker>
     </template>
     <template v-else>
@@ -39,7 +43,7 @@
   </el-form-item>
 </template>
 <script>
-import { locz } from "../commonFn/commonFn.js";
+import { locz , inputcfg } from "../commonFn/commonFn.js";
 const tipsFn = x => {
   if (x.type === "input") {
     return locz("pleaseInput") + x.name;
@@ -70,19 +74,7 @@ export default {
   computed: {},
   methods: {
     locz,
-    inputcfg: x => ({
-      clearable: true,
-      size: "small",
-      filterable: x.filterable || Boolean(x.dict),
-      style: x.width ? "width:" + x.width : "",
-      class: x.class,
-      readonly: x.readonly,
-      disabled: x.disabled,
-      placeholder: tipsFn(x),
-      multiple: x.multiple,
-      maxlength:
-        x.type === "input" || x.type === "textarea" ? x.maxlength || 50 : null
-    }),
+    inputcfg,
     rules: x => [
       {
         required: !(x.norule || x.type === "view"),

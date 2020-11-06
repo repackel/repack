@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { genAttr ,locz , _ } from "../commonFn/commonFn.js";
+import { genAttr ,locz , inputcfg , _ } from "../commonFn/commonFn.js";
 export default {
   name: "rl-table",
   props: ["cfg"],
@@ -149,6 +149,7 @@ export default {
   methods: {
     genAttr,
     locz,
+    inputcfg,
     fallbackText(val){
       if ( this.cfg.tableCellFallbackText && [null,undefined,''].includes( val)) {
          return this.cfg.tableCellFallbackText
@@ -175,50 +176,6 @@ export default {
             this.loading = false;
           });
       }
-    },
-    inputcfg(x, i) {
-      let cfg = {
-        clearable: x.clearable || true,
-        filterable: x.filterable || true,
-        size: x.size || "small",
-        readonly: x.readonly,
-        disabled: x.disabled,
-        style: x.width ? "width:" + x.width : "",
-        class: x.class
-      }
-      switch (x.type) {
-        case 'input':
-          cfg.placeholder = x.placeholder || locz('pleaseInput') + x.name
-          cfg.maxlength = x.maxlength || (x.key === 'mobile' ? 11 : 20)
-
-          break;
-        case 'select':
-          cfg.placeholder = x.placeholder || locz('pleaseSelect') + x.name
-
-          break;
-        case 'date':
-          cfg['start-placeholder'] = x.startPlaceholder || locz('startDate')
-          cfg['end-placeholder'] = x.endPlaceholder || locz('endDate')
-          cfg['value-format'] = x.valueFormat || "yyyy-MM-dd HH:mm:ss"
-
-          break;
-        case 'datetime':
-          cfg['start-placeholder'] = x.startPlaceholder || locz('startTime')
-          cfg['end-placeholder'] = x.endPlaceholder || locz('endTime')
-          cfg['value-format'] = x.valueFormat || "yyyy-MM-dd HH:mm:ss"
-
-          break;
-        case 'date1':
-          cfg.placeholder = x.placeholder || locz('pleaseSelect') + x.name
-          cfg['value-format'] = x.valueFormat || "yyyy-MM-dd"
-
-          break;
-
-        default:
-          break;
-      }
-
-      return cfg
     },
     colcfg: (x, i) => ({
       label: x.label,

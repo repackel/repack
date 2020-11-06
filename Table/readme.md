@@ -149,19 +149,24 @@ searchList: [
 | useLabel | Use the `label` of Select to pass the value | `Boolean` |  | true  |
 | key1 | Begin date of `type="date"` | `String` |  | "beginDate"  |
 | key2 | End date of `type="date"` | `String` |  | "endDate"  |
-| maxlength | Same as element-ui | `Number` | 20 | 20  |
-| clearable | Same as element-ui | `Boolean` | true | true  |
-| readonly | Same as element-ui | `Boolean` | - | true  |
-| disabled | Same as element-ui | `Boolean` | - | true  |
-| placeholder | Same as element-ui | `String` | - | "Please Select"  |
-| startPlaceholder | Same as element-ui | `String` | - | "Please Select Start Time"  |
-| endPlaceholder | Same as element-ui | `String` | - | "Please Select End Time"  |
-| valueFormat | Same as element-ui | `String` | - | "yyyy-MM-dd HH:mm:ss"  |
 | hidden | Hide this search item | `Boolean` | - | true  |
 | width | item content width | `String` | - | "220px"  |
 | class | item content class name | `String` | - | "w250"  |
 | itemClassName | item class name | `String` | - | "block"  |
-
+| Same as element-ui below |||||
+| size | - | `String` | "small" | "small"  |
+| filterable | - | `Boolean` | - | true  |
+| clearable | - | `Boolean` | true | true  |
+| multiple | - | `Boolean` | - | true  |
+| readonly | - | `Boolean` | - | true  |
+| disabled | - | `Boolean` | - | true  |
+| maxlength | - | `Number` | 25 | 20  |
+| rows | - | `Boolean` | "3" | "5" |
+| resize | - | `Boolean` | "none" | "none" |
+| placeholder | - | `String` | - | "Please Select"  |
+| startPlaceholder | - | `String` | - | "Please Select Start Time"  |
+| endPlaceholder | - | `String` | - | "Please Select End Time"  ||
+| valueFormat | - | `String` | - | "yyyy-MM-dd HH:mm:ss" |
 
 > `type` Type
 
