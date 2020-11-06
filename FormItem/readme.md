@@ -53,7 +53,7 @@ list:[
 | transform | When `type="view"` , processing displayed text, pass in `form[x.key]` | `Function` | - | `str => str.substr(0,4)`  |
 | inputFn | When `type="input"` , trigger input event, same as `@input` | `Function` | - | ` val=>{console.log('input=>',val)}`  |
 | changeFn | When `type="input"` and `type="select"` , trigger change event, same as `@change` | `Function` | - | ` val=>{console.log('change=>',val)}` |
-| Same as element-ui below |||||
+| - | Same as element-ui below ||||
 | size | - | `String` | "small" | "small"  |
 | filterable | - | `Boolean` | - | true  |
 | clearable | - | `Boolean` | true | true  |

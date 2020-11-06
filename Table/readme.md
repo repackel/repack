@@ -153,7 +153,7 @@ searchList: [
 | width | item content width | `String` | - | "220px"  |
 | class | item content class name | `String` | - | "w250"  |
 | itemClassName | item class name | `String` | - | "block"  |
-| Same as element-ui below |||||
+| - | Same as element-ui below ||||
 | size | - | `String` | "small" | "small"  |
 | filterable | - | `Boolean` | - | true  |
 | clearable | - | `Boolean` | true | true  |

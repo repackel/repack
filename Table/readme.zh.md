@@ -153,7 +153,7 @@ searchList: [
 | width | item content 宽度，单位为 px | `Number` | - | "220"  |
 | class | item content 类名 | `String` | - | "w250"  |
 | itemClassName | item 类名 | `String` | - | "w250"  |
-| 以下同 element-ui |||||
+| - | 以下同 element-ui ||||
 | size | - | `String` | "small" | "small"  |
 | filterable | - | `Boolean` | - | true  |
 | clearable | - | `Boolean` | true | true  |
