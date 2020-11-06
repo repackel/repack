@@ -215,11 +215,11 @@ tableList: [
 | prop | 表单循环的 key | `String` | 必传 |`"name"` |
 | hidden | 隐藏该列 | `Boolean` | `false` |`true` |
 | viewImg | 取 prop 字段显示看图 | `Boolean` | | `true` |
-| width | 宽度 (同element) | `Number` | | `80`  |
-| minWidth | 最小宽度 (同) | `Number` | | `120`  |
-| align | 列表对齐 (同) | `String` |  | `'right'`  |
-| overflow | showOverflowTooltip (同) | `Boolean` |  | `true` |
-| fixed | 列表固定 (同) | `Boolean` `String` | `false` | `'right'`  |
+| width | 宽度 ，同 element-ui | `Number` | | `80`  |
+| minWidth | 最小宽度 ，同 element-ui | `Number` | | `120`  |
+| align | 列表对齐 ，同 element-ui | `String` |  | `'right'`  |
+| overflow | showOverflowTooltip ，同 element-ui | `Boolean` |  | `true` |
+| fixed | 列表固定 ，同 element-ui | `Boolean` `String` | `false` | `'right'`  |
 | transform | 处理显示文字的函数，传入`row` ，显示返回结果 | `Function` |  | `row => row.num + 'kg'` | 
 | class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
 | style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
@@ -242,7 +242,8 @@ buttonList:[
 | 键名 | 值 | 类型 | 默认值 | 示例 |
 | --- | --- | --- |--- | --- |
 | icon | 按钮图标 | `String` | | `"el-icon-edit"`  |
-| type | 按钮类型(同) | `String` | `'text'` | `"primary"`  |
+| type | 按钮类型，同 element-ui | `String` | `'text'` | `"primary"`  |
+| size | 按钮大小，同 element-ui | `String` | `'default'` | `"mini"`  |
 | disabled | 禁用 | `Boolean` `Function` | | `true`  |
 | class | 类名 | `String` `Function` | | `row => ["", "green", "red"][row.state]`  |
 | style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})` |
