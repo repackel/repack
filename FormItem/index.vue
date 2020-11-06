@@ -9,20 +9,25 @@
     <template v-if="x.type==='input'">
       <el-input v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0"  @input="val=> x.inputFn ? x.inputFn(val) : void 0"/>
     </template>
-    <template v-if="x.type==='number'">
+    <template v-else-if="x.type==='number'">
       <el-input-number v-model="form[x.key]" :min="(x.range&&x.range[0])||1" :max="(x.range&&x.range[1])||10" v-bind="inputcfg(x)" />
     </template>
-    <template v-if="x.type==='textarea'">
+    <template v-else-if="x.type==='textarea'">
       <el-input v-model="form[x.key]" type="textarea" v-bind="inputcfg(x)" />
     </template>
-    <template v-if="x.type==='radio'">
+    <template v-else-if="x.type==='radio'">
       <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)">
-        <el-radio v-for="y in (x.dict ? dictList : x.list || [])" :key="y.val" :label="y.val">{{y.name}}</el-radio>
+        <el-radio v-for="y in dictList" :key="y.val" :label="y.val">{{y.name}}</el-radio>
       </el-radio-group>
     </template>
+    <template v-else-if="x.type==='checkbox'">
+      <el-checkbox-group v-model="form[x.key]" v-bind="inputcfg(x)">
+        <el-checkbox v-for="y in dictList" :key="y.val" :label="y.val">{{y.name}}</el-checkbox>
+      </el-checkbox-group>
+    </template>    
     <template v-else-if="x.type==='select'">
       <el-select v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
-        <el-option v-for="dict in (x.dict ? dictList : x.list || [])" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
+        <el-option v-for="y in dictList" :key="y.val" :label="y.name" :value="x.useLabel ? y.name : y.val" />
       </el-select>
     </template>
     <template v-else-if="x.type==='date'">
@@ -69,6 +74,8 @@ export default {
       } else {
         this.dictList = list;
       }
+    } else {
+      this.dictList = this.x.list || []
     }
   },
   computed: {},
