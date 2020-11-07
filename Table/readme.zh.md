@@ -182,7 +182,7 @@ searchList: [
 
 **下拉框列表数据的必须设为以下格式，键名 `name`, 键值 `val`*
 
-```
+```javascript
 list: [{
   val: "1",
   name: "住宅"
@@ -197,7 +197,7 @@ list: [{
 
 - 1-4 `tableList` 配置
 > 格式：
-```
+```javascript
 tableList: [
   {
     label: "姓名",
@@ -233,7 +233,7 @@ tableList: [
 
 - 1-5-1 `buttonList` 配置：
 > 格式：
-```
+```javascript
 buttonList:[
    {
      text: "编辑",
@@ -258,7 +258,7 @@ buttonList:[
 
 用法：
 
-```
+```javascript
 this.$refs[ ref名 ].[ 方法名 ]
 // this.$refs.staffTable.getList()
 ```
@@ -276,7 +276,7 @@ this.$refs[ ref名 ].[ 方法名 ]
 
 用法：
 
-```
+```javascript
 @getSelection="myGetSelectionMethod"
 // 即为 element 的 `selection-change` 方法
 ```

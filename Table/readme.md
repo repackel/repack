@@ -182,7 +182,7 @@ searchList: [
 
 **The data of the select list must be set to the following format, key `name`, value `val`*
 
-```
+```javascript
 list: [{
   val: "1",
   name: "Residential"
@@ -197,7 +197,7 @@ list: [{
 
 - 1-4 `tableList` Configuration
 > scheme:
-```
+```javascript
 tableList: [
   {
     label: "Name",
@@ -233,7 +233,7 @@ tableList: [
 
 - 1-5-1 `buttonList` Configuration
 > scheme:
-```
+```javascript
 buttonList:[
    {
      text: "Edit",
@@ -258,7 +258,7 @@ buttonList:[
 
 usage:
 
-```
+```javascript
 this.$refs[ ref name ].[ Method name ]
 // this.$refs.staffTable.getList()
 ```
@@ -276,7 +276,7 @@ this.$refs[ ref name ].[ Method name ]
 
 usage:
 
-```
+```javascript
 @getSelection="myGetSelectionMethod"
 // It is the `selection-change` method of element
 ```
