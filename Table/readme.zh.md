@@ -1,22 +1,21 @@
 ## **Table** 表格文档
 
 ### 引入
-```
+```javascript
 import { Table } from "@repackel/repack";
 ```
-```
+```javascript
 components: {
   [Table.name]: Table,
 },
 ```
-```
+```html
 <rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection">
   <!-- <template slot="searchbox">slot</template> -->
 </rl-table>
 ```
 
 **插槽：**
-
 
 | 名称 | 插槽 | 示例 |
 | --- | --- | --- |
@@ -52,7 +51,7 @@ components: {
 组件内在 `mounted()` 时调用 搜索，组件外无需再次调用。
 
 示例：
-```
+```javascript
 getList(p, reset) {
   // `p` 为组件内传入的搜索条件
   // `reset` 为重置搜索开关，当使用到了外部条件时，这里要清除
@@ -101,7 +100,7 @@ getList(p, reset) {
 在 `mounted()` 时调用。
 
 示例：
-```
+```javascript
 fetchConditionList() {
   return new Promise(async (resolve, reject) => {
     const childType = await this.$req("/getList");
@@ -117,7 +116,7 @@ fetchConditionList() {
 - 1-3 `searchList` 配置
 
 > 格式：
-```
+```javascript
 searchList: [
   {
     name: "姓名",

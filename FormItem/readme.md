@@ -1,14 +1,15 @@
 ## **Form Item** Document
 
-1. Import 
-```
+### 1. Import 
+```javascript
 import { FormItem } from "@repackel/repack";
-
-  components: {
-    FormItem,
-  },
 ```
+```javascript
+components: {
+  FormItem,
+},
 ```
+```html
 <form-item :form="form" :x="x" v-for="(x,i) in list" :key="i">
     <!-- <el-input v-if="x.name==='construction area'" v-model="form.acreage" placeholder="Construction Area" size="small">
         <template slot="append">m²</template>
@@ -18,10 +19,10 @@ import { FormItem } from "@repackel/repack";
 
 **Default slot: put the custom content between `<form-item></form-item>`. Can be judged by the `name` of the list item*
 
-2. List field
+### 2. List field
 
 List structure
-```
+```javascript
 list:[
     {
         name: "House type",
@@ -70,7 +71,7 @@ list:[
 
 **The data of the select list must be set to the following format, key `name`, value `val`*
 
-```
+```javascript
 list: [{
   val: "1",
   name: "Residential"
@@ -83,7 +84,7 @@ list: [{
 }]
 ```
 
-3. Supported form item types
+### 3. Supported form item types
 
 | Value | Description |
 | -- | -- |

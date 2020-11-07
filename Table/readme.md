@@ -1,22 +1,21 @@
 ## **Table** Document
 
 ### Import
-```
+```javascript
 import { Table } from "@repackel/repack";
 ```
-```
+```javascript
 components: {
   [Table.name]: Table,
 },
 ```
-```
+```html
 <rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection">
   <!-- <template slot="searchbox">slot</template> -->
 </rl-table>
 ```
 
 **Slot：**
-
 
 | Name | Slot | Example |
 | --- | --- | --- |
@@ -52,7 +51,7 @@ The search interface is passed in through an asynchronous function, Eventually c
 Search is called when `mounted()` inside the component, and there is no need to call it again outside the component.
 
 Example:
-```
+```javascript
 getList(p, reset) {
   // `p` is the search parameters passed in the component
   // `reset` is the reset search switch, when the external parameters are used, it should be cleared here
@@ -101,7 +100,7 @@ Each object key is the `key` of an item in `searchList`, and the object value is
 Called when `mounted()`.
 
 Example:
-```
+```javascript
 fetchConditionList() {
   return new Promise(async (resolve, reject) => {
     const childType = await this.$req("/getList");
@@ -117,7 +116,7 @@ fetchConditionList() {
 - 1-3 `searchList` Configuration
 
 > scheme:
-```
+```javascript
 searchList: [
   {
     name: "Name",

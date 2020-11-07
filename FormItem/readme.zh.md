@@ -1,14 +1,15 @@
 ## **Form Item** 表单项文档
 
-1. 引入 
-```
+### 1. 引入 
+```javascript
 import { FormItem } from "@repackel/repack";
-
-  components: {
-    FormItem,
-  },
 ```
+```javascript
+components: {
+  FormItem,
+},
 ```
+```html
 <form-item :form="form" :x="x" v-for="(x,i) in list" :key="i">
     <!-- <el-input v-if="x.name==='建筑面积'" v-model="form.acreage" placeholder="建筑面积" size="small">
         <template slot="append">m²</template>
@@ -18,10 +19,10 @@ import { FormItem } from "@repackel/repack";
 
 **默认插槽：将自定义内容放到 `<form-item></form-item>` 之间即可。可以通过列表项的 `name` 来做判断*
 
-2. 列表字段
+### 2. 列表字段
 
 列表结构
-```
+```javascript
 list:[
     {
         name: "房屋类型",
@@ -70,7 +71,7 @@ list:[
 
 **下拉框列表数据的必须设为以下格式，键名 `name`, 键值 `val`*
 
-```
+```javascript
 list: [{
   val: "1",
   name: "住宅"
@@ -83,7 +84,7 @@ list: [{
 }]
 ```
 
-3. 支持的 form item 类型
+### 3. 支持的 form item 类型
 
 | 传值 | 含义 |
 | -- | -- |
