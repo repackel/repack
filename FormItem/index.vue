@@ -21,7 +21,8 @@
       </el-radio-group>
     </template>
     <template v-else-if="x.type==='checkbox'">
-      <el-checkbox-group v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange" class="checkAll" v-if="x.checkAll">{{locz("checkAll")}}</el-checkbox>
+      <el-checkbox-group v-model="form[x.key]" v-bind="inputcfg(x)" @change="handleCheckedCitiesChange">
         <el-checkbox v-for="y in dictList" :key="y.val" :label="y.val">{{y.name}}</el-checkbox>
       </el-checkbox-group>
     </template>    
@@ -63,7 +64,9 @@ export default {
     const self = this;
     return {
       queryParams: {},
-      dictList: []
+      dictList: [],
+      checkAll:false,
+      isIndeterminate:false,
     };
   },
   async mounted() {
@@ -89,13 +92,23 @@ export default {
   methods: {
     locz,
     inputcfg,
-    rules: x => [
-      {
-        required: !(x.norule || x.type === "view"),
-        message: tipsFn(x),
-        trigger: x.type === "select" ? "change " : "blur"
+    rules: x => [{
+      required: !(x.norule || x.type === "view"),
+      message: tipsFn(x),
+      trigger: x.type === "select" ? "change " : "blur"
+    }],
+    handleCheckAllChange(val) {
+      this.form[this.x.key] = val ? this.dictList.map(x => x.val) : []
+      this.isIndeterminate = false;
+    },
+    handleCheckedCitiesChange(value) {
+      let checkedCount = value.length;
+      this.checkAll = checkedCount === this.dictList.length;
+      this.isIndeterminate = checkedCount > 0 && checkedCount < this.dictList.length;
+      if (this.x.changeFn) {
+        this.x.changeFn(value)
       }
-    ]
+    }
   }
 };
 </script>
@@ -108,5 +121,8 @@ export default {
     overflow: hidden;
     width: 100%;
     text-overflow: ellipsis;
+}
+.checkAll {
+  display: block;
 }
 </style>

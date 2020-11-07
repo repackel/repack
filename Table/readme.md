@@ -142,31 +142,31 @@ searchList: [
 
 | Key | Value | Data Type | Default | Example |
 | --- | --- | --- |--- | --- |
-| name | Display name | `String` | Mandatory |"Name" |
-| type | See table below | `String` | Mandatory |"select" |
-| key | key of the search form | `String` | Mandatory | "name"  |
-| list | `Select` list | `Array` | Mandatory | [{name:'Male',val:'1'}]
-| useLabel | Use the `label` of Select to pass the value | `Boolean` |  | true  |
-| key1 | Begin date of `type="date"` | `String` |  | "beginDate"  |
-| key2 | End date of `type="date"` | `String` |  | "endDate"  |
-| hidden | Hide this search item | `Boolean` | - | true  |
-| width | item content width | `String` | - | "220px"  |
-| class | item content class name | `String` | - | "w250"  |
-| itemClassName | item class name | `String` | - | "block"  |
+| name | Display name | `String` | Mandatory | `"Name"` |
+| type | See table below | `String` | Mandatory | `"select"` |
+| key | key of the search form | `String` | Mandatory | `"name"` |
+| list | `Select` list | `Array` | Mandatory | `[{name:'Male',val:'1'}]` |
+| useLabel | Use the `label` of Select to pass the value | `Boolean` |  | `true` |
+| key1 | Begin date of `type="date"` | `String` |  | `"beginDate"` |
+| key2 | End date of `type="date"` | `String` |  | `"endDate"` |
+| hidden | Hide this search item | `Boolean` | - | `true` |
+| width | item content width | `String` | - | `"220px"` |
+| class | item content class name | `String` | - | `"w250"` |
+| itemClassName | item class name | `String` | - | `"block"` |
 | - | Same as element-ui below ||||
-| size | - | `String` | "small" | "small"  |
-| filterable | - | `Boolean` | - | true  |
-| clearable | - | `Boolean` | true | true  |
-| multiple | - | `Boolean` | - | true  |
-| readonly | - | `Boolean` | - | true  |
-| disabled | - | `Boolean` | - | true  |
-| maxlength | - | `Number` | 25 | 20  |
-| rows | - | `Boolean` | "3" | "5" |
-| resize | - | `Boolean` | "none" | "none" |
-| placeholder | - | `String` | - | "Please Select"  |
-| startPlaceholder | - | `String` | - | "Please Select Start Time"  |
-| endPlaceholder | - | `String` | - | "Please Select End Time"  ||
-| valueFormat | - | `String` | - | "yyyy-MM-dd HH:mm:ss" |
+| size | - | `String` | `"small"` | `"small"` |
+| filterable | - | `Boolean` | - | `true` |
+| clearable | - | `Boolean` | `true` | `true` |
+| multiple | - | `Boolean` | - | `true` |
+| readonly | - | `Boolean` | - | `true` |
+| disabled | - | `Boolean` | - | `true` |
+| maxlength | - | `Number` | `25` | `20` |
+| rows | - | `Boolean` | `"3"` | `"5"` |
+| resize | - | `Boolean` | `"none"` | `"none"` |
+| placeholder | - | `String` | - | `"Please Select"` |
+| startPlaceholder | - | `String` | - | `"Please Select Start Time"` |
+| endPlaceholder | - | `String` | - | `"Please Select End Time"` |
+| valueFormat | - | `String` | - | `"yyyy-MM-dd HH:mm:ss"` |
 
 > `type` Type
 

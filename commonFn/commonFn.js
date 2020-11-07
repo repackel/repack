@@ -36,15 +36,16 @@ export const genAttr = (x, scope) => {
 };
 
 export const inputcfg = (x, i) => {
+  const { multiple, readonly, disabled } = x;
   let cfg = {
     size: x.size || "small",
     filterable: x.filterable || Boolean(x.dict) || true,
     clearable: x.clearable || true,
-    multiple: x.multiple,
-    readonly: x.readonly,
-    disabled: x.disabled,
-    style: x.width ? "width:" + x.width : "",
     class: x.class,
+    style: x.width ? "width:" + x.width : "",
+    multiple,
+    readonly,
+    disabled,
   };
   switch (x.type) {
     case "input":
@@ -54,9 +55,9 @@ export const inputcfg = (x, i) => {
       break;
     case "textarea":
       cfg.placeholder = x.placeholder || locz("pleaseFillin") + x.name;
-      cfg.maxlength = x.maxlength || 200 ;
-      cfg.resize = x.resize || "none" ;
-      cfg.rows = x.rows || "3" ;
+      cfg.maxlength = x.maxlength || 200;
+      cfg.resize = x.resize || "none";
+      cfg.rows = x.rows || "3";
 
       break;
     case "select":

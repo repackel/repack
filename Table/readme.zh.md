@@ -142,31 +142,31 @@ searchList: [
 
 | 键名 | 值 | 类型 | 默认值 | 示例 |
 | --- | --- | --- |--- | --- |
-| name | 中文名 | `String` |必传 |"姓名" |
-| type | 见下表 | `String` | 必传 |"select" |
-| key | 表单的键 | `String` | 必传 | "name"  |
-| list | 下拉类型的列表 | `Array` | 必传 | [{name:'男',val:'1'}]
-| useLabel | 使用下拉框的 `label` 传值 | `Boolean` |  | true  |
-| key1 | `type="date"` 的开始时间 | `String` |  | "beginDate"  |
-| key2 | `type="date"` 的结束时间 | `String` |  | "endDate"  
-| hidden | 隐藏该搜索项 | `Boolean` | - | true  |
-| width | item content 宽度，单位为 px | `Number` | - | "220"  |
-| class | item content 类名 | `String` | - | "w250"  |
-| itemClassName | item 类名 | `String` | - | "w250"  |
+| name | 中文名 | `String` | 必传 | `"姓名"` |
+| type | 见下表 | `String` | 必传 | `"select"` |
+| key | 表单的键 | `String` | 必传 | `"name"` |
+| list | 下拉类型的列表 | `Array` | 必传 | `[{name:'男',val:'1'}]` |
+| useLabel | 使用下拉框的 `label` 传值 | `Boolean` |  | `true` |
+| key1 | `type="date"` 的开始时间 | `String` |  | `"beginDate"` |
+| key2 | `type="date"` 的结束时间 | `String` |  | `"endDate"` |
+| hidden | 隐藏该搜索项 | `Boolean` | - | `true` |
+| width | item content 宽度，单位为 px | `String` | - | `"220px"` |
+| class | item content 类名 | `String` | - | `"w250"` |
+| itemClassName | item 类名 | `String` | - | `"block"` |
 | - | 以下同 element-ui ||||
-| size | - | `String` | "small" | "small"  |
-| filterable | - | `Boolean` | - | true  |
-| clearable | - | `Boolean` | true | true  |
-| multiple | - | `Boolean` | - | true  |
-| readonly | - | `Boolean` | - | true  |
-| disabled | - | `Boolean` | - | true  |
-| maxlength | - | `Number` | 25 | 20  |
-| rows | - | `Boolean` | "3" | "5" |
-| resize | - | `Boolean` | "none" | "none" |
-| placeholder | - | `String` | - | "请选择"  |
-| startPlaceholder | - | `String` | - | "请选择开始时间"  |
-| endPlaceholder | - | `String` | - | "请选择结束时间"  |
-| valueFormat | - | `String` | - | "yyyy-MM-dd HH:mm:ss" |
+| size | - | `String` | `"small"` | `"small"` |
+| filterable | - | `Boolean` | - | `true` |
+| clearable | - | `Boolean` | `true` | `true` |
+| multiple | - | `Boolean` | - | `true` |
+| readonly | - | `Boolean` | - | `true` |
+| disabled | - | `Boolean` | - | `true` |
+| maxlength | - | `Number` | `25` | `20` |
+| rows | - | `Boolean` | `"3"` | `"5"` |
+| resize | - | `Boolean` | `"none"` | `"none"` |
+| placeholder | - | `String` | - | `"请选择"` |
+| startPlaceholder | - | `String` | - | `"请选择开始时间"` |
+| endPlaceholder | - | `String` | - | `"请选择结束时间"` |
+| valueFormat | - | `String` | - | `"yyyy-MM-dd HH:mm:ss"` |
 
 > `type` 类型
 
