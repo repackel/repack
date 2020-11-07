@@ -8,8 +8,6 @@
 
 
 
-⚓ WIP ⚓
-
 ---
 
 ⚡⚡⚡
@@ -29,16 +27,19 @@ Repackaged the TABLE and FORMITEM components that are frequently used in managem
 It was designed to be configurable from object data.
 
 ## 🛰️ Install
+
 ![NPM](https://nodei.co/npm/@repackel/repack.svg)
-```
+
+```javascript
 npm i @repackel/repack -D
 ```
+
 ## 📜 Document
 
 - [FormItem](./FormItem/readme.md)
 - [Table](./Table/readme.md)
 
-## 🌏 中文文档
+> 中文文档
 
 - [FormItem](./FormItem/readme.zh.md)
 - [Table](./Table/readme.zh.md)

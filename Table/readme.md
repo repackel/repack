@@ -15,7 +15,7 @@ components: {
 </rl-table>
 ```
 
-**Slot：**
+**Slot：*
 
 | Name | Slot | Example |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ components: {
 ### Configuration
 
 - 1 `cfg` Configuration
-```
+```javascript
 {
   actionList:[], // Action button list, Optional
   actionAlign: "right", // Action button alignment, default `"right"`

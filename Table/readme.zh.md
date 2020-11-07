@@ -15,7 +15,7 @@ components: {
 </rl-table>
 ```
 
-**插槽：**
+**插槽：*
 
 | 名称 | 插槽 | 示例 |
 | --- | --- | --- |
@@ -29,7 +29,7 @@ components: {
 ### 配置
 
 - 1 `cfg` 配置
-```
+```javascript
 {
   actionList:[], // 操作按钮列表，可选
   actionAlign: "right", // 操作按钮对齐，默认 `"right"`
