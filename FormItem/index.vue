@@ -113,6 +113,9 @@ export default {
     handleCheckAllChange(val) {
       this.form[this.x.key] = val ? this.dictList.map(x => x.val) : []
       this.isIndeterminate = false;
+      if (this.x.changeFn) {
+        this.x.changeFn(this.form[this.x.key])
+      }
     },
     handleCheckedCitiesChange(value) {
       let checkedCount = value.length;
