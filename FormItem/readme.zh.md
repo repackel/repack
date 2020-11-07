@@ -54,6 +54,8 @@ list:[
 | inputFn | 当 `type="input"` 时，触发输入事件，同 `@input` | `Function` | - | ` val=>{console.log('input=>',val)}` |
 | changeFn | 当 `type` 为 `"input","select","radio","checkbox"` 时，触发变更事件，同 `@change` | `Function` | - | ` val=>{console.log('change=>',val)}` |
 | checkAll | 当 `type="checkbox"` 时，显示全选框 | `Boolean` | `false` | `true` |
+| prependText | 当 `type="input"` 时，显示前置文本 | `String` | - | `"https://"` |
+| appendText | 当 `type="input"` 时，显示后置文本 | `String` | - | `"元/人"` |
 | - | 以下同 element-ui ||||
 | size | - | `String` | `"small"` | `"small"` |
 | filterable | - | `Boolean` | - | `true` |
