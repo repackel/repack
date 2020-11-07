@@ -164,9 +164,9 @@ searchList: [
 | rows | - | `Boolean` | `"3"` | `"5"` |
 | resize | - | `Boolean` | `"none"` | `"none"` |
 | placeholder | - | `String` | - | `"请选择"` |
-| startPlaceholder | - | `String` | - | `"请选择开始时间"` |
-| endPlaceholder | - | `String` | - | `"请选择结束时间"` |
-| valueFormat | - | `String` | - | `"yyyy-MM-dd HH:mm:ss"` |
+| startPlaceholder | start-placeholder | `String` | - | `"请选择开始时间"` |
+| endPlaceholder | end-placeholder | `String` | - | `"请选择结束时间"` |
+| valueFormat | value-format | `String` | - | `"yyyy-MM-dd HH:mm:ss"` |
 
 > `type` 类型
 

@@ -64,9 +64,9 @@ list:[
 | rows | - | `Boolean` | `"3"` | `"5"` |
 | resize | - | `Boolean` | `"none"` | `"none"` |
 | placeholder | - | `String` | - | `"Please Select"` |
-| startPlaceholder | - | `String` | - | `"Please Select Start Time"` |
-| endPlaceholder | - | `String` | - | `"Please Select End Time"` |
-| valueFormat | - | `String` | - | `"yyyy-MM-dd HH:mm:ss"` |
+| startPlaceholder | start-placeholder | `String` | - | `"Please Select Start Time"` |
+| endPlaceholder | end-placeholder | `String` | - | `"Please Select End Time"` |
+| valueFormat | value-format | `String` | - | `"yyyy-MM-dd HH:mm:ss"` |
 
 **The data of the select list must be set to the following format, key `name`, value `val`*
 
