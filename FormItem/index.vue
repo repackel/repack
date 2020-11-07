@@ -7,20 +7,19 @@
       <span v-else>{{x.transform ? x.transform(form[x.key]) :form[x.key] || locz('na')}}</span>
     </template>
     <template v-if="x.type==='input'">
-      <el-input v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0"
-        @input="val=> x.inputFn ? x.inputFn(val) : void 0">
+      <el-input v-model="form[x.key]" v-bind="inputcfg(x)" @change="changeFn" @input="inputFn">
         <template slot="prepend" v-if="x.prependText">{{x.prependText}}</template>
         <template slot="append" v-if="x.appendText">{{x.appendText}}</template>
       </el-input>
     </template>
     <template v-else-if="x.type==='number'">
-      <el-input-number v-model="form[x.key]" :min="(x.range&&x.range[0])||1" :max="(x.range&&x.range[1])||10" v-bind="inputcfg(x)" />
+      <el-input-number v-model="form[x.key]" v-bind="inputcfg(x)"  @change="changeFn"/>
     </template>
     <template v-else-if="x.type==='textarea'">
-      <el-input v-model="form[x.key]" type="textarea" v-bind="inputcfg(x)" />
+      <el-input v-model="form[x.key]" type="textarea" v-bind="inputcfg(x)"  @change="changeFn"/>
     </template>
     <template v-else-if="x.type==='radio'">
-      <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
+      <el-radio-group v-model="form[x.key]" v-bind="inputcfg(x)" @change="changeFn">
         <el-radio v-for="y in dictList" :key="y.val" :label="y.val">{{y.name}}</el-radio>
       </el-radio-group>
     </template>
@@ -31,20 +30,20 @@
       </el-checkbox-group>
     </template>    
     <template v-else-if="x.type==='select'">
-      <el-select v-model="form[x.key]" v-bind="inputcfg(x)" @change="val=> x.changeFn ? x.changeFn(val) : void 0">
+      <el-select v-model="form[x.key]" v-bind="inputcfg(x)" @change="changeFn">
         <el-option v-for="y in dictList" :key="y.val" :label="y.name" :value="x.useLabel ? y.name : y.val" />
       </el-select>
     </template>
     <template v-else-if="x.type==='date'">
-      <el-date-picker v-model="form[x.key]" type="daterange" v-bind="inputcfg(x)">
+      <el-date-picker v-model="form[x.key]" type="daterange" v-bind="inputcfg(x)" @change="changeFn">
       </el-date-picker>
     </template>
     <template v-else-if="x.type==='datetime'">
-      <el-date-picker v-model="form[x.key]" type="datetimerange" v-bind="inputcfg(x)">
+      <el-date-picker v-model="form[x.key]" type="datetimerange" v-bind="inputcfg(x)" @change="changeFn">
       </el-date-picker>
     </template>
     <template v-else-if="x.type==='date1'">
-      <el-date-picker v-model="form[x.key]" type="date" v-bind="inputcfg(x)">
+      <el-date-picker v-model="form[x.key]" type="date" v-bind="inputcfg(x)" @change="changeFn">
       </el-date-picker>
     </template>
     <template v-else>
@@ -96,6 +95,16 @@ export default {
   methods: {
     locz,
     inputcfg,
+    changeFn(val){
+      if (this.x.changeFn) {
+        this.x.changeFn(val)
+      }
+    },
+    inputFn(val){
+      if (this.x.changeFn) {
+        this.x.inputFn(val)
+      }
+    },
     rules: x => [{
       required: !(x.norule || x.type === "view"),
       message: tipsFn(x),

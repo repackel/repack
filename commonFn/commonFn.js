@@ -53,6 +53,11 @@ export const inputcfg = (x, i) => {
       cfg.maxlength = x.maxlength || (x.key === "mobile" ? 11 : 25);
 
       break;
+    case "number":
+      cfg.min = (x.range&&x.range[0])||1
+      cfg.max = (x.range&&x.range[0])||10
+      
+      break;
     case "textarea":
       cfg.placeholder = x.placeholder || locz("pleaseFillin") + x.name;
       cfg.maxlength = x.maxlength || 200;
