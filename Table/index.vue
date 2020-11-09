@@ -11,7 +11,7 @@
       <slot name="beforeTable"></slot>
       <el-form :inline="true" class="cp-form" label-width="6em" v-if="!cfg.hideSearchForm">
         <slot name="searchBegin"></slot>
-        <template v-for="(x,i) in (cfg.searchList.filter(x=>x))">
+        <template v-for="(x,i) in (cfg.searchList && cfg.searchList.filter(x=>x))">
           <el-form-item :label="x.name" :key="i" v-if="!x.hidden" :class="x.itemClassName">
             <template v-if="x.type==='input'">
               <el-input v-model="queryParams[x.key]" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
@@ -50,7 +50,7 @@
       <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange" v-else>
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
         <el-table-column type="index" width="80" :label="locz('index')" />
-        <template v-for="(x,i) in cfg.tableList.filter(x=>x && !x.hidden)">
+        <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
             <template slot-scope="scope">
               <template v-for="(y,j) in x.buttonList">
@@ -115,13 +115,12 @@ export default {
     // Search Select List
     this.searchCfg = this.cfg.searchCfg || this.searchCfg;
     // dictList only available when $dictArr exit
-    if (this.$dictArr) {
-      const dictList =
-        (this.cfg.searchList &&
-          this.cfg.searchList
+    if (this.$dictArr && this.cfg.searchList) {
+      const dictList = this.cfg.searchList
             .map((x) => !(x.list instanceof Array) && x.list)
-            .filter((x) => x)) ||
+            .filter((x) => x) ||
         [];
+        
       if (dictList.length) {
         this.$dictArr(...dictList).then((res) => dictList.forEach((x, i) => this.$set(this.queryList, x, res[i])));
       }
