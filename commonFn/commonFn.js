@@ -55,7 +55,7 @@ export const inputcfg = (x, i) => {
       break;
     case "number":
       cfg.min = (x.range&&x.range[0])||1
-      cfg.max = (x.range&&x.range[0])||10
+      cfg.max = (x.range&&x.range[1])||20
       
       break;
     case "textarea":
