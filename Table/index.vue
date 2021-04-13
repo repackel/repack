@@ -90,9 +90,8 @@ export default {
   data() {
     return {
       _,
-      pageAlias: this.cfg.pageAlias || {},
-      pageIndexKey: this.pageAlias.current || "pageIndex",
-      pageSizeKey: this.pageAlias.size || "pageSize",
+      pageIndexKey: this.cfg.pageAlias && this.cfg.pageAlias.current || "pageIndex",
+      pageSizeKey: this.cfg.pageAlias && this.cfg.pageAlias.size || "pageSize",
       loading: false,
       // hidden: false,
       searchDateArr: [],
