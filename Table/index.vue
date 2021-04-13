@@ -1,15 +1,14 @@
 <template>
-  <section class="full-page">
+  <section class="full-page repack-page">
     <slot name="pageBegin"></slot>
     <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
-      <div class="action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
+      <div class="action-bar repack-action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
         <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
           <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" size="small" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
         </div>
       </div>
-      <cpTitle v-if="cfg.rightName">{{cfg.rightName}}</cpTitle>
       <slot name="beforeTable"></slot>
-      <el-form :inline="true" class="cp-form" label-width="6em" v-if="!cfg.hideSearchForm">
+      <el-form :inline="true" class="repack-search-form" label-width="6em" v-if="!cfg.hideSearchForm">
         <slot name="searchBegin"></slot>
         <template v-for="(x,i) in (cfg.searchList && cfg.searchList.filter(x=>x))">
           <el-form-item :label="x.name" :key="i" v-if="!x.hidden" :class="x.itemClassName">
@@ -39,12 +38,12 @@
           </el-form-item>
           <br class="break" :key="i" v-if="x.br" />
         </template>
-        <el-form-item class="btns">
+        <el-form-item class="repack-search-btns">
           <el-button type="primary" icon="el-icon-search" size="mini" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || locz('search') }}</el-button>
           <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
         </el-form-item>
       </el-form>
-      <div class="customTable" v-if="cfg.customTable" v-loading="loading">
+      <div class="customTable repack-custom-table" v-if="cfg.customTable" v-loading="loading">
         <slot name="customTable"></slot>
       </div>
       <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange" v-else>
@@ -74,7 +73,7 @@
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else />
         </template>
       </el-table>
-      <div class="pager-container" v-if="!cfg.hidePagination">
+      <div class="pager-container repack-pagination" v-if="!cfg.hidePagination">
         <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams[pageIndexKey]" :page-sizes="pageList" :page-size="queryParams[pageSizeKey]" layout="total, sizes, prev, pager, next, jumper" :total="tableTotal">
         </el-pagination>
       </div>

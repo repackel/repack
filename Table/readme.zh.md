@@ -285,3 +285,27 @@ this.$refs[ ref名 ].[ 方法名 ]
 @getSelection="myGetSelectionMethod"
 // 即为 element 的 `selection-change` 方法
 ```
+
+### 样式
+
+类名：
+
+```css
+/* 完整的页面 */
+.repack-page {}
+
+/* 操作栏 */
+.repack-action-bar {}
+
+/* 搜索的表单 */
+.repack-search-form {}
+
+/* 搜索的按钮 */
+.repack-search-btns {}
+
+/* 自定义的表格 */
+.repack-custom-table {}
+
+/* 分页 */
+.repack-pagination {}
+```

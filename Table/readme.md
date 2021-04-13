@@ -285,3 +285,27 @@ usage:
 @getSelection="myGetSelectionMethod"
 // It is the `selection-change` method of element
 ```
+
+### Styles
+
+Class name：
+
+```css
+/* Complete page */
+.repack-page {}
+
+/* Action bar */
+.repack-action-bar {}
+
+/* Search form */
+.repack-search-form {}
+
+/* Search button */
+.repack-search-btns {}
+
+/* Customized form */
+.repack-custom-table {}
+
+/* Pagination */
+.repack-pagination {}
+```
