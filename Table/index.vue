@@ -54,7 +54,7 @@
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
             <template slot-scope="scope">
               <template v-for="(y,j) in x.buttonList">
-                <el-button :size="y.size" :type="y.type|| 'text'" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" v-bind="genAttr(y,scope)" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row) )">
+                <el-button :size="y.size" :type="y.type|| 'text'" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" v-bind="genAttr(y,scope)" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row,scope.$index) )">
                   {{ typeof y.text === 'function' ? y.text(scope.row,scope.$index) : y.text }}
                 </el-button>
               </template>
@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import { genAttr ,locz , inputcfg , _ } from "../commonFn/commonFn.js";
+import { genAttr, locz, inputcfg, _ } from "../commonFn/commonFn.js";
 export default {
   name: "rl-table",
   props: ["cfg"],
@@ -96,18 +96,18 @@ export default {
       queryParams: {
         pageNum: 1,
         pageSize: 10,
-        ...this.cfg.queryParams
+        ...this.cfg.queryParams,
       },
       queryList: {},
       tableData: this.cfg.tableData || [],
       tableTotal: 0,
       dialogVisible: false,
       searchCfg: {
-        queryBtn: 2
+        queryBtn: 2,
       },
       currentPage: 1,
       imageList: [],
-      pageList: this.cfg.pageSizes || [10, 50, 100, 150]
+      pageList: this.cfg.pageSizes || [10, 50, 100, 150],
     };
   },
   computed: {},
@@ -116,19 +116,14 @@ export default {
     this.searchCfg = this.cfg.searchCfg || this.searchCfg;
     // dictList only available when $dictArr exit
     if (this.$dictArr && this.cfg.searchList) {
-      const dictList = this.cfg.searchList
-            .map((x) => !(x.list instanceof Array) && x.list)
-            .filter((x) => x) ||
-        [];
-        
+      const dictList = this.cfg.searchList.map((x) => !(x.list instanceof Array) && x.list).filter((x) => x) || [];
+
       if (dictList.length) {
         this.$dictArr(...dictList).then((res) => dictList.forEach((x, i) => this.$set(this.queryList, x, res[i])));
       }
     }
-    this.$nextTick(_ => {
-      const hasVal =
-        this.cfg.searchList &&
-        this.cfg.searchList.find(x => x && x.type === "input" && x.value);
+    this.$nextTick((_) => {
+      const hasVal = this.cfg.searchList && this.cfg.searchList.find((x) => x && x.type === "input" && x.value);
       if (hasVal) {
         this.queryParams[hasVal.key] = hasVal.value;
         this.getList();
@@ -136,12 +131,15 @@ export default {
         this.getList("reset");
       }
       // fetchConditionFn
-      if ( this.cfg.fetchConditionFn ) {
-        this.cfg.fetchConditionFn().then((res)=>{
-          Object.entries(res).forEach(x=>this.$set(this.queryList, x[0], x[1]))          
-        }).catch(err=>{
-          console.log('err',err)
-        })
+      if (this.cfg.fetchConditionFn) {
+        this.cfg
+          .fetchConditionFn()
+          .then((res) => {
+            Object.entries(res).forEach((x) => this.$set(this.queryList, x[0], x[1]));
+          })
+          .catch((err) => {
+            console.log("err", err);
+          });
       }
     });
   },
@@ -149,11 +147,11 @@ export default {
     genAttr,
     locz,
     inputcfg,
-    fallbackText(val){
-      if ( this.cfg.tableCellFallbackText && [null,undefined,''].includes( val)) {
-         return this.cfg.tableCellFallbackText
+    fallbackText(val) {
+      if (this.cfg.tableCellFallbackText && [null, undefined, ""].includes(val)) {
+        return this.cfg.tableCellFallbackText;
       } else {
-        return val
+        return val;
       }
     },
     getList(reset) {
@@ -162,16 +160,16 @@ export default {
         this.loading = true;
         this.cfg
           .searchFn(this.queryParams, reset)
-          .then(res => {
-            if ( res ) {
+          .then((res) => {
+            if (res) {
               this.tableData = res.list;
               this.tableTotal = res.total;
             }
           })
-          .catch(e => {
+          .catch((e) => {
             console.error(e);
           })
-          .finally(f => {
+          .finally((f) => {
             this.loading = false;
           });
       }
@@ -183,15 +181,12 @@ export default {
       prop: x.prop,
       align: x.align,
       showOverflowTooltip: x.overflow,
-      fixed: x.fixed
+      fixed: x.fixed,
     }),
     dateChange(arr, x) {
       [this.queryParams[x.key1], this.queryParams[x.key2]] = arr || [];
       if (this.queryParams[x.key2]) {
-        this.queryParams[x.key2] = this.queryParams[x.key2].replace(
-          "00:00:00",
-          "23:59:59"
-        );
+        this.queryParams[x.key2] = this.queryParams[x.key2].replace("00:00:00", "23:59:59");
       }
     },
     handleSizeChange(size) {
@@ -203,7 +198,7 @@ export default {
       this.queryParams.pageNum = page;
       this.getList();
     },
-    searchButton(){
+    searchButton() {
       this.queryParams.pageNum = 1;
       this.getList();
     },
@@ -219,7 +214,7 @@ export default {
     },
     handleSelectionChange(val) {
       this.$emit("getSelection", val);
-    }
-  }
+    },
+  },
 };
 </script>
