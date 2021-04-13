@@ -31,6 +31,10 @@ components: {
 - 1 `cfg` 配置
 ```javascript
 {
+  pageAlias: { // 表格分页的别名，默认值通过不适用，需要修改为对应的接口请求的字段
+    current:"pageIndex", // 当前页的别名
+    size:"pageSize", // 分页大小的别名
+  },
   actionList:[], // 操作按钮列表，可选
   actionAlign: "right", // 操作按钮对齐，默认 `"right"`
   searchList:[], // 搜索列表
@@ -253,6 +257,7 @@ buttonList:[
 | style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})` |
 | text | 按钮文字 | `String` `Function` | | `row => ["", "查看", "编辑"][row.state]`  |
 | fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
+| hidden | 隐藏按钮 | `Boolean` `Function` | `false` | `(row,index) => index > 5 |
 
 ### 方法
 

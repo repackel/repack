@@ -31,6 +31,10 @@ components: {
 - 1 `cfg` Configuration
 ```javascript
 {
+  pageAlias: { // The alias of the table pagination, the default value is not applicable, it needs to be modified to the field requested by the corresponding interface
+    current:"pageIndex", // Alias for current page
+    size:"pageSize", // Alias for page size
+  },
   actionList:[], // Action button list, Optional
   actionAlign: "right", // Action button alignment, default `"right"`
   searchList:[], // Search list
@@ -253,6 +257,7 @@ buttonList:[
 | style | Inline style | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})` |
 | text | Button text | `String` `Function` | | `row => ["", "View", "Edit"][row.state]`  |
 | fn | Click event, pass in `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
+| hidden | Hide the Button | `Boolean` `Function` | `false` | `(row,index) => index > 5 |
 
 ### Method
 
