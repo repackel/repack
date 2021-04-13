@@ -75,7 +75,7 @@
         </template>
       </el-table>
       <div class="pager-container" v-if="!cfg.hidePagination">
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams.pageNum" :page-sizes="pageList" :page-size="queryParams.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="tableTotal">
+        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams[pageIndexKey]" :page-sizes="pageList" :page-size="queryParams[pageSizeKey]" layout="total, sizes, prev, pager, next, jumper" :total="tableTotal">
         </el-pagination>
       </div>
     </div>
@@ -90,12 +90,15 @@ export default {
   data() {
     return {
       _,
+      pageAlias: this.cfg.pageAlias || {},
+      pageIndexKey: this.pageAlias.current || "pageIndex",
+      pageSizeKey: this.pageAlias.size || "pageSize",
       loading: false,
       // hidden: false,
       searchDateArr: [],
       queryParams: {
-        pageNum: 1,
-        pageSize: 10,
+        [this.pageIndexKey]: 1,
+        [this.pageSizeKey]: 10,
         ...this.cfg.queryParams,
       },
       queryList: {},
@@ -190,25 +193,25 @@ export default {
       }
     },
     handleSizeChange(size) {
-      this.queryParams.pageNum = 1;
-      this.queryParams.pageSize = size;
+      this.queryParams[this.pageIndexKey] = 1;
+      this.queryParams[this.pageSizeKey] = size;
       this.getList();
     },
     handleCurrentChange(page) {
-      this.queryParams.pageNum = page;
+      this.queryParams[this.pageIndexKey] = page;
       this.getList();
     },
     searchButton() {
-      this.queryParams.pageNum = 1;
+      this.queryParams[this.pageIndexKey] = 1;
       this.getList();
     },
     resetQuery() {
       if (this._pick) {
-        this.queryParams = this._pick(this.queryParams, ["pageSize"]);
+        this.queryParams = this._pick(this.queryParams, [this.pageSizeKey]);
       } else {
-        this.queryParams = { pageSize: this.queryParams.pageSize };
+        this.queryParams = { [this.pageSizeKey]: this.queryParams[this.pageSizeKey] };
       }
-      this.queryParams.pageNum = 1;
+      this.queryParams[this.pageIndexKey] = 1;
       this.searchDateArr = [];
       this.getList("reset");
     },
