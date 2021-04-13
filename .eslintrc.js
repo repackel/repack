@@ -1,16 +1,15 @@
 module.exports = {
-  root: true,
-  env: {
-    node: true
+  "root": true,
+  "env": {
+    "node": true
   },
-  'extends': [
-    'plugin:vue/essential',
-    'eslint:recommended'
-  ],
-  parserOptions: {
-    parser: 'babel-eslint'
+  "parser": "vue-eslint-parser",
+  "extends": ["plugin:vue/base"],
+  "parserOptions": {
+    "parser": 'babel-eslint',
+    "ecmaVersion": 6
   },
-  rules: {
+  "rules": {
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off'
   }
