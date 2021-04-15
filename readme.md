@@ -34,6 +34,11 @@ It was designed to be configurable from object data.
 npm i @repackel/repack -D
 ```
 
+> Import style, optional
+```css
+import '@repackel/repack/assets/style.css';
+```
+
 ## 📜 Document
 
 - [FormItem](./FormItem/readme.md)

@@ -38,7 +38,7 @@ export const genAttr = (x, scope) => {
 export const inputcfg = (x, i) => {
   const { multiple, readonly, disabled } = x;
   let cfg = {
-    size: x.size || "small",
+    size: x.size || "",
     filterable: x.filterable || Boolean(x.dict) || true,
     clearable: x.clearable || true,
     class: x.class,

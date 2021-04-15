@@ -4,7 +4,7 @@
     <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
       <div class="action-bar repack-action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
         <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
-          <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" size="small" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
+          <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" :size="baseConfig.size" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
         </div>
       </div>
       <slot name="beforeTable"></slot>
@@ -39,8 +39,8 @@
           <br class="break" :key="i" v-if="x.br" />
         </template>
         <el-form-item class="repack-search-btns">
-          <el-button type="primary" icon="el-icon-search" size="mini" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || locz('search') }}</el-button>
-          <el-button type="plain" icon="el-icon-refresh-right" size="mini" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
+          <el-button type="primary" icon="el-icon-search" :size="baseConfig.size" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || locz('search') }}</el-button>
+          <el-button type="plain" icon="el-icon-refresh-right" :size="baseConfig.size" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
         </el-form-item>
       </el-form>
       <div class="customTable repack-custom-table" v-if="cfg.customTable" v-loading="loading">
@@ -89,8 +89,11 @@ export default {
   data() {
     return {
       _,
-      pageIndexKey: this.cfg.pageAlias && this.cfg.pageAlias.current || "pageIndex",
-      pageSizeKey: this.cfg.pageAlias && this.cfg.pageAlias.size || "pageSize",
+      pageIndexKey: (this.cfg.pageAlias && this.cfg.pageAlias.current) || "pageIndex",
+      pageSizeKey: (this.cfg.pageAlias && this.cfg.pageAlias.size) || "pageSize",
+      baseConfig: {
+        size: "small",
+      },
       loading: false,
       // hidden: false,
       searchDateArr: [],
@@ -115,6 +118,7 @@ export default {
   mounted() {
     // Search Select List
     this.searchCfg = this.cfg.searchCfg || this.searchCfg;
+    this.baseConfig = Object.assign(this.baseConfig, this.cfg.baseConfig || {});
     // dictList only available when $dictArr exit
     if (this.$dictArr && this.cfg.searchList) {
       const dictList = this.cfg.searchList.map((x) => !(x.list instanceof Array) && x.list).filter((x) => x) || [];
