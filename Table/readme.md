@@ -35,6 +35,9 @@ components: {
     current:"pageIndex", // Alias for current page
     size:"pageSize", // Alias for page size
   },
+  baseConfig: {
+    size: '', // Size of the search box, the default value is `small`
+  },
   actionList:[], // Action button list, Optional
   actionAlign: "right", // Action button alignment, default `"right"`
   searchList:[], // Search list

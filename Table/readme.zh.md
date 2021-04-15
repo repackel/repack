@@ -35,6 +35,9 @@ components: {
     current:"pageIndex", // 当前页的别名
     size:"pageSize", // 分页大小的别名
   },
+  baseConfig: {
+    size: '', // 搜索框的大小，默认值为 `small`
+  },
   actionList:[], // 操作按钮列表，可选
   actionAlign: "right", // 操作按钮对齐，默认 `"right"`
   searchList:[], // 搜索列表
