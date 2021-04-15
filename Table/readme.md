@@ -10,7 +10,7 @@ components: {
 },
 ```
 ```html
-<rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection">
+<rl-table :cfg="tableConfig" ref="staffTable" @getSelection="getSelection">
   <!-- <template slot="searchbox">slot</template> -->
 </rl-table>
 ```
@@ -23,12 +23,12 @@ components: {
 | beforeTable | before `Table` Tag | `slot="beforeTable"` |
 | searchBegin | at searchList beginning | `slot="searchBegin"` |
 | searchbox | between searchList, controlled by `type = 'slot'` | `slot="searchbox"` |
-| customTable | custom Table, take effect when `cfg.customTable` is `true` | `slot="customTable"` |
+| customTable | custom Table, take effect when `tableConfig.customTable` is `true` | `slot="customTable"` |
 
 
 ### Configuration
 
-- 1 `cfg` Configuration
+- 1 `tableConfig` Configuration
 ```javascript
 {
   pageAlias: { // The alias of the table pagination, the default value is not applicable, it needs to be modified to the field requested by the corresponding interface
@@ -38,6 +38,9 @@ components: {
   baseConfig: {
     size: '', // Size of the search box, the default value is `small`
   },
+  tableProps: {
+    stripe: true,
+  }, // Pass the Table Attributes of element-ui into the component
   actionList:[], // Action button list, Optional
   actionAlign: "right", // Action button alignment, default `"right"`
   searchList:[], // Search list
@@ -311,4 +314,10 @@ Class name：
 
 /* Pagination */
 .repack-pagination {}
+
+/* Table */
+.repack-table {}
+
+/* Table view image */
+.repack-table-view-image {}
 ```

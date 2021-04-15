@@ -10,7 +10,7 @@ components: {
 },
 ```
 ```html
-<rl-table :cfg="cfg" ref="staffTable" @getSelection="getSelection">
+<rl-table :cfg="tableConfig" ref="staffTable" @getSelection="getSelection">
   <!-- <template slot="searchbox">slot</template> -->
 </rl-table>
 ```
@@ -23,12 +23,12 @@ components: {
 | beforeTable | `Table` 标签之前 | `slot="beforeTable"` |
 | searchBegin | 位于 searchList 开始 | `slot="searchBegin"` |
 | searchbox | searchList 之间，由 `type='slot'` 控制 | `slot="searchbox"` |
-| customTable | 自定义表格，当 `cfg.customTable` 为 `true` 时生效 | `slot="customTable"` |
+| customTable | 自定义表格，当 `tableConfig.customTable` 为 `true` 时生效 | `slot="customTable"` |
 
 
 ### 配置
 
-- 1 `cfg` 配置
+- 1 `tableConfig` 配置
 ```javascript
 {
   pageAlias: { // 表格分页的别名，默认值通过不适用，需要修改为对应的接口请求的字段
@@ -38,6 +38,9 @@ components: {
   baseConfig: {
     size: '', // 搜索框的大小，默认值为 `small`
   },
+  tableProps: {
+    stripe: true,
+  }, // 将 element-ui 的 Table Attributes 传入组件内
   actionList:[], // 操作按钮列表，可选
   actionAlign: "right", // 操作按钮对齐，默认 `"right"`
   searchList:[], // 搜索列表
@@ -311,4 +314,10 @@ this.$refs[ ref名 ].[ 方法名 ]
 
 /* 分页 */
 .repack-pagination {}
+
+/* 表格 */
+.repack-table {}
+
+/* 表格看图 */
+.repack-table-view-image {}
 ```

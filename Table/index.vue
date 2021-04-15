@@ -46,7 +46,7 @@
       <div class="customTable repack-custom-table" v-if="cfg.customTable" v-loading="loading">
         <slot name="customTable"></slot>
       </div>
-      <el-table :data="tableData" style="width: 100%" stripe v-loading="loading" @selection-change="handleSelectionChange" v-else>
+      <el-table :data="tableData" class="repack-table" v-loading="loading" v-bind="tableProps" @selection-change="handleSelectionChange" v-else>
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
@@ -61,7 +61,7 @@
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
             <template slot-scope="scope">
-              <el-image style="width: 60px; height: 60px" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]">
+              <el-image class="repack-table-view-image" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]">
               </el-image>
             </template>
           </el-table-column>
@@ -93,6 +93,9 @@ export default {
       baseConfig: {
         size: "small",
       },
+      tableProps: {
+        stripe: true,
+      },
       loading: false,
       // hidden: false,
       searchDateArr: [],
@@ -117,6 +120,7 @@ export default {
   mounted() {
     // Search Select List
     this.searchCfg = this.cfg.searchCfg || this.searchCfg;
+    this.tableProps = Object.assign(this.tableProps, this.cfg.tableProps || {});
     this.baseConfig = Object.assign(this.baseConfig, this.cfg.baseConfig || {});
     // dictList only available when $dictArr exit
     if (this.$dictArr && this.cfg.searchList) {
