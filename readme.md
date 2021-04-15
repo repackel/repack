@@ -30,12 +30,12 @@ It was designed to be configurable from object data.
 
 ![NPM](https://nodei.co/npm/@repackel/repack.svg)
 
-```javascript
+```bash
 npm i @repackel/repack -D
 ```
 
 > Import style, optional
-```css
+```javascript
 import '@repackel/repack/assets/style.css';
 ```
 
