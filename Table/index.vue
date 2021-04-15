@@ -82,13 +82,12 @@
 </template>
 
 <script>
-import { genAttr, locz, inputcfg, _ } from "../commonFn/commonFn.js";
+import { genAttr, locz, inputcfg } from "../commonFn/commonFn.js";
 export default {
   name: "rl-table",
   props: ["cfg"],
   data() {
     return {
-      _,
       pageIndexKey: (this.cfg.pageAlias && this.cfg.pageAlias.current) || "pageIndex",
       pageSizeKey: (this.cfg.pageAlias && this.cfg.pageAlias.size) || "pageSize",
       baseConfig: {
@@ -208,11 +207,7 @@ export default {
       this.getList();
     },
     resetQuery() {
-      if (this._pick) {
-        this.queryParams = this._pick(this.queryParams, [this.pageSizeKey]);
-      } else {
-        this.queryParams = { [this.pageSizeKey]: this.queryParams[this.pageSizeKey] };
-      }
+      this.queryParams = { [this.pageSizeKey]: this.queryParams[this.pageSizeKey] };
       this.queryParams[this.pageIndexKey] = 1;
       this.searchDateArr = [];
       this.getList("reset");

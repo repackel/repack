@@ -30,9 +30,6 @@
     "vue": "^2.5.10",
     "element-ui": "^2.10"
   },
-  "dependencies": {
-    "lodash": "^4.17.20"
-  },
   "devDependencies": {
     "regenerator-runtime": "^0.13.7"
   },

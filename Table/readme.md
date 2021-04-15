@@ -69,13 +69,13 @@ getList(p, reset) {
     const divList = this.divList;
     switch (divList.length) {
       case 1:
-        pr.provinceCode = this._last(divList);
+        pr.provinceCode = divList[0];
         break;
       case 2:
-        pr.cityCode = this._last(divList);
+        pr.cityCode = divList[1];
         break;
       case 3:
-        pr.areaCode = this._last(divList);
+        pr.areaCode = divList[2];
         break;
       default:
         break;

@@ -94,8 +94,8 @@ export const inputcfg = (x, i) => {
   return cfg;
 };
 
-// Lodash
-const Lodash = {};
-const LodashList = ["get", "has", "last", "pick", "omit", "omitBy", "padStart"];
-LodashList.forEach((x) => (Lodash[x] = require("lodash/" + x + ".js")));
-export const _ = Lodash;
+// // Lodash
+// const Lodash = {};
+// const LodashList = ["get", "has", "last", "pick", "omit", "omitBy", "padStart"];
+// LodashList.forEach((x) => (Lodash[x] = require("lodash/" + x + ".js")));
+// export const _ = Lodash;
