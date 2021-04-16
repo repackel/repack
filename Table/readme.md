@@ -263,7 +263,7 @@ buttonList:[
 | style | Inline style | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})` |
 | text | Button text | `String` `Function` | | `row => ["", "View", "Edit"][row.state]`  |
 | fn | Click event, pass in `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
-| hidden | Hide the Button | `Boolean` `Function` | `false` | `(row,index) => index > 5 |
+| hidden | Hide the Button | `Boolean` `Function` | `false` | `(row,index) => index > 5` |
 
 ### Method
 

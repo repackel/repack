@@ -263,7 +263,7 @@ buttonList:[
 | style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})` |
 | text | 按钮文字 | `String` `Function` | | `row => ["", "查看", "编辑"][row.state]`  |
 | fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
-| hidden | 隐藏按钮 | `Boolean` `Function` | `false` | `(row,index) => index > 5 |
+| hidden | 隐藏按钮 | `Boolean` `Function` | `false` | `(row,index) => index > 5` |
 
 ### 方法
 
