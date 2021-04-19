@@ -22,7 +22,7 @@
 			  "\t\t\t\t\tcurrent:\"pageIndex\",",
 			  "\t\t\t\t\tsize:\"pageSize\"",
 			  "\t\t\t\t},",
-			  "\t\t\t\baseConfig: {",
+			  "\t\t\t\tbaseConfig: {",
 			  "\t\t\t\t\tsize:\"\"",
 			  "\t\t\t\t},",
 				"\t\t\t\tactionAlign: \"right\",",

@@ -10,11 +10,13 @@ components: {
 },
 ```
 ```html
-<form-item :form="form" :x="x" v-for="(x,i) in list" :key="i">
-    <!-- <el-input v-if="x.name==='construction area'" v-model="form.acreage" placeholder="Construction Area" size="small">
-        <template slot="append">m²</template>
-    </el-input> -->
-</form-item>
+<el-form>
+  <form-item :form="form" :x="x" v-for="(x,i) in list" :key="i">
+      <!-- <el-input v-if="x.name==='construction area'" v-model="form.acreage" placeholder="Construction Area" size="small">
+          <template slot="append">m²</template>
+      </el-input> -->
+  </form-item>
+</el-form>
 ```
 
 **Default slot: put the custom content between `<form-item></form-item>`. Can be judged by the `name` of the list item*
