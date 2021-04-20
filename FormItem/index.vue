@@ -24,11 +24,11 @@
       </el-radio-group>
     </template>
     <template v-else-if="x.type==='checkbox'">
-      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange" class="checkAll" v-if="x.checkAll">{{locz("checkAll")}}</el-checkbox>
+      <el-checkbox :indeterminate="isIndeterminate" v-model="checkAll" @change="handleCheckAllChange" class="block" v-if="x.checkAll">{{locz("checkAll")}}</el-checkbox>
       <el-checkbox-group v-model="form[x.key]" v-bind="inputcfg(x)" @change="handleCheckedCitiesChange">
         <el-checkbox v-for="y in dictList" :key="y.val" :label="y.val">{{y.name}}</el-checkbox>
       </el-checkbox-group>
-    </template>    
+    </template>
     <template v-else-if="x.type==='select'">
       <el-select v-model="form[x.key]" v-bind="inputcfg(x)" @change="changeFn">
         <el-option v-for="y in dictList" :key="y.val" :label="y.name" :value="x.useLabel ? y.name : y.val" />
@@ -138,7 +138,10 @@ export default {
     width: 100%;
     text-overflow: ellipsis;
 }
-.checkAll {
+.block {
   display: block;
+}
+.inline-block {
+  display: inline-block;
 }
 </style>
