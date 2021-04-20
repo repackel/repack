@@ -21,6 +21,7 @@ jobs:
     - run: npm publish --access public
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+    - run: curl -X POST "${TG_URL}" -d "chat_id=${TG_CHAT_ID}&text=%40repackel%2Frepack%20%E7%9A%84%20npm%E5%8C%85%20%E5%8F%91%E5%B8%83%E6%88%90%E5%8A%9F%EF%BC%81"
     # 设置 .npmrc 文件以发布到 GitHub 包
     - uses: actions/setup-node@v1
       with:
@@ -33,3 +34,4 @@ jobs:
     - run: npm publish
       env:
         NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: curl -X POST "${TG_URL}" -d "chat_id=${TG_CHAT_ID}&text=%40repackel%2Frepack%20%E7%9A%84%20GitHub%E5%8C%85%20%E5%8F%91%E5%B8%83%E6%88%90%E5%8A%9F%EF%BC%81"
