@@ -10,7 +10,7 @@ components: {
 },
 ```
 ```html
-<el-form>
+<el-form label-width="120px">
   <form-item :form="form" :x="x" v-for="(x,i) in list" :key="i">
       <!-- <el-input v-if="x.name==='建筑面积'" v-model="form.acreage" placeholder="建筑面积" size="small">
           <template slot="append">m²</template>
