@@ -99,11 +99,7 @@ export default {
       loading: false,
       // hidden: false,
       searchDateArr: [],
-      queryParams: {
-        [this.pageIndexKey]: 1,
-        [this.pageSizeKey]: 10,
-        ...this.cfg.queryParams,
-      },
+      queryParams: {},
       queryList: {},
       tableData: this.cfg.tableData || [],
       tableTotal: 0,
@@ -118,6 +114,13 @@ export default {
   },
   computed: {},
   mounted() {
+    this.queryParams = Object.assign(
+      {
+        [this.pageIndexKey]: 1,
+        [this.pageSizeKey]: 10,
+      },
+      this.cfg.queryParams || {}
+    );
     // Search Select List
     this.searchCfg = this.cfg.searchCfg || this.searchCfg;
     this.tableProps = Object.assign(this.tableProps, this.cfg.tableProps || {});
