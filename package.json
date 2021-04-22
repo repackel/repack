@@ -1,6 +1,6 @@
 {
   "name": "@repackel/repack",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "A repackage of element-ui to help you build pages faster.",
   "main": "index.js",
   "scripts": {
