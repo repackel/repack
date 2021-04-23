@@ -61,7 +61,9 @@
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
             <template slot-scope="scope">
-              <el-image class="repack-table-view-image" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]">
+              <el-image class="repack-table-view-image" fit="contain" :src="scope.row[x.transform(scope.row)]" :preview-src-list="[scope.row[x.transform(scope.row)]]" v-if="x.transform">
+              </el-image>
+              <el-image class="repack-table-view-image" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]" v-else>
               </el-image>
             </template>
           </el-table-column>
