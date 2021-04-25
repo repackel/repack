@@ -195,6 +195,7 @@ export default {
       align: x.align,
       showOverflowTooltip: x.overflow,
       fixed: x.fixed,
+      selectable: x.selectable,
     }),
     dateChange(arr, x) {
       [this.queryParams[x.key1], this.queryParams[x.key2]] = arr || [];
