@@ -50,7 +50,7 @@
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="x.fixed==='false'? false : x.fixed || 'right'">
+          <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="(x.fixed==='false' || x.fixed=== false )? false : x.fixed || 'right'">
             <template slot-scope="scope">
               <template v-for="(y,j) in x.buttonList">
                 <el-button :size="y.size" :type="y.type|| 'text'" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" v-bind="genAttr(y,scope)" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row,scope.$index) )">
@@ -61,7 +61,7 @@
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
             <template slot-scope="scope">
-              <el-image class="repack-table-view-image" fit="contain" :src="scope.row[x.transform(scope.row)]" :preview-src-list="[scope.row[x.transform(scope.row)]]" v-if="x.transform">
+              <el-image class="repack-table-view-image" fit="contain" :src="x.transform(scope.row)" :preview-src-list="[x.transform(scope.row)]" v-if="x.transform">
               </el-image>
               <el-image class="repack-table-view-image" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]" v-else>
               </el-image>
