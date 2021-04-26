@@ -47,6 +47,7 @@ components: {
   searchFn: this.getList, // Search method `Function`
   fetchConditionFn: this.fetchConditionList, // Asynchronous method to get the list of search conditions `Function`
   tableSelection: true, // Multiple select Table, default `false`
+  selectable: (row,index)=> index > 1, // Configure selectable rows
   customTable: true, // custom Table, default `false`
   tableList:[], // Table header Props, Not necessary when customizing the table
   tableCellFallbackText: 'N/A', // Alternative text for table cells, optional. Displayed when the value of the table cell is empty, it is effective for the whole table. No default

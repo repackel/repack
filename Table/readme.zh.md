@@ -47,6 +47,7 @@ components: {
   searchFn: this.getList, // 搜索方法 `Function`
   fetchConditionFn: this.fetchConditionList, // 异步获取搜索条件列表的方法 `Function`
   tableSelection: true, // 表格是否可勾选，默认 `false`
+  selectable: (row,index)=> index > 1, // 配置可勾选的行
   customTable: true, // 自定义表格，默认 `false`
   tableList:[], // 表格表头，自定义表格时不需要
   tableCellFallbackText: '-', // 表格单元备用文本，可选。当表格的值为空时显示，对整个表格生效。无默认

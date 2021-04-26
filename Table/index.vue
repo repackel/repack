@@ -47,7 +47,7 @@
         <slot name="customTable"></slot>
       </div>
       <el-table :data="tableData" class="repack-table" v-loading="loading" v-bind="tableProps" @selection-change="handleSelectionChange" v-else>
-        <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" />
+        <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" :selectable="cfg.selectable"/>
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="(x.fixed==='false' || x.fixed=== false )? false : x.fixed || 'right'">
@@ -195,7 +195,7 @@ export default {
       align: x.align,
       showOverflowTooltip: x.overflow,
       fixed: x.fixed,
-      selectable: x.selectable,
+      ...x,
     }),
     dateChange(arr, x) {
       [this.queryParams[x.key1], this.queryParams[x.key2]] = arr || [];
