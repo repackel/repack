@@ -60,7 +60,7 @@
             </template>
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.type==='switch'">
-            <template slot-scope="{scope}">
+            <template slot-scope="scope">
               <el-switch v-model="scope.row[x.prop]" v-bind="x.bindAttr" @change=" newVal => x.change ? x.change(newVal,scope.row,scope.$index) : void 0"></el-switch>
             </template>
           </el-table-column>          
