@@ -240,6 +240,9 @@ tableList: [
 | style | 内联样式 | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
 | fn | 点击事件，传入 `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
 | buttonList | 操作按钮的列表 | `Array` | | 见下表  |
+| type | 控制其他类型 | `String` | | 目前支持 `switch`  |
+| bindAttr | 传入其他的属性 | `Object` | | 目前支持 `type='switch'` |
+| change | switch 的 change 事件 | `Function` | | `(newVal,row,index)=> {}` |
 
 
 - 1-5-1 `buttonList` 配置：

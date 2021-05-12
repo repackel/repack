@@ -59,7 +59,12 @@
               </template>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.viewImg">
+          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.type==='switch'">
+            <template slot-scope="{scope}">
+              <el-switch v-model="scope.row[x.prop]" v-bind="x.bindAttr" @change=" newVal => x.change ? x.change(newVal,scope.row,scope.$index) : void 0"></el-switch>
+            </template>
+          </el-table-column>          
+          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.type==='image'||x.viewImg">
             <template slot-scope="scope">
               <el-image class="repack-table-view-image" fit="contain" :src="x.transform(scope.row)" :preview-src-list="[x.transform(scope.row)]" v-if="x.transform">
               </el-image>

@@ -241,6 +241,10 @@ tableList: [
 | fn | Click event, pass in `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
 | buttonList | List of table action buttons | `Array` | | See table below  |
 
+| type | control other types | `String` | | currently supports `switch`  |
+| bindAttr | pass in other attributes | `Object` | | currently supports `type='switch'` |
+| change | switch change event | `Function` | | `(newVal,row,index)=> {}` |
+
 
 - 1-5-1 `buttonList` Configuration
 > scheme:
