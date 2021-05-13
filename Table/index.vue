@@ -46,7 +46,7 @@
       <div class="customTable repack-custom-table" v-if="cfg.customTable" v-loading="loading">
         <slot name="customTable"></slot>
       </div>
-      <el-table :data="tableData" class="repack-table" v-loading="loading" v-bind="tableProps" @selection-change="handleSelectionChange" @current-change="handleTableCurrentChange" v-else>
+      <el-table :data="tableData" class="repack-table" v-loading="loading" v-bind="tableProps" @selection-change="handleSelectionChange" @current-change="handleTableCurrentChange" ref="currentTable" v-else>
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" :selectable="cfg.selectable"/>
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
@@ -233,6 +233,12 @@ export default {
     handleTableCurrentChange(val) {
       this.$emit("getCurrent", val);
     },
+    clearSelection: this.$refs.currentTable.clearSelection,
+    toggleRowSelection: this.$refs.currentTable.toggleRowSelection,
+    toggleAllSelection: this.$refs.currentTable.toggleAllSelection,
+    setCurrentRow: this.$refs.currentTable.setCurrentRow,
+    clearSort: this.$refs.currentTable.clearSort,
+    clearFilter: this.$refs.currentTable.clearFilter,
   },
 };
 </script>

@@ -286,6 +286,12 @@ this.$refs[ ref name ].[ Method name ]
 | `resetQuery()` | Reset function |
 | `handleSizeChange()` | Page size change |
 | `handleCurrentChange()` | Paging index change |
+| `clearSelection` | same as element-ui |
+| `toggleRowSelection` | same as element-ui |
+| `toggleAllSelection` | same as element-ui |
+| `setCurrentRow` | same as element-ui |
+| `clearSort` | same as element-ui |
+| `clearFilter` | same as element-ui |
 
 ### Event
 

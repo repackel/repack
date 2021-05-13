@@ -286,6 +286,12 @@ this.$refs[ ref名 ].[ 方法名 ]
 | `resetQuery()` | 重置函数 |
 | `handleSizeChange()` | 分页大小改变 |
 | `handleCurrentChange()` | 分页索引改变 |
+| `clearSelection` | 同 element-ui |
+| `toggleRowSelection` | 同 element-ui |
+| `toggleAllSelection` | 同 element-ui |
+| `setCurrentRow` | 同 element-ui |
+| `clearSort` | 同 element-ui |
+| `clearFilter` | 同 element-ui |
 
 ### 事件
 
