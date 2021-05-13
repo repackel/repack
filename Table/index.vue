@@ -46,7 +46,7 @@
       <div class="customTable repack-custom-table" v-if="cfg.customTable" v-loading="loading">
         <slot name="customTable"></slot>
       </div>
-      <el-table :data="tableData" class="repack-table" v-loading="loading" v-bind="tableProps" @selection-change="handleSelectionChange" v-else>
+      <el-table :data="tableData" class="repack-table" v-loading="loading" v-bind="tableProps" @selection-change="handleSelectionChange" @current-change="handleTableCurrentChange" v-else>
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" :selectable="cfg.selectable"/>
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
@@ -229,6 +229,9 @@ export default {
     },
     handleSelectionChange(val) {
       this.$emit("getSelection", val);
+    },
+    handleTableCurrentChange(val) {
+      this.$emit("getCurrent", val);
     },
   },
 };

@@ -240,7 +240,6 @@ tableList: [
 | style | Inline style | `String` `Function` | | `row => ({ color: ["", "green", "red"][row.state]})`  |
 | fn | Click event, pass in `(row,index)` | `Function` | | `(row,index) => this.alert(row,index)`  |
 | buttonList | List of table action buttons | `Array` | | See table below  |
-
 | type | control other types | `String` | | currently supports `switch`  |
 | bindAttr | pass in other attributes | `Object` | | currently supports `type='switch'` |
 | change | switch change event | `Function` | | `(newVal,row,index)=> {}` |
@@ -294,7 +293,11 @@ usage:
 
 ```javascript
 @getSelection="myGetSelectionMethod"
-// It is the `selection-change` method of element
+// It is the `selection-change` multi-selection method of element-ui
+
+@getCurrent="myGetCurrentMethod"
+// It is the `current-change` single-selection method of element-ui
+// which requires setting `tableProps: { highlightCurrentRow: true }`
 ```
 
 ### Styles

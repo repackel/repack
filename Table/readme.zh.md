@@ -293,7 +293,11 @@ this.$refs[ ref名 ].[ 方法名 ]
 
 ```javascript
 @getSelection="myGetSelectionMethod"
-// 即为 element 的 `selection-change` 方法
+// 即为 element 的 `selection-change` 多选方法
+
+@getCurrent="myGetCurrentMethod"
+// 即为 element 的 `current-change` 单选方法
+// 需要设置  tableProps: { highlightCurrentRow: true }
 ```
 
 ### 样式
