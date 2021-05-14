@@ -53,6 +53,7 @@ components: {
   tableCellFallbackText: 'N/A', // Alternative text for table cells, optional. Displayed when the value of the table cell is empty, it is effective for the whole table. No default
   hideSearchForm: true, // Hide search items and search buttons, Display default
   hidePagination: true, // Hide the paging component, Display default
+  searchFormLabelWidth: '', // Search list Label Width
 }
 ```
 

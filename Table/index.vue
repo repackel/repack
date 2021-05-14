@@ -8,7 +8,7 @@
             <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" :size="baseConfig.size" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
           </div>
         </div>
-        <el-form :inline="true" class="repack-search-form" label-width="6em" v-if="!cfg.hideSearchForm">
+        <el-form :inline="true" class="repack-search-form" :label-width=" cfg.searchFormLabelWidth || '7em'" v-if="!cfg.hideSearchForm">
           <slot name="searchBegin"></slot>
           <template v-for="(x,i) in (cfg.searchList && cfg.searchList.filter(x=>x))">
             <el-form-item :label="x.name" :key="i" v-if="!x.hidden" :class="x.itemClassName">
