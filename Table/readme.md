@@ -314,6 +314,9 @@ Class name：
 /* Complete page */
 .repack-page {}
 
+/* Container of action bar and search form */
+.repack-action-search {}
+
 /* Action bar */
 .repack-action-bar {}
 

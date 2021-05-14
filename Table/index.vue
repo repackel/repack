@@ -1,48 +1,50 @@
 <template>
   <section class="full-page repack-page">
     <slot name="pageBegin"></slot>
-    <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
-      <div class="action-bar repack-action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
-        <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
-          <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" :size="baseConfig.size" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
+    <div class="repack-action-search">
+      <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
+        <div class="action-bar repack-action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
+          <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
+            <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" :size="baseConfig.size" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
+          </div>
         </div>
+        <el-form :inline="true" class="repack-search-form" label-width="6em" v-if="!cfg.hideSearchForm">
+          <slot name="searchBegin"></slot>
+          <template v-for="(x,i) in (cfg.searchList && cfg.searchList.filter(x=>x))">
+            <el-form-item :label="x.name" :key="i" v-if="!x.hidden" :class="x.itemClassName">
+              <template v-if="x.type==='input'">
+                <el-input v-model="queryParams[x.key]" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
+              </template>
+              <template v-else-if="x.type==='select'">
+                <el-select v-model="queryParams[x.key]" v-bind="inputcfg(x, i)">
+                  <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list||x.key] || [] )" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
+                </el-select>
+              </template>
+              <template v-else-if="x.type==='date'">
+                <el-date-picker type="daterange" v-model="searchDateArr" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
+                </el-date-picker>
+              </template>
+              <template v-else-if="x.type==='datetime'">
+                <el-date-picker type="datetimerange" v-model="searchDateArr" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
+                </el-date-picker>
+              </template>
+              <template v-else-if="x.type==='date1'">
+                <el-date-picker type="date" v-model="queryParams[x.key]" v-bind="inputcfg(x, i)">
+                </el-date-picker>
+              </template>
+              <template v-else-if="x.type==='slot'">
+                <slot name="searchbox" v-bind="inputcfg(x, i)"></slot>
+              </template>
+            </el-form-item>
+            <br class="break" :key="i" v-if="x.br" />
+          </template>
+          <el-form-item class="repack-search-btns">
+            <el-button type="primary" icon="el-icon-search" :size="baseConfig.size" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || locz('search') }}</el-button>
+            <el-button type="plain" icon="el-icon-refresh-right" :size="baseConfig.size" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
+          </el-form-item>
+        </el-form>
       </div>
       <slot name="beforeTable"></slot>
-      <el-form :inline="true" class="repack-search-form" label-width="6em" v-if="!cfg.hideSearchForm">
-        <slot name="searchBegin"></slot>
-        <template v-for="(x,i) in (cfg.searchList && cfg.searchList.filter(x=>x))">
-          <el-form-item :label="x.name" :key="i" v-if="!x.hidden" :class="x.itemClassName">
-            <template v-if="x.type==='input'">
-              <el-input v-model="queryParams[x.key]" v-bind="inputcfg(x, i)" @keyup.enter.native="getList()" :value="x.value" />
-            </template>
-            <template v-else-if="x.type==='select'">
-              <el-select v-model="queryParams[x.key]" v-bind="inputcfg(x, i)">
-                <el-option v-for="dict in ( x.list instanceof Array ? x.list : queryList[x.list||x.key] || [] )" :key="dict.val" :label="dict.name" :value="x.useLabel ? dict.name : dict.val" />
-              </el-select>
-            </template>
-            <template v-else-if="x.type==='date'">
-              <el-date-picker type="daterange" v-model="searchDateArr" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
-              </el-date-picker>
-            </template>
-            <template v-else-if="x.type==='datetime'">
-              <el-date-picker type="datetimerange" v-model="searchDateArr" v-bind="inputcfg(x, i)" @change="arr=>dateChange(arr,x)">
-              </el-date-picker>
-            </template>
-            <template v-else-if="x.type==='date1'">
-              <el-date-picker type="date" v-model="queryParams[x.key]" v-bind="inputcfg(x, i)">
-              </el-date-picker>
-            </template>
-            <template v-else-if="x.type==='slot'">
-              <slot name="searchbox" v-bind="inputcfg(x, i)"></slot>
-            </template>
-          </el-form-item>
-          <br class="break" :key="i" v-if="x.br" />
-        </template>
-        <el-form-item class="repack-search-btns">
-          <el-button type="primary" icon="el-icon-search" :size="baseConfig.size" @click="searchButton" v-if="searchCfg.queryText || searchCfg.queryBtn + '' === '2' ">{{searchCfg.queryText || locz('search') }}</el-button>
-          <el-button type="plain" icon="el-icon-refresh-right" :size="baseConfig.size" @click="resetQuery" v-if="searchCfg.resetText || searchCfg.queryBtn + '' === '2'">{{searchCfg.resetText || locz('reset') }}</el-button>
-        </el-form-item>
-      </el-form>
       <div class="customTable repack-custom-table" v-if="cfg.customTable" v-loading="loading">
         <slot name="customTable"></slot>
       </div>
