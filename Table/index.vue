@@ -1,8 +1,8 @@
 <template>
   <section class="full-page repack-page">
     <slot name="pageBegin"></slot>
-    <div class="repack-action-search">
-      <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
+    <div class="full-page-inner" :class="{hasLeft:cfg.hasLeft}">
+      <div class="repack-action-search">
         <div class="action-bar repack-action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
           <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
             <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" :size="baseConfig.size" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
@@ -49,7 +49,7 @@
         <slot name="customTable"></slot>
       </div>
       <el-table :data="tableData" class="repack-table" v-loading="loading" v-bind="tableProps" @selection-change="handleSelectionChange" @current-change="handleTableCurrentChange" ref="currentTable" v-else>
-        <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" :selectable="cfg.selectable"/>
+        <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" :selectable="cfg.selectable" />
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="(x.fixed==='false' || x.fixed=== false )? false : x.fixed || 'right'">
@@ -65,7 +65,7 @@
             <template slot-scope="scope">
               <el-switch v-model="scope.row[x.prop]" v-bind="x.bindAttr" @change=" newVal => x.change ? x.change(newVal,scope.row,scope.$index) : void 0"></el-switch>
             </template>
-          </el-table-column>          
+          </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.type==='image'||x.viewImg">
             <template slot-scope="scope">
               <el-image class="repack-table-view-image" fit="contain" :src="x.transform(scope.row)" :preview-src-list="[x.transform(scope.row)]" v-if="x.transform">
@@ -166,8 +166,8 @@ export default {
   methods: {
     genAttr,
     locz,
-    inputcfg(x,i) {
-      return inputcfgFn(x,i, this.cfg.hidePlaceholderName )
+    inputcfg(x, i) {
+      return inputcfgFn(x, i, this.cfg.hidePlaceholderName);
     },
     fallbackText(val) {
       if (this.cfg.tableCellFallbackText && [null, undefined, ""].includes(val)) {
@@ -237,24 +237,24 @@ export default {
     handleTableCurrentChange(val) {
       this.$emit("getCurrent", val);
     },
-    setCurrentRow(a,b,c){
-      this.$refs.currentTable.setCurrentRow(a,b,c) 
+    setCurrentRow(a, b, c) {
+      this.$refs.currentTable.setCurrentRow(a, b, c);
     },
-    clearSelection(a,b,c){
-      this.$refs.currentTable.clearSelection(a,b,c) 
+    clearSelection(a, b, c) {
+      this.$refs.currentTable.clearSelection(a, b, c);
     },
-    toggleRowSelection(a,b,c){
-      this.$refs.currentTable.toggleRowSelection(a,b,c) 
+    toggleRowSelection(a, b, c) {
+      this.$refs.currentTable.toggleRowSelection(a, b, c);
     },
-    toggleAllSelection(a,b,c){
-      this.$refs.currentTable.toggleAllSelection(a,b,c) 
+    toggleAllSelection(a, b, c) {
+      this.$refs.currentTable.toggleAllSelection(a, b, c);
     },
-    clearSort(a,b,c){
-      this.$refs.currentTable.clearSort(a,b,c) 
+    clearSort(a, b, c) {
+      this.$refs.currentTable.clearSort(a, b, c);
     },
-    clearFilter(a,b,c){
-      this.$refs.currentTable.clearFilter(a,b,c) 
-    }
+    clearFilter(a, b, c) {
+      this.$refs.currentTable.clearFilter(a, b, c);
+    },
   },
 };
 </script>
