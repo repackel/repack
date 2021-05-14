@@ -35,8 +35,9 @@ export const genAttr = (x, scope) => {
   return attrs;
 };
 
-export const inputcfg = (x, i) => {
+export const inputcfg = (x, i, hideName ) => {
   const { multiple, readonly, disabled } = x;
+  let placeholderName = hideName ? '' : x.name
   let cfg = {
     size: x.size || "",
     filterable: x.filterable || Boolean(x.dict) || true,
@@ -49,7 +50,7 @@ export const inputcfg = (x, i) => {
   };
   switch (x.type) {
     case "input":
-      cfg.placeholder = x.placeholder || locz("pleaseInput") + x.name;
+      cfg.placeholder = x.placeholder || locz("pleaseInput") + placeholderName;
       cfg.maxlength = x.maxlength || (x.key === "mobile" ? 11 : 25);
 
       break;
@@ -59,14 +60,14 @@ export const inputcfg = (x, i) => {
       
       break;
     case "textarea":
-      cfg.placeholder = x.placeholder || locz("pleaseFillin") + x.name;
+      cfg.placeholder = x.placeholder || locz("pleaseFillin") + placeholderName;
       cfg.maxlength = x.maxlength || 200;
       cfg.resize = x.resize || "none";
       cfg.rows = x.rows || "3";
 
       break;
     case "select":
-      cfg.placeholder = x.placeholder || locz("pleaseSelect") + x.name;
+      cfg.placeholder = x.placeholder || locz("pleaseSelect") + placeholderName;
 
       break;
     case "date":
@@ -82,7 +83,7 @@ export const inputcfg = (x, i) => {
 
       break;
     case "date1":
-      cfg.placeholder = x.placeholder || locz("pleaseSelect") + x.name;
+      cfg.placeholder = x.placeholder || locz("pleaseSelect") + placeholderName;
       cfg["value-format"] = x.valueFormat || "yyyy-MM-dd";
 
       break;

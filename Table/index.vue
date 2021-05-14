@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import { genAttr, locz, inputcfg } from "../commonFn/commonFn.js";
+import { genAttr, locz, inputcfg as inputcfgFn } from "../commonFn/commonFn.js";
 export default {
   name: "rl-table",
   props: ["cfg"],
@@ -164,7 +164,9 @@ export default {
   methods: {
     genAttr,
     locz,
-    inputcfg,
+    inputcfg(x,i) {
+      return inputcfgFn(x,i, this.cfg.hidePlaceholderName )
+    },
     fallbackText(val) {
       if (this.cfg.tableCellFallbackText && [null, undefined, ""].includes(val)) {
         return this.cfg.tableCellFallbackText;
