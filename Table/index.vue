@@ -233,12 +233,24 @@ export default {
     handleTableCurrentChange(val) {
       this.$emit("getCurrent", val);
     },
-    clearSelection: this.$refs.currentTable.clearSelection,
-    toggleRowSelection: this.$refs.currentTable.toggleRowSelection,
-    toggleAllSelection: this.$refs.currentTable.toggleAllSelection,
-    setCurrentRow: this.$refs.currentTable.setCurrentRow,
-    clearSort: this.$refs.currentTable.clearSort,
-    clearFilter: this.$refs.currentTable.clearFilter,
+    setCurrentRow(a,b,c){
+      this.$refs.currentTable.setCurrentRow(a,b,c) 
+    },
+    clearSelection(a,b,c){
+      this.$refs.currentTable.clearSelection(a,b,c) 
+    },
+    toggleRowSelection(a,b,c){
+      this.$refs.currentTable.toggleRowSelection(a,b,c) 
+    },
+    toggleAllSelection(a,b,c){
+      this.$refs.currentTable.toggleAllSelection(a,b,c) 
+    },
+    clearSort(a,b,c){
+      this.$refs.currentTable.clearSort(a,b,c) 
+    },
+    clearFilter(a,b,c){
+      this.$refs.currentTable.clearFilter(a,b,c) 
+    }
   },
 };
 </script>
