@@ -68,7 +68,8 @@
           </el-table-column>
           <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.type==='image'||x.viewImg">
             <template slot-scope="scope">
-              <el-image class="repack-table-view-image" fit="contain" :src="x.transform(scope.row)" :preview-src-list="[x.transform(scope.row)]" v-if="x.transform">
+              <span class="repack-table-no-image" v-if="!scope.row[x.prop]">{{ locz('noPic') }}</span>
+              <el-image class="repack-table-view-image" fit="contain" :src="x.transform(scope.row)" :preview-src-list="[x.transform(scope.row)]" v-else-if="x.transform">
               </el-image>
               <el-image class="repack-table-view-image" fit="contain" :src="scope.row[x.prop]" :preview-src-list="[scope.row[x.prop]]" v-else>
               </el-image>

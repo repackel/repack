@@ -32,3 +32,8 @@
   height: 60px;
   object-fit: cover;
 }
+
+.repack-table-no-image {
+  color: #999;
+  font-size: 14px;
+}
