@@ -146,7 +146,9 @@ export default {
     this.$nextTick((_) => {
       const hasVal = this.cfg.searchList && this.cfg.searchList.find((x) => x && x.type === "input" && x.value);
       if (hasVal) {
-        this.queryParams[hasVal.key] = hasVal.value;
+        const form = {}
+        this.cfg.searchList.forEach(x=>(form[x.key] = x.value))
+        this.queryParams = Object.assign({},this.queryParams,form) 
         this.getList();
       } else {
         this.getList("reset");
