@@ -58,6 +58,7 @@ list:[
 | checkAll | 当 `type="checkbox"` 时，显示全选框 | `Boolean` | `false` | `true` |
 | prependText | 当 `type="input"` 时，显示前置文本 | `String` | - | `"https://"` |
 | appendText | 当 `type="input"` 时，显示后置文本 | `String` | - | `"元/人"` |
+| extraProp | 额外的 props ，用对象传入 | Object | {} | {step:1,stepStrictly:true} |
 | - | 以下同 element-ui ||||
 | size | - | `String` | `"small"` | `"small"` |
 | filterable | - | `Boolean` | - | `true` |
