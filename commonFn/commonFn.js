@@ -47,6 +47,7 @@ export const inputcfg = (x, i, hideName ) => {
     multiple,
     readonly,
     disabled,
+    ...( x.extraProp || {}) ,
   };
   switch (x.type) {
     case "input":

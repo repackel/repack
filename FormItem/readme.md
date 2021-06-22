@@ -58,6 +58,7 @@ list:[
 | checkAll | When `type="checkbox"` , show check all box | `Boolean` | `false` | `true` 
 | prependText | When `type="input"` , show prepend text | `String` | - | `"https://"` |
 | appendText | When `type="input"` , show append text | `String` | - | `"dollars per person"` |
+| extraProp | extra props , Pass in with object | Object | {} | {step:1,stepStrictly:true} |
 | - | Same as element-ui below ||||
 | size | - | `String` | `"small"` | `"small"` |
 | filterable | - | `Boolean` | - | `true` |
