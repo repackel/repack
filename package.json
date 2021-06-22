@@ -6,10 +6,6 @@
   "scripts": {
     "test": "node test.js"
   },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/@repackel"
-  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/repackel/repack.git"
