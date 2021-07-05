@@ -5,7 +5,9 @@
       <div class="repack-action-search">
         <div class="action-bar repack-action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
           <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
-            <el-button :type="y.type||'primary'" :plain="y.plain" :icon="y.icon" :size="baseConfig.size" @click="y.fn ? y.fn() : $emit(y.e)" v-for="(y,j) in x" :key="j">{{y.name}}</el-button>
+            <template v-for="(y,j) in x">
+              <el-button v-bind="{...baseConfig,...actionBtnCfg(y)}"  @click="y.fn ? y.fn() : $emit(y.e)" v-if="!x.hidden" :key="j">{{y.name}}</el-button>
+            </template>
           </div>
         </div>
         <el-form :inline="true" class="repack-search-form" :label-width=" cfg.searchFormLabelWidth || '7em'" v-if="!cfg.hideSearchForm">
@@ -52,7 +54,7 @@
         <el-table-column type="selection" width="55" v-if="cfg.tableSelection" fixed="left" :selectable="cfg.selectable" />
         <el-table-column type="index" width="80" :label="locz('index')" />
         <template v-for="(x,i) in (cfg.tableList && cfg.tableList.filter(x=>x && !x.hidden) || [])">
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-if="x.buttonList" :fixed="(x.fixed==='false' || x.fixed=== false )? false : x.fixed || 'right'">
+          <el-table-column v-bind="colcfg(x)" :key="i" v-if="x.buttonList" :fixed="(x.fixed==='false' || x.fixed=== false )? false : x.fixed || 'right'">
             <template slot-scope="scope">
               <template v-for="(y,j) in x.buttonList">
                 <el-button :size="y.size" :type="y.type|| 'text'" :key="j" @click="y.fn ? y.fn(scope.row,scope.$index) : void 0" v-bind="genAttr(y,scope)" v-if="!y.hidden || !(y.hidden && y.hidden(scope.row,scope.$index) )">
@@ -61,12 +63,12 @@
               </template>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.type==='switch'">
+          <el-table-column v-bind="colcfg(x)" :key="i" v-else-if="x.type==='switch'">
             <template slot-scope="scope">
               <el-switch v-model="scope.row[x.prop]" v-bind="x.bindAttr" @change=" newVal => x.change ? x.change(newVal,scope.row,scope.$index) : void 0"></el-switch>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.type==='image'||x.viewImg">
+          <el-table-column v-bind="colcfg(x)" :key="i" v-else-if="x.type==='image'||x.viewImg">
             <template slot-scope="scope">
               <span class="repack-table-no-image" v-if="!scope.row[x.prop]">{{ locz('noPic') }}</span>
               <el-image class="repack-table-view-image" fit="contain" :src="x.transform(scope.row)" :preview-src-list="[x.transform(scope.row)]" v-else-if="x.transform">
@@ -75,12 +77,12 @@
               </el-image>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else-if="x.transform || x.class || x.style || cfg.tableCellFallbackText ">
+          <el-table-column v-bind="colcfg(x)" :key="i" v-else-if="x.transform || x.class || x.style || cfg.tableCellFallbackText ">
             <template slot-scope="scope">
               <span v-bind="genAttr(x,scope)" @click="x.fn ? x.fn(scope.row,scope.$index) : void 0">{{ fallbackText(x.transform ? x.transform(scope.row) : scope.row[x.prop]) }}</span>
             </template>
           </el-table-column>
-          <el-table-column v-bind="colcfg(x,i)" :key="i" v-else />
+          <el-table-column v-bind="colcfg(x)" :key="i" v-else />
         </template>
       </el-table>
       <div class="pager-container repack-pagination" v-if="!cfg.hidePagination">
@@ -199,14 +201,12 @@ export default {
           });
       }
     },
+    actionBtnCfg: (x) => ({
+      type: x.type || 'primary',
+      ...x
+    }),
     colcfg: (x, i) => ({
-      label: x.label,
-      width: x.width,
-      minWidth: x.minWidth,
-      prop: x.prop,
-      align: x.align,
       showOverflowTooltip: x.overflow,
-      fixed: x.fixed,
       ...x,
     }),
     dateChange(arr, x) {
