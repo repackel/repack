@@ -6,7 +6,7 @@
         <div class="action-bar repack-action-bar" :class="cfg.actionAlign" v-if="cfg.actionList && cfg.actionList.length">
           <div v-for="(x,i) in (cfg.actionAlign ==='between' ? cfg.actionList:[cfg.actionList]  )" :key="i">
             <template v-for="(y,j) in x">
-              <el-button v-bind="{...baseConfig,...actionBtnCfg(y)}"  @click="y.fn ? y.fn() : $emit(y.e)" v-if="!x.hidden" :key="j">{{y.name}}</el-button>
+              <el-button v-bind="actionBtnCfg(y)"  @click="y.fn ? y.fn() : $emit(y.e)" v-if="!x.hidden" :key="j">{{y.name}}</el-button>
             </template>
           </div>
         </div>
@@ -131,7 +131,7 @@ export default {
     this.queryParams = Object.assign(
       {
         [this.pageIndexKey]: 1,
-        [this.pageSizeKey]: defaultPageSzie ``,
+        [this.pageSizeKey]: defaultPageSzie,
       },
       this.cfg.queryParams || {}
     );
@@ -203,10 +203,12 @@ export default {
           });
       }
     },
-    actionBtnCfg: (x) => ({
+    actionBtnCfg(x){
+      return Object.assign(this.baseConfig,{
       type: x.type || 'primary',
       ...x
-    }),
+      })
+    },
     colcfg: (x, i) => ({
       showOverflowTooltip: x.overflow,
       ...x,
