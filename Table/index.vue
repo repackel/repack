@@ -86,7 +86,7 @@
         </template>
       </el-table>
       <div class="pager-container repack-pagination" v-if="!cfg.hidePagination">
-        <el-pagination @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams[pageIndexKey]" :page-sizes="pageList" :page-size="queryParams[pageSizeKey]" layout="total, sizes, prev, pager, next, jumper" :total="tableTotal">
+        <el-pagination layout="total, sizes, prev, pager, next, jumper" v-bind="paginationProps" @size-change="handleSizeChange" @current-change="handleCurrentChange" :current-page="queryParams[pageIndexKey]" :page-sizes="pageList" :page-size="queryParams[pageSizeKey]" :total="tableTotal">
         </el-pagination>
       </div>
     </div>
@@ -122,14 +122,16 @@ export default {
       currentPage: 1,
       imageList: [],
       pageList: this.cfg.pageSizes || [10, 50, 100, 150],
+      paginationProps: this.cfg.paginationProps || {},
     };
   },
   computed: {},
   mounted() {
+    const defaultPageSzie = this.cfg.defaultPageSzie || this.pageList[0]
     this.queryParams = Object.assign(
       {
         [this.pageIndexKey]: 1,
-        [this.pageSizeKey]: 10,
+        [this.pageSizeKey]: defaultPageSzie ``,
       },
       this.cfg.queryParams || {}
     );

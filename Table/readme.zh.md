@@ -31,21 +31,24 @@ components: {
 - 1 `tableConfig` 配置
 ```javascript
 {
-  pageAlias: { // 表格分页的别名，默认值通过不适用，需要修改为对应的接口请求的字段
+  pageAlias: { // 表格分页的别名，默认值通常不适用，需要修改为对应的接口请求的字段
     current:"pageIndex", // 当前页的别名
     size:"pageSize", // 分页大小的别名
   },
   baseConfig: {
-    size: '', // 搜索框的大小，默认值为 `small`
+    size: '', // 搜索框的大小，默认值为 `small`，可选
   },
   tableProps: {
     stripe: true,
-  }, // 将 element-ui 的 Table Attributes 传入组件内
+  }, // 将 element-ui 的 table attributes 传入组件内，可选
+  defaultPageSzie: 10, // 分页默认的 page size 大小，可选
+  pageSizes: [10, 50, 100, 150], // 分页组件的 page size 列表，可选
+  paginationProps: {}, // 将 element-ui 的 pagination attributes传入组件内，可选
   actionList:[], // 操作按钮列表，可选
   actionAlign: "right", // 操作按钮对齐，默认 `"right"`
   searchList:[], // 搜索列表
   searchFn: this.getList, // 搜索方法 `Function`
-  fetchConditionFn: this.fetchConditionList, // 异步获取搜索条件列表的方法 `Function`
+  fetchConditionFn: this.fetchConditionList, // 异步获取搜索条件列表的方法 `Function`，可选
   tableSelection: true, // 表格是否可勾选，默认 `false`
   selectable: (row,index)=> index > 1, // 配置可勾选的行
   customTable: true, // 自定义表格，默认 `false`

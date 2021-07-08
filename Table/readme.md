@@ -31,21 +31,24 @@ components: {
 - 1 `tableConfig` Configuration
 ```javascript
 {
-  pageAlias: { // The alias of the table pagination, the default value is not applicable, it needs to be modified to the field requested by the corresponding interface
+  pageAlias: { // The alias of the table pagination, the default value is usually not applicable, it needs to be modified to the field requested by the corresponding interface
     current:"pageIndex", // Alias for current page
     size:"pageSize", // Alias for page size
   },
   baseConfig: {
-    size: '', // Size of the search box, the default value is `small`
+    size: '', // Size of the search box, the default value is `small`, Optional
   },
   tableProps: {
     stripe: true,
-  }, // Pass the Table Attributes of element-ui into the component
+  }, // Pass the table attributes of element-ui into the component, Optional
+  defaultPageSzie: 10, // Default page size of pagination, Optional
+  pageSizes: [10, 50, 100, 150], // Page size list of pagination, Optional
+  paginationProps: {}, // Pass the pagination attributes of element-ui into the component, Optional
   actionList:[], // Action button list, Optional
   actionAlign: "right", // Action button alignment, default `"right"`
   searchList:[], // Search list
   searchFn: this.getList, // Search method `Function`
-  fetchConditionFn: this.fetchConditionList, // Asynchronous method to get the list of search conditions `Function`
+  fetchConditionFn: this.fetchConditionList, // Asynchronous method to get the list of search conditions `Function`, Optional
   tableSelection: true, // Multiple select Table, default `false`
   selectable: (row,index)=> index > 1, // Configure selectable rows
   customTable: true, // custom Table, default `false`
