@@ -1,3 +1,4 @@
+[![Open in VS Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/repackel/repack)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/repackel/repack/Node.js%20Package) 
 ![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/repackel/repack) 
 ![npm](https://img.shields.io/npm/v/@repackel/repack) 
