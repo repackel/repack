@@ -148,15 +148,6 @@ export default {
       }
     }
     this.$nextTick((_) => {
-      const hasVal = this.cfg.searchList && this.cfg.searchList.find((x) => x && x.type === "input" && x.value);
-      if (hasVal) {
-        const form = {}
-        this.cfg.searchList.forEach(x=>(form[x.key] = x.value))
-        this.queryParams = Object.assign({},this.queryParams,form) 
-        this.getList();
-      } else {
-        this.getList("reset");
-      }
       // fetchConditionFn
       if (this.cfg.fetchConditionFn) {
         this.cfg
@@ -168,6 +159,8 @@ export default {
             console.log("err", err);
           });
       }
+      // search Default Val
+      this.setDefaultValAndQuery()
     });
   },
   methods: {
@@ -234,7 +227,16 @@ export default {
       this.queryParams = { [this.pageSizeKey]: this.queryParams[this.pageSizeKey] };
       this.queryParams[this.pageIndexKey] = 1;
       this.searchDateArr = [];
-      this.getList("reset");
+      this.setDefaultValAndQuery("reset")
+    },
+    setDefaultValAndQuery(reset){
+      const hasVal = this.cfg.searchList && this.cfg.searchList.find((x) => x && x.value);
+      if (hasVal) {
+        const form = {}
+        this.cfg.searchList.forEach(x=>(form[x.key] = x.value))
+        this.queryParams = Object.assign({},this.queryParams,form) 
+      }
+      this.getList(reset);
     },
     handleSelectionChange(val) {
       this.$emit("getSelection", val);

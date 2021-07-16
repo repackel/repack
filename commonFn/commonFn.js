@@ -40,8 +40,8 @@ export const inputcfg = (x, i, hideName ) => {
   let placeholderName = hideName ? '' : x.name
   let cfg = {
     size: x.size || "",
-    filterable: x.filterable || Boolean(x.dict) || true,
-    clearable: x.clearable || true,
+    filterable: x.filterable === undefined ? ( Boolean(x.dict) || true ) :  x.filterable,
+    clearable: x.clearable === undefined ? true : x.clearable,
     class: x.class,
     style: x.width ? "width:" + x.width : "",
     multiple,
