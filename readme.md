@@ -30,6 +30,7 @@ It was designed to be configurable from object data.
 ## 🛰️ Install
 
 ![NPM](https://nodei.co/npm/@repackel/repack.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frepackel%2Frepack.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frepackel%2Frepack?ref=badge_shield)
 
 ```bash
 npm i @repackel/repack -D
@@ -58,3 +59,7 @@ import '@repackel/repack/assets/style.css';
 ## 🎈 Code Snippet
 - [Using code snippets in VS code](./codeSnippets/readme.md)
 - [在 VS code 中使用代码片段](./codeSnippets/readme.zh.md)
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frepackel%2Frepack.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Frepackel%2Frepack?ref=badge_large)
