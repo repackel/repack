@@ -6,7 +6,7 @@
 ![jsDelivr hits (npm)](https://img.shields.io/jsdelivr/npm/hm/@repackel/repack) 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/repackel/repack) 
 ![GitHub last commit](https://img.shields.io/github/last-commit/repackel/repack) 
-
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frepackel%2Frepack.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frepackel%2Frepack?ref=badge_shield)
 
 
 ---
@@ -30,7 +30,7 @@ It was designed to be configurable from object data.
 ## 🛰️ Install
 
 ![NPM](https://nodei.co/npm/@repackel/repack.svg)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Frepackel%2Frepack.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Frepackel%2Frepack?ref=badge_shield)
+
 
 ```bash
 npm i @repackel/repack -D
